@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ArchitecTang Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2019-03-09T11:45:40.788Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Zhaohu.Tang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux DDos防御</title>
+    <link href="http://yoursite.com/2019/03/09/Linux-DDos%E9%98%B2%E5%BE%A1/"/>
+    <id>http://yoursite.com/2019/03/09/Linux-DDos防御/</id>
+    <published>2019-03-09T11:20:28.000Z</published>
+    <updated>2019-03-09T11:45:40.788Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>今天要说的就是一款能够自动屏蔽DDOS攻击者IP的软件：DDoS deflate。<br>DDoS deflate介绍<br>DDoS deflate是一款免费的用来防御和减轻DDoS攻击的脚本。它通过netstat监测跟踪创建大量网络连接的IP地址，在检测到某个结点超过预设的限 制时，该程序会通过APF或IPTABLES禁止或阻挡这些IP.<br>DDoS deflate官方网站：<a href="http://deflate.medialayer.com/" target="_blank" rel="noopener">http://deflate.medialayer.com/</a><br>如何确认是否受到DDOS攻击？<br><a id="more"></a><br>执行：<br>netstat -ntu | awk ‘{print $5}’ | cut -d: -f1 | sort | uniq -c | sort -n<br>执行后，将会显示服务器上所有的每个IP多少个连接数。<br>1 113.132.228.195<br>1 70.33.184.37<br>1 87.250.253.243<br>1 Address<br>1 servers)<br>4 125.72.229.142<br>每个IP几个、十几个或几十个连接数都还算比较正常，如果像上面成百上千肯定就不正常了。<br>1、安装DDoS deflate<br>复制代码<br>代码如下:<br>wget <a href="http://www.inetbase.com/scripts/ddos/install.sh" target="_blank" rel="noopener">http://www.inetbase.com/scripts/ddos/install.sh</a> //下载DDoS deflate<br>chmod 0700 install.sh //添加权限<br>./install.sh //执行<br>2、配置DDoS deflate<br>下面是DDoS deflate的默认配置位于/usr/local/ddos/ddos.conf<br>内容如下：<br>代码如下:<br>Paths of the script and other files<br>PROGDIR=”/usr/local/ddos”<br>PROG=”/usr/local/ddos/ddos.sh”<br>IGNORE_IP_LIST=”/usr/local/ddos/ignore.ip.list” //IP地址白名单<br>CRON=”/etc/cron.d/ddos.cron” //定时执行程序<br>APF=”/etc/apf/apf”<br>IPT=”/sbin/iptables”<br>frequency in minutes for running the script<br>Caution: Every time this setting is changed, run the script with –cron<br>option so that the new frequency takes effect<br>FREQ=1 //检查时间间隔，默认1分钟<br>How many connections define a bad IP? Indicate that below.<br>NO_OF_CONNECTIONS=150 //最大连接数，超过这个数IP就会被屏蔽，一般默认即可<br>APF_BAN=1 (Make sure your APF version is atleast 0.96)<br>APF_BAN=0 (Uses iptables for banning ips instead of APF)<br>APF_BAN=1 //使用APF还是iptables。推荐使用iptables,将APF_BAN的值改为0即可。<br>KILL=0 (Bad IPs are’nt banned, good for interactive execution of script)<br>KILL=1 (Recommended setting)<br>KILL=1 //是否屏蔽IP，默认即可<br>An email is sent to the following address when an IP is banned.<br>Blank would suppress sending of mails<br>EMAIL_TO=”root” //当IP被屏蔽时给指定邮箱发送邮件，推荐使用，换成自己的邮箱即可<br>Number of seconds the banned ip should remain in blacklist.<br>BAN_PERIOD=600 //禁用IP时间，默认600秒，可根据情况调整用户可根据给默认配置文件加上的注释提示内容，修改配置文件。<br>用户可根据给默认配置文件加上的注释提示内容，修改配置文件。<br>查看/usr/local/ddos/ddos.sh文件的第117行<br>netstat -ntu | awk ‘{print $5}’ | cut -d: -f1 | sort | uniq -c | sort -nr &gt; $BAD_IP_LIST<br>修改为以下代码即可！<br>netstat -ntu | awk ‘{print $5}’ | cut -d: -f1 | sed -n ‘/[0-9]/p’ | sort | uniq -c | sort -nr &gt; $BAD_IP_LIST<br>喜欢折腾的可以用Web压力测试软件测试一下效果，相信DDoS</p><h2 id="deflate还是能给你的VPS或服务器抵御一部分DDOS攻击，给你的网站更多的保护。"><a href="#deflate还是能给你的VPS或服务器抵御一部分DDOS攻击，给你的网站更多的保护。" class="headerlink" title="deflate还是能给你的VPS或服务器抵御一部分DDOS攻击，给你的网站更多的保护。"></a>deflate还是能给你的VPS或服务器抵御一部分DDOS攻击，给你的网站更多的保护。</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天要说的就是一款能够自动屏蔽DDOS攻击者IP的软件：DDoS deflate。&lt;br&gt;DDoS deflate介绍&lt;br&gt;DDoS deflate是一款免费的用来防御和减轻DDoS攻击的脚本。它通过netstat监测跟踪创建大量网络连接的IP地址，在检测到某个结点超过预设的限 制时，该程序会通过APF或IPTABLES禁止或阻挡这些IP.&lt;br&gt;DDoS deflate官方网站：&lt;a href=&quot;http://deflate.medialayer.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://deflate.medialayer.com/&lt;/a&gt;&lt;br&gt;如何确认是否受到DDOS攻击？&lt;br&gt;
+    
+    </summary>
+    
+      <category term="信息安全" scheme="http://yoursite.com/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="信息安全" scheme="http://yoursite.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 挂载新磁盘</title>
+    <link href="http://yoursite.com/2018/10/20/01-Linux%20%E6%8C%82%E8%BD%BD%E6%96%B0%E7%A3%81%E7%9B%98/"/>
+    <id>http://yoursite.com/2018/10/20/01-Linux 挂载新磁盘/</id>
+    <published>2018-10-20T02:14:47.000Z</published>
+    <updated>2019-03-08T16:21:20.838Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>需求：新增加一块硬盘sdb，只分一个区，格式化挂载到/date</p><p>1、查看现在已有的分区状态<br><a id="more"></a><br>df -h<br><img src="https://note.youdao.com/yws/public/resource/a48d8924ad48076fd2ed7f207b684229/xmlnote/D6EA052A4FE847D0B27335D1B7A9D902/5300" alt="image"></p><p>图中显示没有看到sdb硬盘</p><p>2、查看服务器安装的硬盘状态（包括格式化和未格式化的）</p><p>fdisk -l<br><img src="https://note.youdao.com/yws/public/resource/a48d8924ad48076fd2ed7f207b684229/xmlnote/06ADC18773F447A7AC20CFA84354F233/5305" alt="image"></p><p>图中显示，有sdb硬盘，但是没有分区</p><p>3、添加新分区</p><p>fdisk /dev/sdb<br><img src="https://note.youdao.com/yws/public/resource/a48d8924ad48076fd2ed7f207b684229/xmlnote/69655BDBB46548B29DB1E1A6FE30619C/5326" alt="image"><br>按照以下红框输入：</p><p>N 回车 P 回车 1 回车  两次回车 W 回车</p><p>用以下命令查看分区</p><p>fdisk -l<br><img src="https://note.youdao.com/yws/public/resource/a48d8924ad48076fd2ed7f207b684229/xmlnote/33F41D1285074C6F9EBEE03EE8B15C98/5310" alt="image"><br>图中红框显示已经多出了一个分区，但是没有格式化</p><p>4、格式化分区</p><p>mkfs -t ext4 -c /dev/sdb1<br><img src="https://note.youdao.com/yws/public/resource/a48d8924ad48076fd2ed7f207b684229/xmlnote/C1A5577D5A0F4D1D8A8AB0C23F76D4F9/5309" alt="image"><br>-t 指定要把磁盘格式化成什么类型</p><p>-c 在建立文件系统之前检查坏道，可能会很费时间，新硬盘一般不需要</p><p>5、挂载新硬盘</p><p>在根目录下建一个文件夹，待会将分区挂载在这个文件夹上，以后要往新硬盘存东西，就放在这个新建的文件夹里就可以<br>mkdir /data</p><p>挂载硬盘</p><p>mount /dev/sdb1 /data<br><img src="https://note.youdao.com/yws/public/resource/a48d8924ad48076fd2ed7f207b684229/xmlnote/CC8FD5F8F46F42509AD629CB47D1A2B7/5311" alt="image"><br>6、让系统开机自动挂载这块硬盘</p><p>echo “/dev/sdb1 /data ext4 defaults 0 0”&gt; /etc/fstab</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;需求：新增加一块硬盘sdb，只分一个区，格式化挂载到/date&lt;/p&gt;
+&lt;p&gt;1、查看现在已有的分区状态&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>(二)、Ansible在使用过程中出现的错误解决方法</title>
+    <link href="http://yoursite.com/2018/09/02/%E4%BA%8C-%E3%80%81Ansible%E5%9C%A8%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/</id>
+    <published>2018-09-02T04:47:00.000Z</published>
+    <updated>2019-03-08T16:57:22.212Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="安装完成后允许命令出错"><a href="#安装完成后允许命令出错" class="headerlink" title="安装完成后允许命令出错"></a>安装完成后允许命令出错</h4><p>Traceback (most recent call last):<br>  File “/usr/bin/ansible”, line 197, in <module><br>        (runner, results) = cli.run(options, args)<br>  File “/usr/bin/ansible”, line 163, in run<br>        extra_vars=extra_vars,<br>  File “/usr/lib/python2.6/site-packages/ansible/runner/<strong>init</strong>.py”, line 233, in <strong>init</strong><br>        cmd = subprocess.Popen([‘ssh’,’-o’,’ControlPersist’], stdout=subprocess.PIPE, stderr=subprocess.PIPE)<br>  File “/usr/lib64/python2.6/subprocess.py”, line 639, in <strong>init</strong><br>        errread, errwrite)<br>  File “/usr/lib64/python2.6/subprocess.py”, line 1228, in _execute_child<br>        raise child_exception<br>  OSError: [Errno 2] No such file or directory</module></p><p>解决办法<br>yum -y install openssh-clients</p><h4 id="出现Error-ansible-requires-a-json-module-none-found"><a href="#出现Error-ansible-requires-a-json-module-none-found" class="headerlink" title="出现Error: ansible requires a json module, none found!"></a>出现Error: ansible requires a json module, none found!</h4><p>SSH password:<br>10.0.1.110 | FAILED &gt;&gt; {<br>   “failed”: true,<br>   “msg”: “Error: ansible requires a json module, nonefound!”,<br>   “parsed”: false<br>}</p><p>解决办法</p><p>python版本过低，可以升级python或者python-simplejson</p><h4 id="安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"><a href="#安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）" class="headerlink" title="安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"></a>安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）</h4><p>FAILED =&gt; Using a SSH password insteadof a key is not possible because Host Key checking is enabled and sshpass doesnot support this.  Please add this host’sfingerprint to your known_hosts file to manage this host.</p><p>解决办法：</p><p>在ansible 服务器上使用ssh 登陆下/etc/ansible/hosts 里面配置的服务器。然后再次使用ansible 去管理就不会报上面的错误了！</p><p>但这样大批量登陆就麻烦来。因为默认ansible是使用key验证的，如果使用密码登陆的服务器，使用ansible的话，要不修改ansible.cfg配置文件</p><p>的ask_pass = True给取消注释，要不就在运行命令时候加上-k，这个意思是-k, –ask-pass ask for SSH password。再修改：</p><p>host_key_checking= False即可</p><h4 id="如果客户端不在know-hosts里将会报错"><a href="#如果客户端不在know-hosts里将会报错" class="headerlink" title="如果客户端不在know_hosts里将会报错"></a>如果客户端不在know_hosts里将会报错</h4><p>paramiko: The authenticity of host ‘192.168.24.15’can’t be established.</p><p>The ssh-rsa key fingerprint is397c139fd4b0d763fcffaee346a4bf6b.</p><p>Are you sure you want to continueconnecting (yes/no)?</p><p>解决办法</p><p>需要修改ansible.cfg的#host_key_checking= False取消注释</p><h4 id="出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file"><a href="#出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file" class="headerlink" title="出现FAILED =&gt; FAILED: not a valid DSA private key file"></a>出现FAILED =&gt; FAILED: not a valid DSA private key file</h4><p>解决办法：</p><p>需要你在最后命令内添加参数-k</p><h4 id="openssh升级后无法登录报错"><a href="#openssh升级后无法登录报错" class="headerlink" title="openssh升级后无法登录报错"></a>openssh升级后无法登录报错</h4><p>PAM unable todlopen(/lib64/security/pam_stack.so): /lib64/security/pam_stack.so: cannot openshared object</p><p>file: No such file or directory</p><p>解决方法：</p><p>sshrpm 升级后会修改/etc/pam.d/sshd 文件。需要升级前备份此文件最后还原即可登录。</p><h4 id="第一次系统初始化运行生成本机ansible用户key时报错"><a href="#第一次系统初始化运行生成本机ansible用户key时报错" class="headerlink" title="第一次系统初始化运行生成本机ansible用户key时报错"></a>第一次系统初始化运行生成本机ansible用户key时报错</h4><p>failed: [127.0.0.1] =&gt;{“checksum”: “f5f2f20fc0774be961fffb951a50023e31abe920”,”failed”: true}</p><p>msg: Aborting, target uses selinux but pythonbindings (libselinux-python) aren’t installed!</p><p>FATAL: all hosts have already failed –aborting</p><p>解决办法</p><p>yum -y install libselinux-python</p><p>参考:  <a href="http://blog.csdn.net/longxibendi/article/details/46989735" target="_blank" rel="noopener">http://blog.csdn.net/longxibendi/article/details/46989735</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="自动化" scheme="http://yoursite.com/categories/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
+    
+      <category term="自动化" scheme="http://yoursite.com/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mongodb</title>
+    <link href="http://yoursite.com/2018/09/01/mongodb/"/>
+    <id>http://yoursite.com/2018/09/01/mongodb/</id>
+    <published>2018-09-01T09:26:39.000Z</published>
+    <updated>2018-09-01T09:29:15.506Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ansible</title>
+    <link href="http://yoursite.com/2018/09/01/Ansible/"/>
+    <id>http://yoursite.com/2018/09/01/Ansible/</id>
+    <published>2018-09-01T09:26:09.000Z</published>
+    <updated>2019-03-08T16:21:30.556Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>1、ansible介绍：</p><p>Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。</p><p>Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。<br>Asible是基于模块工作的，其本身没有批量部署的能力，Ansible<del>~</del>一款运维自动化的软件！<br><a id="more"></a><br>1.1特性</p><p>(1)、no agents：不需要在被管控主机上安装任何客户端；</p><p>(2)、no server：无服务器端，使用时直接运行命令即可；</p><p>(3)、modules in any languages：基于模块工作，可使用任意语言开发模块；</p><p>(4)、yaml，not code：使用yaml语言定制剧本playbook；</p><p>(5)、ssh by default：基于SSH工作；</p><p>(6)、strong multi-tier solution：可实现多级指挥。</p><p><img src="/upload/201809/工作特性.jpg" alt="工作特性"></p><p>1.1 优点</p><p>(1)、轻量级，无需在客户端安装agent，更新时，只需在操作机上进行一次更新即可；</p><p>(2)、批量任务执行可以写成脚本，而且不用分发到远程就可以执行；</p><p>(3)、使用python编写，维护更简单，ruby语法过于复杂；</p><p>(4)、支持sudo。</p><p><img src="/upload/201809/工作机制.png" alt="工作机制"></p><p>2、ansible安装</p><p>安装epel 源：<br>rpm -ivh  <a href="https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm" target="_blank" rel="noopener">https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm</a></p><p>安装ansible ：<br>yum install ansible -y</p><p>ssh-keygen  生成秘钥文件,如果不想输入密码可以一直回车</p><p>ssh-keygen -t rsa  </p><p>cd /root/.ssh/ &amp;&amp; ll ./*</p><p>配置ansible  的hosts 文件：</p><p>vim /etc/ansible/hosts</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1、ansible介绍：&lt;/p&gt;
+&lt;p&gt;Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。&lt;/p&gt;
+&lt;p&gt;Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。&lt;br&gt;Asible是基于模块工作的，其本身没有批量部署的能力，Ansible&lt;del&gt;~&lt;/del&gt;一款运维自动化的软件！&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="自动化" scheme="http://yoursite.com/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>持续化集成</title>
+    <link href="http://yoursite.com/2018/09/01/%E6%8C%81%E7%BB%AD%E5%8C%96%E9%9B%86%E6%88%90/"/>
+    <id>http://yoursite.com/2018/09/01/持续化集成/</id>
+    <published>2018-09-01T09:25:39.000Z</published>
+    <updated>2018-09-01T09:25:39.468Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>监控工具了解</title>
+    <link href="http://yoursite.com/2018/09/01/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7%E4%BA%86%E8%A7%A3/"/>
+    <id>http://yoursite.com/2018/09/01/监控工具了解/</id>
+    <published>2018-09-01T09:03:01.000Z</published>
+    <updated>2018-09-01T09:21:35.062Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="windows" scheme="http://yoursite.com/categories/Linux/windows/"/>
+    
+    
+      <category term="系统监控" scheme="http://yoursite.com/tags/%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker容器</title>
+    <link href="http://yoursite.com/2018/09/01/docker%E5%AE%B9%E5%99%A8/"/>
+    <id>http://yoursite.com/2018/09/01/docker容器/</id>
+    <published>2018-09-01T09:02:46.000Z</published>
+    <updated>2018-09-01T09:17:31.165Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://yoursite.com/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="微服务" scheme="http://yoursite.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shell脚本</title>
+    <link href="http://yoursite.com/2018/09/01/shell%E8%84%9A%E6%9C%AC/"/>
+    <id>http://yoursite.com/2018/09/01/shell脚本/</id>
+    <published>2018-09-01T09:02:39.000Z</published>
+    <updated>2018-09-01T09:07:54.178Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python(一)入门</title>
+    <link href="http://yoursite.com/2018/09/01/Python(%E4%B8%80)%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2018/09/01/Python(一)入门/</id>
+    <published>2018-09-01T09:02:26.000Z</published>
+    <updated>2018-09-01T09:18:42.940Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="Python编程" scheme="http://yoursite.com/categories/Python%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 基础</title>
+    <link href="http://yoursite.com/2018/09/01/Linux-%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2018/09/01/Linux-基础/</id>
+    <published>2018-09-01T09:01:32.000Z</published>
+    <updated>2018-09-01T09:23:17.279Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="系统" scheme="http://yoursite.com/categories/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubenetes入门</title>
+    <link href="http://yoursite.com/2018/09/01/Kubenetes%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2018/09/01/Kubenetes入门/</id>
+    <published>2018-09-01T08:47:28.000Z</published>
+    <updated>2018-09-01T09:10:52.330Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://yoursite.com/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="微服务" scheme="http://yoursite.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信息安全概览</title>
+    <link href="http://yoursite.com/2018/09/01/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%A7%88/"/>
+    <id>http://yoursite.com/2018/09/01/信息安全概览/</id>
+    <published>2018-09-01T04:32:59.000Z</published>
+    <updated>2018-09-01T09:00:22.248Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+      <category term="信息安全" scheme="http://yoursite.com/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="信息安全" scheme="http://yoursite.com/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+</feed>
