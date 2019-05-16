@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Linux DDos防御]]></title>
-    <url>%2F2019%2F03%2F09%2FLinux-DDos%E9%98%B2%E5%BE%A1%2F</url>
-    <content type="text"><![CDATA[今天要说的就是一款能够自动屏蔽DDOS攻击者IP的软件：DDoS deflate。DDoS deflate介绍DDoS deflate是一款免费的用来防御和减轻DDoS攻击的脚本。它通过netstat监测跟踪创建大量网络连接的IP地址，在检测到某个结点超过预设的限 制时，该程序会通过APF或IPTABLES禁止或阻挡这些IP.DDoS deflate官方网站：http://deflate.medialayer.com/如何确认是否受到DDOS攻击？执行：netstat -ntu | awk ‘{print $5}’ | cut -d: -f1 | sort | uniq -c | sort -n执行后，将会显示服务器上所有的每个IP多少个连接数。1 113.132.228.1951 70.33.184.371 87.250.253.2431 Address1 servers)4 125.72.229.142每个IP几个、十几个或几十个连接数都还算比较正常，如果像上面成百上千肯定就不正常了。1、安装DDoS deflate复制代码代码如下:wget http://www.inetbase.com/scripts/ddos/install.sh //下载DDoS deflatechmod 0700 install.sh //添加权限./install.sh //执行2、配置DDoS deflate下面是DDoS deflate的默认配置位于/usr/local/ddos/ddos.conf内容如下：代码如下:Paths of the script and other filesPROGDIR=”/usr/local/ddos”PROG=”/usr/local/ddos/ddos.sh”IGNORE_IP_LIST=”/usr/local/ddos/ignore.ip.list” //IP地址白名单CRON=”/etc/cron.d/ddos.cron” //定时执行程序APF=”/etc/apf/apf”IPT=”/sbin/iptables”frequency in minutes for running the scriptCaution: Every time this setting is changed, run the script with –cronoption so that the new frequency takes effectFREQ=1 //检查时间间隔，默认1分钟How many connections define a bad IP? Indicate that below.NO_OF_CONNECTIONS=150 //最大连接数，超过这个数IP就会被屏蔽，一般默认即可APF_BAN=1 (Make sure your APF version is atleast 0.96)APF_BAN=0 (Uses iptables for banning ips instead of APF)APF_BAN=1 //使用APF还是iptables。推荐使用iptables,将APF_BAN的值改为0即可。KILL=0 (Bad IPs are’nt banned, good for interactive execution of script)KILL=1 (Recommended setting)KILL=1 //是否屏蔽IP，默认即可An email is sent to the following address when an IP is banned.Blank would suppress sending of mailsEMAIL_TO=”root” //当IP被屏蔽时给指定邮箱发送邮件，推荐使用，换成自己的邮箱即可Number of seconds the banned ip should remain in blacklist.BAN_PERIOD=600 //禁用IP时间，默认600秒，可根据情况调整用户可根据给默认配置文件加上的注释提示内容，修改配置文件。用户可根据给默认配置文件加上的注释提示内容，修改配置文件。查看/usr/local/ddos/ddos.sh文件的第117行netstat -ntu | awk ‘{print $5}’ | cut -d: -f1 | sort | uniq -c | sort -nr &gt; $BAD_IP_LIST修改为以下代码即可！netstat -ntu | awk ‘{print $5}’ | cut -d: -f1 | sed -n ‘/[0-9]/p’ | sort | uniq -c | sort -nr &gt; $BAD_IP_LIST喜欢折腾的可以用Web压力测试软件测试一下效果，相信DDoS deflate还是能给你的VPS或服务器抵御一部分DDOS攻击，给你的网站更多的保护。]]></content>
-      <categories>
-        <category>信息安全</category>
-      </categories>
-      <tags>
-        <tag>信息安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux 挂载新磁盘]]></title>
-    <url>%2F2018%2F10%2F20%2F01-Linux%20%E6%8C%82%E8%BD%BD%E6%96%B0%E7%A3%81%E7%9B%98%2F</url>
-    <content type="text"><![CDATA[需求：新增加一块硬盘sdb，只分一个区，格式化挂载到/date 1、查看现在已有的分区状态df -h 图中显示没有看到sdb硬盘 2、查看服务器安装的硬盘状态（包括格式化和未格式化的） fdisk -l 图中显示，有sdb硬盘，但是没有分区 3、添加新分区 fdisk /dev/sdb按照以下红框输入： N 回车 P 回车 1 回车 两次回车 W 回车 用以下命令查看分区 fdisk -l图中红框显示已经多出了一个分区，但是没有格式化 4、格式化分区 mkfs -t ext4 -c /dev/sdb1-t 指定要把磁盘格式化成什么类型 -c 在建立文件系统之前检查坏道，可能会很费时间，新硬盘一般不需要 5、挂载新硬盘 在根目录下建一个文件夹，待会将分区挂载在这个文件夹上，以后要往新硬盘存东西，就放在这个新建的文件夹里就可以mkdir /data 挂载硬盘 mount /dev/sdb1 /data6、让系统开机自动挂载这块硬盘 echo “/dev/sdb1 /data ext4 defaults 0 0”&gt; /etc/fstab]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[(二)、Ansible在使用过程中出现的错误解决方法]]></title>
     <url>%2F2018%2F09%2F02%2F%E4%BA%8C-%E3%80%81Ansible%E5%9C%A8%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[安装完成后允许命令出错Traceback (most recent call last): File “/usr/bin/ansible”, line 197, in (runner, results) = cli.run(options, args) File “/usr/bin/ansible”, line 163, in run extra_vars=extra_vars, File “/usr/lib/python2.6/site-packages/ansible/runner/init.py”, line 233, in init cmd = subprocess.Popen([‘ssh’,’-o’,’ControlPersist’], stdout=subprocess.PIPE, stderr=subprocess.PIPE) File “/usr/lib64/python2.6/subprocess.py”, line 639, in init errread, errwrite) File “/usr/lib64/python2.6/subprocess.py”, line 1228, in _execute_child raise child_exception OSError: [Errno 2] No such file or directory 解决办法yum -y install openssh-clients 出现Error: ansible requires a json module, none found!SSH password:10.0.1.110 | FAILED &gt;&gt; { “failed”: true, “msg”: “Error: ansible requires a json module, nonefound!”, “parsed”: false} 解决办法 python版本过低，可以升级python或者python-simplejson 安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）FAILED =&gt; Using a SSH password insteadof a key is not possible because Host Key checking is enabled and sshpass doesnot support this. Please add this host’sfingerprint to your known_hosts file to manage this host. 解决办法： 在ansible 服务器上使用ssh 登陆下/etc/ansible/hosts 里面配置的服务器。然后再次使用ansible 去管理就不会报上面的错误了！ 但这样大批量登陆就麻烦来。因为默认ansible是使用key验证的，如果使用密码登陆的服务器，使用ansible的话，要不修改ansible.cfg配置文件 的ask_pass = True给取消注释，要不就在运行命令时候加上-k，这个意思是-k, –ask-pass ask for SSH password。再修改： host_key_checking= False即可 如果客户端不在know_hosts里将会报错paramiko: The authenticity of host ‘192.168.24.15’can’t be established. The ssh-rsa key fingerprint is397c139fd4b0d763fcffaee346a4bf6b. Are you sure you want to continueconnecting (yes/no)? 解决办法 需要修改ansible.cfg的#host_key_checking= False取消注释 出现FAILED =&gt; FAILED: not a valid DSA private key file解决办法： 需要你在最后命令内添加参数-k openssh升级后无法登录报错PAM unable todlopen(/lib64/security/pam_stack.so): /lib64/security/pam_stack.so: cannot openshared object file: No such file or directory 解决方法： sshrpm 升级后会修改/etc/pam.d/sshd 文件。需要升级前备份此文件最后还原即可登录。 第一次系统初始化运行生成本机ansible用户key时报错failed: [127.0.0.1] =&gt;{“checksum”: “f5f2f20fc0774be961fffb951a50023e31abe920”,”failed”: true} msg: Aborting, target uses selinux but pythonbindings (libselinux-python) aren’t installed! FATAL: all hosts have already failed –aborting 解决办法 yum -y install libselinux-python 参考: http://blog.csdn.net/longxibendi/article/details/46989735]]></content>
@@ -31,95 +12,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[mongodb]]></title>
-    <url>%2F2018%2F09%2F01%2Fmongodb%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[Ansible]]></title>
     <url>%2F2018%2F09%2F01%2FAnsible%2F</url>
     <content type="text"><![CDATA[1、ansible介绍： Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。 Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。Asible是基于模块工作的，其本身没有批量部署的能力，Ansible~一款运维自动化的软件！1.1特性 (1)、no agents：不需要在被管控主机上安装任何客户端； (2)、no server：无服务器端，使用时直接运行命令即可； (3)、modules in any languages：基于模块工作，可使用任意语言开发模块； (4)、yaml，not code：使用yaml语言定制剧本playbook； (5)、ssh by default：基于SSH工作； (6)、strong multi-tier solution：可实现多级指挥。 1.1 优点 (1)、轻量级，无需在客户端安装agent，更新时，只需在操作机上进行一次更新即可； (2)、批量任务执行可以写成脚本，而且不用分发到远程就可以执行； (3)、使用python编写，维护更简单，ruby语法过于复杂； (4)、支持sudo。 2、ansible安装 安装epel 源：rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm 安装ansible ：yum install ansible -y ssh-keygen 生成秘钥文件,如果不想输入密码可以一直回车 ssh-keygen -t rsa cd /root/.ssh/ &amp;&amp; ll ./* 配置ansible 的hosts 文件： vim /etc/ansible/hosts]]></content>
       <tags>
         <tag>自动化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[持续化集成]]></title>
-    <url>%2F2018%2F09%2F01%2F%E6%8C%81%E7%BB%AD%E5%8C%96%E9%9B%86%E6%88%90%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[监控工具了解]]></title>
-    <url>%2F2018%2F09%2F01%2F%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7%E4%BA%86%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>Linux</category>
-        <category>windows</category>
-      </categories>
-      <tags>
-        <tag>系统监控</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[docker容器]]></title>
-    <url>%2F2018%2F09%2F01%2Fdocker%E5%AE%B9%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>微服务</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[shell脚本]]></title>
-    <url>%2F2018%2F09%2F01%2Fshell%E8%84%9A%E6%9C%AC%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Python(一)入门]]></title>
-    <url>%2F2018%2F09%2F01%2FPython(%E4%B8%80)%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>Python编程</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux 基础]]></title>
-    <url>%2F2018%2F09%2F01%2FLinux-%E5%9F%BA%E7%A1%80%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Kubenetes入门]]></title>
-    <url>%2F2018%2F09%2F01%2FKubenetes%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>微服务</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[信息安全概览]]></title>
-    <url>%2F2018%2F09%2F01%2F%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%A7%88%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>信息安全</category>
-      </categories>
-      <tags>
-        <tag>信息安全</tag>
       </tags>
   </entry>
 </search>
