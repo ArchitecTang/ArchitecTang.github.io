@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="安装完成后允许命令出错Traceback (most recent call last):  File “/usr/bin/ansible”, line 197, in         (runner, results) = cli.run(options, args)  File “/usr/bin/ansible”, line 163, in run        extra_vars=ext">
+<meta name="description" content="1.安装完成后允许命令出错Traceback (most recent call last): File &amp;quot;/usr/bin/ansible&amp;quot;, line 197, in &amp;lt;module&amp;gt;         (runner, results) = cli.run(options, args) File &amp;quot;/usr/bin/ansible&amp;quot;, lin">
 <meta name="keywords" content="自动化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="(二)、Ansible在使用过程中出现的错误解决方法">
 <meta property="og:url" content="http://yoursite.com/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/index.html">
 <meta property="og:site_name" content="ArchitecTang Blog">
-<meta property="og:description" content="安装完成后允许命令出错Traceback (most recent call last):  File “/usr/bin/ansible”, line 197, in         (runner, results) = cli.run(options, args)  File “/usr/bin/ansible”, line 163, in run        extra_vars=ext">
+<meta property="og:description" content="1.安装完成后允许命令出错Traceback (most recent call last): File &amp;quot;/usr/bin/ansible&amp;quot;, line 197, in &amp;lt;module&amp;gt;         (runner, results) = cli.run(options, args) File &amp;quot;/usr/bin/ansible&amp;quot;, lin">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-08T16:57:22.212Z">
+<meta property="og:updated_time" content="2019-05-16T11:56:43.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="(二)、Ansible在使用过程中出现的错误解决方法">
-<meta name="twitter:description" content="安装完成后允许命令出错Traceback (most recent call last):  File “/usr/bin/ansible”, line 197, in         (runner, results) = cli.run(options, args)  File “/usr/bin/ansible”, line 163, in run        extra_vars=ext">
+<meta name="twitter:description" content="1.安装完成后允许命令出错Traceback (most recent call last): File &amp;quot;/usr/bin/ansible&amp;quot;, line 197, in &amp;lt;module&amp;gt;         (runner, results) = cli.run(options, args) File &amp;quot;/usr/bin/ansible&amp;quot;, lin">
 
 
 
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  593
+                  637
                 </span>
               
 
@@ -445,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -467,33 +467,46 @@
       
 
       
-        <h4 id="安装完成后允许命令出错"><a href="#安装完成后允许命令出错" class="headerlink" title="安装完成后允许命令出错"></a>安装完成后允许命令出错</h4><p>Traceback (most recent call last):<br>  File “/usr/bin/ansible”, line 197, in <module><br>        (runner, results) = cli.run(options, args)<br>  File “/usr/bin/ansible”, line 163, in run<br>        extra_vars=extra_vars,<br>  File “/usr/lib/python2.6/site-packages/ansible/runner/<strong>init</strong>.py”, line 233, in <strong>init</strong><br>        cmd = subprocess.Popen([‘ssh’,’-o’,’ControlPersist’], stdout=subprocess.PIPE, stderr=subprocess.PIPE)<br>  File “/usr/lib64/python2.6/subprocess.py”, line 639, in <strong>init</strong><br>        errread, errwrite)<br>  File “/usr/lib64/python2.6/subprocess.py”, line 1228, in _execute_child<br>        raise child_exception<br>  OSError: [Errno 2] No such file or directory</module></p>
-<p>解决办法<br>yum -y install openssh-clients</p>
-<h4 id="出现Error-ansible-requires-a-json-module-none-found"><a href="#出现Error-ansible-requires-a-json-module-none-found" class="headerlink" title="出现Error: ansible requires a json module, none found!"></a>出现Error: ansible requires a json module, none found!</h4><p>SSH password:<br>10.0.1.110 | FAILED &gt;&gt; {<br>   “failed”: true,<br>   “msg”: “Error: ansible requires a json module, nonefound!”,<br>   “parsed”: false<br>}</p>
-<p>解决办法</p>
-<p>python版本过低，可以升级python或者python-simplejson</p>
-<h4 id="安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"><a href="#安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）" class="headerlink" title="安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"></a>安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）</h4><p>FAILED =&gt; Using a SSH password insteadof a key is not possible because Host Key checking is enabled and sshpass doesnot support this.  Please add this host’sfingerprint to your known_hosts file to manage this host.</p>
-<p>解决办法：</p>
-<p>在ansible 服务器上使用ssh 登陆下/etc/ansible/hosts 里面配置的服务器。然后再次使用ansible 去管理就不会报上面的错误了！</p>
-<p>但这样大批量登陆就麻烦来。因为默认ansible是使用key验证的，如果使用密码登陆的服务器，使用ansible的话，要不修改ansible.cfg配置文件</p>
-<p>的ask_pass = True给取消注释，要不就在运行命令时候加上-k，这个意思是-k, –ask-pass ask for SSH password。再修改：</p>
+        <h4 id="1-安装完成后允许命令出错"><a href="#1-安装完成后允许命令出错" class="headerlink" title="1.安装完成后允许命令出错"></a>1.安装完成后允许命令出错</h4><pre><code>Traceback (most recent call last):
+File &quot;/usr/bin/ansible&quot;, line 197, in &lt;module&gt;
+        (runner, results) = cli.run(options, args)
+File &quot;/usr/bin/ansible&quot;, line 163, in run
+        extra_vars=extra_vars,
+File &quot;/usr/lib/python2.6/site-packages/ansible/runner/__init__.py&quot;, line 233, in __init__
+        cmd = subprocess.Popen([&apos;ssh&apos;,&apos;-o&apos;,&apos;ControlPersist&apos;], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+File &quot;/usr/lib64/python2.6/subprocess.py&quot;, line 639, in __init__
+        errread, errwrite)
+File &quot;/usr/lib64/python2.6/subprocess.py&quot;, line 1228, in _execute_child
+        raise child_exception
+OSError: [Errno 2] No such file or directory
+</code></pre><h5 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h5><p>yum -y install openssh-clients</p>
+<h4 id="2-出现Error-ansible-requires-a-json-module-none-found"><a href="#2-出现Error-ansible-requires-a-json-module-none-found" class="headerlink" title="2.出现Error: ansible requires a json module, none found!"></a>2.出现Error: ansible requires a json module, none found!</h4><pre><code>SSH password:
+10.0.1.110 | FAILED &gt;&gt; {
+&quot;failed&quot;: true,
+&quot;msg&quot;: &quot;Error: ansible requires a json module, nonefound!&quot;,
+&quot;parsed&quot;: false
+}
+</code></pre><h5 id="解决办法-1"><a href="#解决办法-1" class="headerlink" title="解决办法"></a>解决办法</h5><p>python版本过低，可以升级python或者python-simplejson</p>
+<h4 id="3-安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"><a href="#3-安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）" class="headerlink" title="3.安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"></a>3.安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）</h4><pre><code>FAILED =&gt; Using a SSH password insteadof a key is not possible because Host Key checking is enabled and sshpass doesnot support this.  Please add this host&apos;sfingerprint to your known_hosts file to manage this host.
+</code></pre><h5 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h5><p>在ansible 服务器上使用ssh 登陆下/etc/ansible/hosts 里面配置的服务器。然后再次使用ansible 去管理就不会报上面的错误了！<br>但这样大批量登陆就麻烦来。因为默认ansible是使用key验证的，如果使用密码登陆的服务器，使用ansible的话，要不修改ansible.cfg配置文件<br>的ask_pass = True给取消注释，要不就在运行命令时候加上-k，这个意思是-k, –ask-pass ask for SSH password。再修改：</p>
 <p>host_key_checking= False即可</p>
-<h4 id="如果客户端不在know-hosts里将会报错"><a href="#如果客户端不在know-hosts里将会报错" class="headerlink" title="如果客户端不在know_hosts里将会报错"></a>如果客户端不在know_hosts里将会报错</h4><p>paramiko: The authenticity of host ‘192.168.24.15’can’t be established.</p>
-<p>The ssh-rsa key fingerprint is397c139fd4b0d763fcffaee346a4bf6b.</p>
-<p>Are you sure you want to continueconnecting (yes/no)?</p>
-<p>解决办法</p>
-<p>需要修改ansible.cfg的#host_key_checking= False取消注释</p>
-<h4 id="出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file"><a href="#出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file" class="headerlink" title="出现FAILED =&gt; FAILED: not a valid DSA private key file"></a>出现FAILED =&gt; FAILED: not a valid DSA private key file</h4><p>解决办法：</p>
-<p>需要你在最后命令内添加参数-k</p>
-<h4 id="openssh升级后无法登录报错"><a href="#openssh升级后无法登录报错" class="headerlink" title="openssh升级后无法登录报错"></a>openssh升级后无法登录报错</h4><p>PAM unable todlopen(/lib64/security/pam_stack.so): /lib64/security/pam_stack.so: cannot openshared object</p>
-<p>file: No such file or directory</p>
-<p>解决方法：</p>
-<p>sshrpm 升级后会修改/etc/pam.d/sshd 文件。需要升级前备份此文件最后还原即可登录。</p>
-<h4 id="第一次系统初始化运行生成本机ansible用户key时报错"><a href="#第一次系统初始化运行生成本机ansible用户key时报错" class="headerlink" title="第一次系统初始化运行生成本机ansible用户key时报错"></a>第一次系统初始化运行生成本机ansible用户key时报错</h4><p>failed: [127.0.0.1] =&gt;{“checksum”: “f5f2f20fc0774be961fffb951a50023e31abe920”,”failed”: true}</p>
-<p>msg: Aborting, target uses selinux but pythonbindings (libselinux-python) aren’t installed!</p>
-<p>FATAL: all hosts have already failed –aborting</p>
-<p>解决办法</p>
-<p>yum -y install libselinux-python</p>
+<h4 id="4-如果客户端不在know-hosts里将会报错"><a href="#4-如果客户端不在know-hosts里将会报错" class="headerlink" title="4.如果客户端不在know_hosts里将会报错"></a>4.如果客户端不在know_hosts里将会报错</h4><pre><code>paramiko: The authenticity of host &apos;192.168.24.15&apos;can&apos;t be established.
+
+The ssh-rsa key fingerprint is397c139fd4b0d763fcffaee346a4bf6b.
+
+Are you sure you want to continueconnecting (yes/no)?
+</code></pre><h5 id="解决办法-2"><a href="#解决办法-2" class="headerlink" title="解决办法"></a>解决办法</h5><p>需要修改ansible.cfg的#host_key_checking= False取消注释</p>
+<h3 id="5-出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file"><a href="#5-出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file" class="headerlink" title="5.出现FAILED =&gt; FAILED: not a valid DSA private key file"></a>5.出现FAILED =&gt; FAILED: not a valid DSA private key file</h3><h5 id="解决办法：-1"><a href="#解决办法：-1" class="headerlink" title="解决办法："></a>解决办法：</h5><p>需要你在最后命令内添加参数-k</p>
+<h4 id="6-openssh升级后无法登录报错"><a href="#6-openssh升级后无法登录报错" class="headerlink" title="6.openssh升级后无法登录报错"></a>6.openssh升级后无法登录报错</h4><pre><code>PAM unable todlopen(/lib64/security/pam_stack.so): /lib64/security/pam_stack.so: cannot openshared object
+
+file: No such file or directory
+</code></pre><h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><p>sshrpm 升级后会修改/etc/pam.d/sshd 文件。需要升级前备份此文件最后还原即可登录。</p>
+<h4 id="7-第一次系统初始化运行生成本机ansible用户key时报错"><a href="#7-第一次系统初始化运行生成本机ansible用户key时报错" class="headerlink" title="7.第一次系统初始化运行生成本机ansible用户key时报错"></a>7.第一次系统初始化运行生成本机ansible用户key时报错</h4><pre><code>failed: [127.0.0.1] =&gt;{&quot;checksum&quot;: &quot;f5f2f20fc0774be961fffb951a50023e31abe920&quot;,&quot;failed&quot;: true}
+
+msg: Aborting, target uses selinux but pythonbindings (libselinux-python) aren&apos;t installed!
+
+FATAL: all hosts have already failed –aborting
+</code></pre><h5 id="解决办法-3"><a href="#解决办法-3" class="headerlink" title="解决办法"></a>解决办法</h5><p>yum -y install libselinux-python</p>
 <p>参考:  <a href="http://blog.csdn.net/longxibendi/article/details/46989735" target="_blank" rel="noopener">http://blog.csdn.net/longxibendi/article/details/46989735</a></p>
 
       
@@ -739,7 +752,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装完成后允许命令出错"><span class="nav-number">1.</span> <span class="nav-text">安装完成后允许命令出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#出现Error-ansible-requires-a-json-module-none-found"><span class="nav-number">2.</span> <span class="nav-text">出现Error: ansible requires a json module, none found!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"><span class="nav-number">3.</span> <span class="nav-text">安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果客户端不在know-hosts里将会报错"><span class="nav-number">4.</span> <span class="nav-text">如果客户端不在know_hosts里将会报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file"><span class="nav-number">5.</span> <span class="nav-text">出现FAILED =&gt; FAILED: not a valid DSA private key file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#openssh升级后无法登录报错"><span class="nav-number">6.</span> <span class="nav-text">openssh升级后无法登录报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次系统初始化运行生成本机ansible用户key时报错"><span class="nav-number">7.</span> <span class="nav-text">第一次系统初始化运行生成本机ansible用户key时报错</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装完成后允许命令出错"><span class="nav-number">1.</span> <span class="nav-text">1.安装完成后允许命令出错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法"><span class="nav-number">1.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-出现Error-ansible-requires-a-json-module-none-found"><span class="nav-number">2.</span> <span class="nav-text">2.出现Error: ansible requires a json module, none found!</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"><span class="nav-number">3.</span> <span class="nav-text">3.安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法："><span class="nav-number">3.1.</span> <span class="nav-text">解决办法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-如果客户端不在know-hosts里将会报错"><span class="nav-number">4.</span> <span class="nav-text">4.如果客户端不在know_hosts里将会报错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法-2"><span class="nav-number">4.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#5-出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file"><span class="nav-number"></span> <span class="nav-text">5.出现FAILED =&gt; FAILED: not a valid DSA private key file</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法：-1"><span class="nav-number">0.1.</span> <span class="nav-text">解决办法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-openssh升级后无法登录报错"><span class="nav-number">1.</span> <span class="nav-text">6.openssh升级后无法登录报错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决方法："><span class="nav-number">1.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-第一次系统初始化运行生成本机ansible用户key时报错"><span class="nav-number">2.</span> <span class="nav-text">7.第一次系统初始化运行生成本机ansible用户key时报错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法-3"><span class="nav-number">2.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li></div>
             
 
           </div>
