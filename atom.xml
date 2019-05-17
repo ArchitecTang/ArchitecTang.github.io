@@ -48,7 +48,7 @@
     <link href="https://architectang.github.io/2019/05/17/Redis-%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D/"/>
     <id>https://architectang.github.io/2019/05/17/Redis-故障恢复/</id>
     <published>2019-05-17T06:25:37.000Z</published>
-    <updated>2019-05-17T06:28:51.544Z</updated>
+    <updated>2019-05-17T06:50:05.988Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>案例一、<br>ResponseError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk.<br><a id="more"></a><br>Commands that may modify the data set are disabled. Please check Redis logs for details about the error.<br>Redis被配置为保存数据库快照，但它目前不能持久化到硬盘。用来修改集合数据的命令不能用。请查看Redis日志的详细错误信息。<br>原因：强制关闭redis快照导致不能持久化</p><p>解决方案：<br>将：stop-writes-on-bgsave-error 设置为 no</p>]]></content>
     
@@ -60,8 +60,12 @@
     
       <category term="Linux" scheme="https://architectang.github.io/categories/Linux/"/>
     
+      <category term="redis" scheme="https://architectang.github.io/categories/Linux/redis/"/>
+    
     
       <category term="Linux" scheme="https://architectang.github.io/tags/Linux/"/>
+    
+      <category term="redis" scheme="https://architectang.github.io/tags/redis/"/>
     
   </entry>
   
