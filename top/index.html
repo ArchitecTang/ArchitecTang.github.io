@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="top,文章阅读量排行榜">
 
 
 
@@ -97,17 +97,18 @@
 
 
 
-<meta name="description" content="AV.initialize(&quot;leancloud_appid&quot;, &quot;leancloud_appkey&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.descending(&apos;time&apos;);   query">
+<meta name="description" content="博客文章阅读量排行榜">
+<meta name="keywords" content="top,文章阅读量排行榜">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ArchitecTang Blog">
+<meta property="og:title" content="阅读排行">
 <meta property="og:url" content="https://architectang.github.io/top/index.html">
 <meta property="og:site_name" content="ArchitecTang Blog">
-<meta property="og:description" content="AV.initialize(&quot;leancloud_appid&quot;, &quot;leancloud_appkey&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.descending(&apos;time&apos;);   query">
+<meta property="og:description" content="博客文章阅读量排行榜">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-16T13:46:36.606Z">
+<meta property="og:updated_time" content="2019-05-17T03:53:49.469Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ArchitecTang Blog">
-<meta name="twitter:description" content="AV.initialize(&quot;leancloud_appid&quot;, &quot;leancloud_appkey&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.descending(&apos;time&apos;);   query">
+<meta name="twitter:title" content="阅读排行">
+<meta name="twitter:description" content="博客文章阅读量排行榜">
 
 
 
@@ -143,7 +144,7 @@
 
 
 
-  <title> | ArchitecTang Blog</title>
+  <title>阅读排行 | ArchitecTang Blog</title>
   
 
 
@@ -305,8 +306,12 @@
     <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+	<h1 class="post-title" itemprop="name headline">阅读排行</h1>
 
+
+	<div class="post-meta">
+		<div class="post-description">博客文章阅读量排行榜</div>
+	</div>
 
 
 </header>
@@ -317,31 +322,11 @@
       <div class="post-body">
         
         
-          <div id="top"></div>
-<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script>AV.initialize("leancloud_appid", "leancloud_appkey");</script>
-<script type="text/javascript">
-  var time=0
-  var title=""
-  var url=""
-  var query = new AV.Query('Counter');
-  query.notEqualTo('id',0);
-  query.descending('time');
-  query.limit(1000);
-  query.find().then(function (todo) {
-    for (var i=0;i<1000;i++){
-      var result=todo[i].attributes;
-      time=result.time;
-      title=result.title;
-      url=result.url;
-      // var content="<a href='"+"https://architectang.github.io/"+url+"'>"+title+"</a>"+"<br>"+"<font color='#fff'>"+"阅读次数："+time+"</font>"+"<br><br>";
-      var content="<p>"+"<font color='#1C1C1C'>"+"【文章热度:"+time+"℃】"+"</font>"+"<a href='"+"https://hoxis.github.io"+url+"'>"+title+"</a>"+"</p>";
-      document.getElementById("top").innerHTML+=content
-    }
-  }, function (error) {
-    console.log("error");
-  });
-</script>
+          <p><div id="top"></div></p>
+<p><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script></p>
+<p><script>AV.initialize(“leancloud_appid”, “leancloud_appkey”);</script></p>
+<p><script type="text/javascript"><br>  var time=0<br>  var title=””<br>  var url=””<br>  var query = new AV.Query(‘Counter’);<br>  query.notEqualTo(‘id’,0);<br>  query.descending(‘time’);<br>  query.limit(1000);<br>  query.find().then(function (todo) {<br>    for (var i=0;i&lt;1000;i++){<br>      var result=todo[i].attributes;<br>      time=result.time;<br>      title=result.title;<br>      url=result.url;<br>      var content=”<a href='"+"https://architectang.github.io/"+url+"'>“+title+”</a>“+”<br>“+”<font color='#fff'>“+”阅读次数：”+time+”</font>“+”<br><br>“;<br>      var content=”<p>“+”<font color='#1C1C1C'>“+”【文章热度:”+time+”℃】”+”</font>“+”<a href='"+"https://architectang.github.io"+url+"'>“+title+”</a>“+”</p>“;<br>      document.getElementById(“top”).innerHTML+=content<br>    }<br>  }, function (error) {<br>    console.log(“error”);<br>  });<br></script></p>
+<style>.post-description { display: none; }</style>
         
       </div>
       
@@ -359,15 +344,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQyOC8xNTk1NQ=="></div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -712,17 +688,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
