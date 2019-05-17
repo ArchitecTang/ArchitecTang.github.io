@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Linux,">
 
 
 
@@ -97,16 +97,20 @@
 
 
 
-<meta name="description" content="专注与技术研究的IT男一枚！！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ArchitecTang Blog">
-<meta property="og:url" content="https://architectang.github.io/index.html">
+<meta name="description" content="创建一个ip.txt文件，把需要测试IP地址写入文档">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="批量ping存活主机">
+<meta property="og:url" content="https://architectang.github.io/2019/05/17/批量ping存活主机/index.html">
 <meta property="og:site_name" content="ArchitecTang Blog">
-<meta property="og:description" content="专注与技术研究的IT男一枚！！">
+<meta property="og:description" content="创建一个ip.txt文件，把需要测试IP地址写入文档">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2019/05/17/5cde3e1a07bca53225.png">
+<meta property="og:updated_time" content="2019-05-17T05:05:50.378Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ArchitecTang Blog">
-<meta name="twitter:description" content="专注与技术研究的IT男一枚！！">
+<meta name="twitter:title" content="批量ping存活主机">
+<meta name="twitter:description" content="创建一个ip.txt文件，把需要测试IP地址写入文档">
+<meta name="twitter:image" content="https://i.loli.net/2019/05/17/5cde3e1a07bca53225.png">
 
 
 
@@ -136,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://architectang.github.io/">
+  <link rel="canonical" href="https://architectang.github.io/2019/05/17/批量ping存活主机/">
 
 
 
 
 
-  <title>ArchitecTang Blog</title>
+  <title>批量ping存活主机 | ArchitecTang Blog</title>
   
 
 
@@ -161,8 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -287,9 +290,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -319,9 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/17/批量ping存活主机/" itemprop="url">批量ping存活主机</a></h1>
+          <h1 class="post-title" itemprop="name headline">批量ping存活主机</h1>
         
 
         <div class="post-meta">
@@ -436,17 +437,32 @@
       
 
       
-        
-          <p>创建一个ip.txt文件，把需要测试IP地址写入文档</p>
+        <p>创建一个ip.txt文件，把需要测试IP地址写入文档</p>
 <p><img src="https://i.loli.net/2019/05/17/5cde3e1a07bca53225.png" alt="1.png"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/17/批量ping存活主机/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<a id="more"></a>
+<p>创建一个ping.sh 的shell 脚本，并修改ip.txt 文件路径</p>
+<pre><code>#!/bin/bash
+for ips in `cat /root/manager/script/ip.txt`
+do
+        result=`ping -w 2 -c 3 ${ips} | grep packet | awk -F&quot; &quot; &apos;{print $6}&apos;| awk -F&quot;%&quot; &apos;{print $1}&apos;| awk -F&apos; &apos; &apos;{print $1}&apos;`
+        if [ $result -eq 0 ]; then
+                echo &quot;&quot;${ips}&quot; is ok !&quot;
+        else
+                echo &quot;&quot;${ips}&quot; is not connected .....&quot;
+        fi
+
+done
+</code></pre><p>给脚本执行权限 chmod +x ping.sh</p>
+<p>执行脚本</p>
+<pre><code>[root@k8s-node1 script]# ./ping.sh 
+172.31.8.101 is ok !
+172.31.8.192 is ok !
+172.31.8.42 is ok !
+172.31.8.176 is ok !
+172.31.8.45 is ok !
+[root@k8s-node1 script]# 
+</code></pre><hr>
+
       
     </div>
     
@@ -454,402 +470,69 @@
     
 	<div>
       
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
     </div>
     
 
     
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Zhaohu.Tang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://architectang.github.io/2019/05/17/批量ping存活主机/" title="批量ping存活主机">https://architectang.github.io/2019/05/17/批量ping存活主机/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://architectang.github.io/" rel="external nofollow" target="_blank"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a></a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://architectang.github.io/2019/05/17/PTES渗透测试执行标准/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohu.Tang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ArchitecTang Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/17/PTES渗透测试执行标准/" itemprop="url">PTES渗透测试执行标准</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-17T10:57:50+08:00">
-                2019-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/信息安全/" itemprop="url" rel="index">
-                    <span itemprop="name">信息安全</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/信息安全/渗透测试/" itemprop="url" rel="index">
-                    <span itemprop="name">渗透测试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-
+      
       
       
 
       
-        
-          <h5 id="渗透测试注意事项："><a href="#渗透测试注意事项：" class="headerlink" title="渗透测试注意事项："></a>渗透测试注意事项：</h5><p>1、不要进行恶意攻击</p>
-<p>2、不要做傻事</p>
-<p>3、在没有获得书面授权时，不要攻击任何目标</p>
-<p>4、考虑清楚攻击将会带来的后果</p>
-<p>4、如果干了非法的事情，记得天网恢恢疏而不漏</p>
-<p><a href="http://www.pentest-standard.org/" target="_blank" rel="noopener">参考官方对于渗透测试执行标准描述（PTES）</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/17/PTES渗透测试执行标准/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/17/PTES渗透测试执行标准/" rel="next" title="PTES渗透测试执行标准">
+                <i class="fa fa-chevron-left"></i> PTES渗透测试执行标准
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-    </div>
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://architectang.github.io/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohu.Tang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ArchitecTang Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/" itemprop="url">(二)、Ansible在使用过程中出现的错误解决方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T12:47:00+08:00">
-                2018-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  637
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-
-      
       
 
       
-        
-          
-          1.安装完成后允许命令出错Traceback (most recent call last):
-File &quot;/usr/bin/ansible&quot;, line 197, in &lt;
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-    </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -859,170 +542,11 @@ File &quot;/usr/bin/ansible&quot;, line 197, in &lt;
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://architectang.github.io/2018/09/01/Ansible/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhaohu.Tang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ArchitecTang Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/01/Ansible/" itemprop="url">Ansible</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T17:26:09+08:00">
-                2018-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  408
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-
-      
-      
-
-      
-        
-          <p>1、ansible介绍：</p>
-<p>Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。</p>
-<p>Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。<br>Asible是基于模块工作的，其本身没有批量部署的能力，Ansible<del>~</del>一款运维自动化的软件！<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/01/Ansible/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-	<div>
+    <div class="post-spread">
       
     </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1030,6 +554,15 @@ File &quot;/usr/bin/ansible&quot;, line 197, in &lt;
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQyOC8xNTk1NQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1342,6 +875,10 @@ File &quot;/usr/bin/ansible&quot;, line 197, in &lt;
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1370,6 +907,17 @@ File &quot;/usr/bin/ansible&quot;, line 197, in &lt;
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

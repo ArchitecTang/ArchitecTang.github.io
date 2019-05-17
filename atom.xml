@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://architectang.github.io/"/>
-  <updated>2019-05-17T04:47:43.310Z</updated>
+  <updated>2019-05-17T05:05:50.378Z</updated>
   <id>https://architectang.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>批量ping存活主机</title>
+    <link href="https://architectang.github.io/2019/05/17/%E6%89%B9%E9%87%8Fping%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA/"/>
+    <id>https://architectang.github.io/2019/05/17/批量ping存活主机/</id>
+    <published>2019-05-17T04:50:22.000Z</published>
+    <updated>2019-05-17T05:05:50.378Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>创建一个ip.txt文件，把需要测试IP地址写入文档</p><p><img src="https://i.loli.net/2019/05/17/5cde3e1a07bca53225.png" alt="1.png"></p><a id="more"></a><p>创建一个ping.sh 的shell 脚本，并修改ip.txt 文件路径</p><pre><code>#!/bin/bashfor ips in `cat /root/manager/script/ip.txt`do        result=`ping -w 2 -c 3 ${ips} | grep packet | awk -F&quot; &quot; &apos;{print $6}&apos;| awk -F&quot;%&quot; &apos;{print $1}&apos;| awk -F&apos; &apos; &apos;{print $1}&apos;`        if [ $result -eq 0 ]; then                echo &quot;&quot;${ips}&quot; is ok !&quot;        else                echo &quot;&quot;${ips}&quot; is not connected .....&quot;        fidone</code></pre><p>给脚本执行权限 chmod +x ping.sh</p><p>执行脚本</p><pre><code>[root@k8s-node1 script]# ./ping.sh 172.31.8.101 is ok !172.31.8.192 is ok !172.31.8.42 is ok !172.31.8.176 is ok !172.31.8.45 is ok ![root@k8s-node1 script]# </code></pre><hr>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;创建一个ip.txt文件，把需要测试IP地址写入文档&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.loli.net/2019/05/17/5cde3e1a07bca53225.png&quot; alt=&quot;1.png&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://architectang.github.io/categories/Linux/"/>
+    
+      <category term="shell" scheme="https://architectang.github.io/categories/Linux/shell/"/>
+    
+    
+      <category term="Linux" scheme="https://architectang.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>PTES渗透测试执行标准</title>
