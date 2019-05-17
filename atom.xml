@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://architectang.github.io/"/>
-  <updated>2019-05-17T05:05:50.378Z</updated>
+  <updated>2019-05-17T06:38:45.139Z</updated>
   <id>https://architectang.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Zabbix 缓存数据清理</title>
+    <link href="https://architectang.github.io/2019/05/17/Zabbix-%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86/"/>
+    <id>https://architectang.github.io/2019/05/17/Zabbix-缓存数据清理/</id>
+    <published>2019-05-17T06:32:24.000Z</published>
+    <updated>2019-05-17T06:38:45.139Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>zabbix监控运行一段时间以后，会留下大量的历史监控数据，zabbix数据库一直在增大；可能会造成系统性能下降，查看历史数据室查询速度缓慢。</p><p>zabbix里面最大的表就是history和history_uint两个表，而且zabbix里面的时间是使用的时间戳方式记录，所以可以根据时间戳来删除历史数据<br><a id="more"></a><br>一、关闭zabbix、http服务</p><pre><code>pkill -9 zabbixservice httpd stop</code></pre><p>二、清理zabbix历史数据</p><p>1、查看数据库目录文件</p><pre><code>[root@zabbix-server zabbix]# cd /var/lib/mysql/zabbix/[root@zabbix-server zabbix]# ls -lh | grep Gtotal 177G-rw-r----- 1 mysql mysql 1.7G Dec 24 13:49 events.ibd-rw-r----- 1 mysql mysql  60G Dec 24 13:49 history.ibd-rw-r----- 1 mysql mysql 2.4G Dec 24 13:49 history_str.ibd-rw-r----- 1 mysql mysql  99G Dec 24 13:49 history_uint.ibd-rw-r----- 1 mysql mysql 4.6G Dec 24 13:02 trends.ibd-rw-r----- 1 mysql mysql 9.5G Dec 24 13:49 trends_uint.ibd[root@zabbix-server zabbix]# </code></pre><p>生成Unix时间戳。时间定为2018年2月1日（暂定是保存18年2月以后的监控数据）</p><pre><code>[root@zabbix-server zabbix]# date +%s -d &quot;Feb 1, 2018 00:00:00&quot;    #执行此命令以后会生成一个ID 1517414400   #这是生成的ID</code></pre><p>2、数据备份</p><pre><code>[root@zabbix-server zabbix]#mysql -uroot -p zabbix &gt; /root/mysqlback/zabbix.sql     #需要创建mysqlback目录</code></pre><p>3、 登录数据库</p><pre><code>[root@zabbix-server zabbix]# mysql -uroot -pEnter password: Welcome to the MariaDB monitor.  Commands end with ; or \g.Your MariaDB connection id is 7Server version: 5.5.60-MariaDB MariaDB ServerCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.MariaDB [(none)]&gt; use zabbix;    #选择zabbix数据库</code></pre><p>执行sql查看指定日期之前的数据大小：</p><pre><code>SELECT table_schema as `Database`,table_name AS `Table`,round(((data_length + index_length) / 1024 / 1024 / 1024), 2) `Size in MB`FROM information_schema.TABLES where CREATE_TIME &lt; &apos;2018-02-01 00:00:00&apos; and table_name=&apos;history.ibd&apos;;</code></pre><p>根据需要修改日期和查询的表名称(如果查询出来的结果是0.0，需要将sql中的三个1024删除一个，以G为单位显示)</p><p>4、 执行以下命令，清理指定时间之前的数据、对zabbix数据库执行以下sql</p><pre><code>delete from history where clock &lt; 1517414400;optimize table history;delete from history_uint where clock &lt; 1517414400;optimize table history_uint;delete from trends where clock &lt; 1517414400;optimize table trends;delete from trends_uint where clock &lt; 1517414400;optimize table trends_uint;</code></pre><p>注意：sql中的ID是生成Unix时间戳的ID号,需要改为自己生成的ID号<br>三、启动服务</p><pre><code>/usr/sbin/zabbix_server -c /etc/zabbix/zabbix_server.conf    #zabbix server/usr/sbin/zabbix_agentd -c /etc/zabbix/zabbix_agentd.conf    #zabbix agentservice httpd start</code></pre><p>===============================分===========隔==========符===================================</p><p>1、使用truncate命令清空zabbix 所有监控数据</p><pre><code>-------------------------------------------------------truncate table history;optimize table history;------------------------------------------------------- truncate table history_str;optimize table history_str;-------------------------------------------------------truncate table history_uint;optimize table history_uint;-------------------------------------------------------truncate table trends;optimize table trends;-------------------------------------------------------truncate table trends_uint; optimize table trends_uint; -------------------------------------------------------truncate table events;optimize table events;-------------------------------------------------------</code></pre><p>注意：这些命令会把zabbix所有的监控数据清空，操作前注意备份数据库</p><p>truncate是删除了表，然后根据表结构重新建立，delete删除的是记录的数据没有修改表</p><p>truncate执行删除比较快，但是在事务处理安全性方面不如delete,如果我们执行truncat的表正在处理事务，这个命令退出并会产生错误信息</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;zabbix监控运行一段时间以后，会留下大量的历史监控数据，zabbix数据库一直在增大；可能会造成系统性能下降，查看历史数据室查询速度缓慢。&lt;/p&gt;
+&lt;p&gt;zabbix里面最大的表就是history和history_uint两个表，而且zabbix里面的时间是使用的时间戳方式记录，所以可以根据时间戳来删除历史数据&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://architectang.github.io/categories/Linux/"/>
+    
+      <category term="zabbix" scheme="https://architectang.github.io/categories/Linux/zabbix/"/>
+    
+    
+      <category term="Linux" scheme="https://architectang.github.io/tags/Linux/"/>
+    
+      <category term="zabbix" scheme="https://architectang.github.io/tags/zabbix/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis 故障恢复</title>
+    <link href="https://architectang.github.io/2019/05/17/Redis-%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D/"/>
+    <id>https://architectang.github.io/2019/05/17/Redis-故障恢复/</id>
+    <published>2019-05-17T06:25:37.000Z</published>
+    <updated>2019-05-17T06:28:51.544Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>案例一、<br>ResponseError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk.<br><a id="more"></a><br>Commands that may modify the data set are disabled. Please check Redis logs for details about the error.<br>Redis被配置为保存数据库快照，但它目前不能持久化到硬盘。用来修改集合数据的命令不能用。请查看Redis日志的详细错误信息。<br>原因：强制关闭redis快照导致不能持久化</p><p>解决方案：<br>将：stop-writes-on-bgsave-error 设置为 no</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;案例一、&lt;br&gt;ResponseError: MISCONF Redis is configured to save RDB snapshots, but is currently not able to persist on disk.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://architectang.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://architectang.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>批量ping存活主机</title>
@@ -102,7 +151,7 @@
     <link href="https://architectang.github.io/2018/09/01/Ansible/"/>
     <id>https://architectang.github.io/2018/09/01/Ansible/</id>
     <published>2018-09-01T09:26:09.000Z</published>
-    <updated>2019-03-08T16:21:30.556Z</updated>
+    <updated>2019-05-17T06:29:45.055Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>1、ansible介绍：</p><p>Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。</p><p>Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。<br>Asible是基于模块工作的，其本身没有批量部署的能力，Ansible<del>~</del>一款运维自动化的软件！<br><a id="more"></a><br>1.1特性</p><p>(1)、no agents：不需要在被管控主机上安装任何客户端；</p><p>(2)、no server：无服务器端，使用时直接运行命令即可；</p><p>(3)、modules in any languages：基于模块工作，可使用任意语言开发模块；</p><p>(4)、yaml，not code：使用yaml语言定制剧本playbook；</p><p>(5)、ssh by default：基于SSH工作；</p><p>(6)、strong multi-tier solution：可实现多级指挥。</p><p><img src="/upload/201809/工作特性.jpg" alt="工作特性"></p><p>1.1 优点</p><p>(1)、轻量级，无需在客户端安装agent，更新时，只需在操作机上进行一次更新即可；</p><p>(2)、批量任务执行可以写成脚本，而且不用分发到远程就可以执行；</p><p>(3)、使用python编写，维护更简单，ruby语法过于复杂；</p><p>(4)、支持sudo。</p><p><img src="/upload/201809/工作机制.png" alt="工作机制"></p><p>2、ansible安装</p><p>安装epel 源：<br>rpm -ivh  <a href="https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm" target="_blank" rel="noopener">https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm</a></p><p>安装ansible ：<br>yum install ansible -y</p><p>ssh-keygen  生成秘钥文件,如果不想输入密码可以一直回车</p><p>ssh-keygen -t rsa  </p><p>cd /root/.ssh/ &amp;&amp; ll ./*</p><p>配置ansible  的hosts 文件：</p><p>vim /etc/ansible/hosts</p>]]></content>
     
@@ -113,6 +162,8 @@
 &lt;p&gt;Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。&lt;br&gt;Asible是基于模块工作的，其本身没有批量部署的能力，Ansible&lt;del&gt;~&lt;/del&gt;一款运维自动化的软件！&lt;br&gt;
     
     </summary>
+    
+      <category term="自动化" scheme="https://architectang.github.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
     
       <category term="自动化" scheme="https://architectang.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
