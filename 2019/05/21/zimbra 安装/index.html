@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="自动化,">
+  <meta name="keywords" content="Linux,zimbra,">
 
 
 
@@ -97,18 +97,30 @@
 
 
 
-<meta name="description" content="1.安装完成后允许命令出错Traceback (most recent call last): File &amp;quot;/usr/bin/ansible&amp;quot;, line 197, in &amp;lt;module&amp;gt;         (runner, results) = cli.run(options, args) File &amp;quot;/usr/bin/ansible&amp;quot;, lin">
-<meta name="keywords" content="自动化">
+<meta name="description" content="1、Zimbra介绍Zimbra与众不同的特点是其“Zimlet”网络服务提供了更多的电子邮件功能。例如，人们可以简单地用鼠标点击电子邮件程序中的航班信息以检查航班的状况。用户还可以在电子邮件中跟踪FedEx公司的投递情况并且获得地图、股票和其它信息。Zimbra的核心产品是Zimbra协作套件（Zimbra Collaboration Suite，简称ZCS）。除了它的核心功能是电子邮件和日程安">
+<meta name="keywords" content="Linux,zimbra">
 <meta property="og:type" content="article">
-<meta property="og:title" content="(二)、Ansible在使用过程中出现的错误解决方法">
-<meta property="og:url" content="https://architectang.github.io/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/index.html">
+<meta property="og:title" content="Zimbra 邮箱系统安装">
+<meta property="og:url" content="https://architectang.github.io/2019/05/21/zimbra 安装/index.html">
 <meta property="og:site_name" content="ArchitecTang Blog">
-<meta property="og:description" content="1.安装完成后允许命令出错Traceback (most recent call last): File &amp;quot;/usr/bin/ansible&amp;quot;, line 197, in &amp;lt;module&amp;gt;         (runner, results) = cli.run(options, args) File &amp;quot;/usr/bin/ansible&amp;quot;, lin">
+<meta property="og:description" content="1、Zimbra介绍Zimbra与众不同的特点是其“Zimlet”网络服务提供了更多的电子邮件功能。例如，人们可以简单地用鼠标点击电子邮件程序中的航班信息以检查航班的状况。用户还可以在电子邮件中跟踪FedEx公司的投递情况并且获得地图、股票和其它信息。Zimbra的核心产品是Zimbra协作套件（Zimbra Collaboration Suite，简称ZCS）。除了它的核心功能是电子邮件和日程安">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-16T11:56:43.681Z">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce399976d36266031.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce399cede1a073321.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39a17a933a68587.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39a28e3a9d67375.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39a5bf2d7176327.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39ab264d3675763.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39af0bc0d028773.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39b135ee4c81652.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39bdc8542b69089.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39ccd649ef46070.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39d832af7665540.png">
+<meta property="og:updated_time" content="2019-05-21T06:47:07.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="(二)、Ansible在使用过程中出现的错误解决方法">
-<meta name="twitter:description" content="1.安装完成后允许命令出错Traceback (most recent call last): File &amp;quot;/usr/bin/ansible&amp;quot;, line 197, in &amp;lt;module&amp;gt;         (runner, results) = cli.run(options, args) File &amp;quot;/usr/bin/ansible&amp;quot;, lin">
+<meta name="twitter:title" content="Zimbra 邮箱系统安装">
+<meta name="twitter:description" content="1、Zimbra介绍Zimbra与众不同的特点是其“Zimlet”网络服务提供了更多的电子邮件功能。例如，人们可以简单地用鼠标点击电子邮件程序中的航班信息以检查航班的状况。用户还可以在电子邮件中跟踪FedEx公司的投递情况并且获得地图、股票和其它信息。Zimbra的核心产品是Zimbra协作套件（Zimbra Collaboration Suite，简称ZCS）。除了它的核心功能是电子邮件和日程安">
+<meta name="twitter:image" content="https://i.loli.net/2019/05/21/5ce399976d36266031.png">
 
 
 
@@ -138,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://architectang.github.io/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/">
+  <link rel="canonical" href="https://architectang.github.io/2019/05/21/zimbra 安装/">
 
 
 
 
 
-  <title>(二)、Ansible在使用过程中出现的错误解决方法 | ArchitecTang Blog</title>
+  <title>Zimbra 邮箱系统安装 | ArchitecTang Blog</title>
   
 
 
@@ -303,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://architectang.github.io/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/">
+    <link itemprop="mainEntityOfPage" href="https://architectang.github.io/2019/05/21/zimbra 安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohu.Tang">
@@ -320,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">(二)、Ansible在使用过程中出现的错误解决方法</h1>
+          <h1 class="post-title" itemprop="name headline">Zimbra 邮箱系统安装</h1>
         
 
         <div class="post-meta">
@@ -332,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-02T12:47:00+08:00">
-                2018-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T14:46:09+08:00">
+                2019-05-21
               </time>
             
 
@@ -355,8 +367,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/zimbra/" itemprop="url" rel="index">
+                    <span itemprop="name">zimbra</span>
                   </a>
                 </span>
 
@@ -386,7 +409,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  637
+                  2.4k
                 </span>
               
 
@@ -402,7 +425,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  13
                 </span>
               
             </div>
@@ -424,47 +447,374 @@
       
 
       
-        <h4 id="1-安装完成后允许命令出错"><a href="#1-安装完成后允许命令出错" class="headerlink" title="1.安装完成后允许命令出错"></a>1.安装完成后允许命令出错</h4><pre><code>Traceback (most recent call last):
-File &quot;/usr/bin/ansible&quot;, line 197, in &lt;module&gt;
-        (runner, results) = cli.run(options, args)
-File &quot;/usr/bin/ansible&quot;, line 163, in run
-        extra_vars=extra_vars,
-File &quot;/usr/lib/python2.6/site-packages/ansible/runner/__init__.py&quot;, line 233, in __init__
-        cmd = subprocess.Popen([&apos;ssh&apos;,&apos;-o&apos;,&apos;ControlPersist&apos;], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-File &quot;/usr/lib64/python2.6/subprocess.py&quot;, line 639, in __init__
-        errread, errwrite)
-File &quot;/usr/lib64/python2.6/subprocess.py&quot;, line 1228, in _execute_child
-        raise child_exception
-OSError: [Errno 2] No such file or directory
-</code></pre><h5 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h5><p>yum -y install openssh-clients</p>
-<h4 id="2-出现Error-ansible-requires-a-json-module-none-found"><a href="#2-出现Error-ansible-requires-a-json-module-none-found" class="headerlink" title="2.出现Error: ansible requires a json module, none found!"></a>2.出现Error: ansible requires a json module, none found!</h4><pre><code>SSH password:
-10.0.1.110 | FAILED &gt;&gt; {
-&quot;failed&quot;: true,
-&quot;msg&quot;: &quot;Error: ansible requires a json module, nonefound!&quot;,
-&quot;parsed&quot;: false
-}
-</code></pre><h5 id="解决办法-1"><a href="#解决办法-1" class="headerlink" title="解决办法"></a>解决办法</h5><p>python版本过低，可以升级python或者python-simplejson</p>
-<h4 id="3-安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"><a href="#3-安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）" class="headerlink" title="3.安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"></a>3.安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）</h4><pre><code>FAILED =&gt; Using a SSH password insteadof a key is not possible because Host Key checking is enabled and sshpass doesnot support this.  Please add this host&apos;sfingerprint to your known_hosts file to manage this host.
-</code></pre><h5 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h5><p>在ansible 服务器上使用ssh 登陆下/etc/ansible/hosts 里面配置的服务器。然后再次使用ansible 去管理就不会报上面的错误了！<br>但这样大批量登陆就麻烦来。因为默认ansible是使用key验证的，如果使用密码登陆的服务器，使用ansible的话，要不修改ansible.cfg配置文件<br>的ask_pass = True给取消注释，要不就在运行命令时候加上-k，这个意思是-k, –ask-pass ask for SSH password。再修改：</p>
-<p>host_key_checking= False即可</p>
-<h4 id="4-如果客户端不在know-hosts里将会报错"><a href="#4-如果客户端不在know-hosts里将会报错" class="headerlink" title="4.如果客户端不在know_hosts里将会报错"></a>4.如果客户端不在know_hosts里将会报错</h4><pre><code>paramiko: The authenticity of host &apos;192.168.24.15&apos;can&apos;t be established.
-
-The ssh-rsa key fingerprint is397c139fd4b0d763fcffaee346a4bf6b.
-
-Are you sure you want to continueconnecting (yes/no)?
-</code></pre><h5 id="解决办法-2"><a href="#解决办法-2" class="headerlink" title="解决办法"></a>解决办法</h5><p>需要修改ansible.cfg的#host_key_checking= False取消注释</p>
-<h3 id="5-出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file"><a href="#5-出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file" class="headerlink" title="5.出现FAILED =&gt; FAILED: not a valid DSA private key file"></a>5.出现FAILED =&gt; FAILED: not a valid DSA private key file</h3><h5 id="解决办法：-1"><a href="#解决办法：-1" class="headerlink" title="解决办法："></a>解决办法：</h5><p>需要你在最后命令内添加参数-k</p>
-<h4 id="6-openssh升级后无法登录报错"><a href="#6-openssh升级后无法登录报错" class="headerlink" title="6.openssh升级后无法登录报错"></a>6.openssh升级后无法登录报错</h4><pre><code>PAM unable todlopen(/lib64/security/pam_stack.so): /lib64/security/pam_stack.so: cannot openshared object
-
-file: No such file or directory
-</code></pre><h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><p>sshrpm 升级后会修改/etc/pam.d/sshd 文件。需要升级前备份此文件最后还原即可登录。</p>
-<h4 id="7-第一次系统初始化运行生成本机ansible用户key时报错"><a href="#7-第一次系统初始化运行生成本机ansible用户key时报错" class="headerlink" title="7.第一次系统初始化运行生成本机ansible用户key时报错"></a>7.第一次系统初始化运行生成本机ansible用户key时报错</h4><pre><code>failed: [127.0.0.1] =&gt;{&quot;checksum&quot;: &quot;f5f2f20fc0774be961fffb951a50023e31abe920&quot;,&quot;failed&quot;: true}
-
-msg: Aborting, target uses selinux but pythonbindings (libselinux-python) aren&apos;t installed!
-
-FATAL: all hosts have already failed –aborting
-</code></pre><h5 id="解决办法-3"><a href="#解决办法-3" class="headerlink" title="解决办法"></a>解决办法</h5><p>yum -y install libselinux-python</p>
-<p>参考:  <a href="http://blog.csdn.net/longxibendi/article/details/46989735" target="_blank" rel="noopener">http://blog.csdn.net/longxibendi/article/details/46989735</a></p>
+        <h4 id="1、Zimbra介绍"><a href="#1、Zimbra介绍" class="headerlink" title="1、Zimbra介绍"></a>1、Zimbra介绍</h4><p>Zimbra与众不同的特点是其“Zimlet”网络服务提供了更多的电子邮件功能。例如，人们可以简单地用鼠标点击电子邮件程序中的航班信息以检查航班的状况。用户还可以在电子邮件中跟踪FedEx公司的投递情况并且获得地图、股票和其它信息。<br>Zimbra的核心产品是Zimbra协作套件（Zimbra Collaboration Suite，简称ZCS）。除了它的核心功能是电子邮件和日程安排服务器，当然还包括许多其它的功能，就象是下一代的微软Exchange。在电子邮件和日程安排之外，它还提供文档存储和编辑、即时消息以及一个利用获奖技术开发的全功能的管理控制台。ZCS同时也提供移动设备的支持，以及与部署于Windows、Linux或apple操作系统中的桌面程序的同步功能。<br>(来自百度百科)<br>注:Zimbra安装时，须在linux系统上，系统内存至少一个GB，5G磁盘空间；否则安装过程会很长，且会因为内存和磁盘空间不够而导致安装失败</p>
+<h4 id="2、安装配置DNS"><a href="#2、安装配置DNS" class="headerlink" title="2、安装配置DNS"></a>2、安装配置DNS</h4><p>1、安装配置DNS<br>配置vim /etc/named.conf  #修改一下内容<br><img src="https://i.loli.net/2019/05/21/5ce399976d36266031.png" alt="1.png"></p>
+<p>配置 vim /etc/named.rfc1912.zones #添加以下内容<br><img src="https://i.loli.net/2019/05/21/5ce399cede1a073321.png" alt="2.png"></p>
+<p>配置正向解析文件解析文件</p>
+<p>cd /var/named</p>
+<p>cp named.localhost tzh.com.zone</p>
+<p>vim tzh.com.zone</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce39a17a933a68587.png" alt="3.png"><br><img src="https://i.loli.net/2019/05/21/5ce39a28e3a9d67375.png" alt="4.png"></p>
+<p>配置反向解析文件 #添加以下内容</p>
+<p>vim 10.90.10.zone</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce39a5bf2d7176327.png" alt="5.png"></p>
+<p>启动bind</p>
+<p>service named start</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce39ab264d3675763.png" alt="6.png"></p>
+<p>解析</p>
+<p>nslookup <a href="http://www.tzh.com" target="_blank" rel="noopener">www.tzh.com</a></p>
+<p>nslookup mail.tzh.com</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce39af0bc0d028773.png" alt="7.png"></p>
+<p><img src="https://i.loli.net/2019/05/21/5ce39b135ee4c81652.png" alt="8.png"></p>
+<h4 id="2、安装zimbra"><a href="#2、安装zimbra" class="headerlink" title="2、安装zimbra"></a>2、安装zimbra</h4><p>2.1、停止系统默认邮件服务</p>
+<p>Chkconfig postfix off &amp;&amp; /etc/init.d/postfix stop</p>
+<p>2.2、关闭iptables和selinux</p>
+<p>setenforce 0 &amp;&amp; service iptables stop &amp;&amp; chkconfig iptables off</p>
+<p>2.3、设置hosts文件  #添加以下内容</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce39bdc8542b69089.png" alt="9.png"></p>
+<p>2.4、 安装</p>
+<pre><code>[root@tzh zcs-8.6.0_GA_1153.RHEL6_64.20141215151155]# ./install.sh 
+Operations logged to /tmp/install.log.29747
+Checking for existing installation...
+    zimbra-ldap...NOT FOUND
+    zimbra-logger...NOT FOUND
+    zimbra-mta...NOT FOUND
+    zimbra-dnscache...NOT FOUND
+    zimbra-snmp...NOT FOUND
+    zimbra-store...NOT FOUND
+    zimbra-apache...NOT FOUND
+    zimbra-spell...NOT FOUND
+    zimbra-convertd...NOT FOUND
+    zimbra-memcached...NOT FOUND
+    zimbra-proxy...NOT FOUND
+    zimbra-archiving...NOT FOUND
+    zimbra-core...NOT FOUND
+PLEASE READ THIS AGREEMENT CAREFULLY BEFORE USING THE SOFTWARE.
+ZIMBRA, INC. (&quot;ZIMBRA&quot;) WILL ONLY LICENSE THIS SOFTWARE TO YOU IF YOU
+FIRST ACCEPT THE TERMS OF THIS AGREEMENT. BY DOWNLOADING OR INSTALLING
+THE SOFTWARE, OR USING THE PRODUCT, YOU ARE CONSENTING TO BE BOUND BY
+THIS AGREEMENT. IF YOU DO NOT AGREE TO ALL OF THE TERMS OF THIS
+AGREEMENT, THEN DO NOT DOWNLOAD, INSTALL OR USE THE PRODUCT.
+License Terms for the Zimbra Collaboration Suite:
+http://www.zimbra.com/license/zimbra-public-eula-2-5.html
+Do you agree with the terms of the software license agreement? [N] y
+Checking for prerequisites...
+    FOUND: NPTL
+    FOUND: nc-1.84-24
+    FOUND: sudo-1.8.6p3-19
+    FOUND: libidn-1.18-2
+    FOUND: gmp-4.3.1-7
+    FOUND: libaio-0.3.107-10
+    FOUND: libstdc++-4.4.7-16
+    FOUND: unzip-6.0-2
+Checking for suggested prerequisites...
+    FOUND: perl-5.10.1
+    FOUND: sysstat
+    FOUND: sqlite
+Prerequisite check complete.
+Checking for installable packages
+Found zimbra-core
+Found zimbra-ldap
+Found zimbra-logger
+Found zimbra-mta
+Found zimbra-dnscache
+Found zimbra-snmp
+Found zimbra-store
+Found zimbra-apache
+Found zimbra-spell
+Found zimbra-memcached
+Found zimbra-proxy
+Select the packages to install
+Install zimbra-ldap [Y] y
+Install zimbra-logger [Y] y
+Install zimbra-mta [Y] y
+Install zimbra-dnscache [Y] y
+Install zimbra-snmp [Y] y
+Install zimbra-store [Y] y
+Install zimbra-apache [Y]
+Install zimbra-spell [Y] y
+Install zimbra-memcached [Y] y
+Install zimbra-proxy [Y] y
+Checking required space for zimbra-core
+Checking space for zimbra-store
+Checking required packages for zimbra-store
+zimbra-store package check complete.
+Installing:
+    zimbra-core
+    zimbra-ldap
+    zimbra-logger
+    zimbra-mta
+    zimbra-dnscache
+    zimbra-snmp
+    zimbra-store
+    zimbra-apache
+    zimbra-spell
+    zimbra-memcached
+    zimbra-proxy
+The system will be modified.  Continue? [N] y
+Removing /opt/zimbra
+Removing zimbra crontab entry...done.
+Cleaning up zimbra init scripts...done.
+Cleaning up /etc/ld.so.conf...done.
+Cleaning up /etc/prelink.conf...done.
+Cleaning up /etc/security/limits.conf...done.
+Finished removing Zimbra Collaboration Server.
+Installing packages
+zimbra-core......zimbra-core-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...
+    zimbra-ldap......zimbra-ldap-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-logger......zimbra-logger-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-mta......zimbra-mta-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-dnscache......zimbra-dnscache-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-snmp......zimbra-snmp-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-store......zimbra-store-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-apache......zimbra-apache-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-spell......zimbra-spell-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-memcached......zimbra-memcached-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+    zimbra-proxy......zimbra-proxy-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
+Operations logged to /tmp/zmsetup06292016-184521.log
+Installing LDAP configuration database...done.
+Setting defaults...    MX: mail.user-mail.net (54.227.254.216)
+    MX: mail.user-mail.net (54.225.221.198)
+    Interface: 10.90.10.190
+    Interface: 127.0.0.1
+    Interface: ::1
+        54.225.221.198
+        54.227.254.216
+        54.227.254.216
+        54.225.221.198
+        54.225.221.198
+        54.227.254.216
+DNS ERROR - none of the MX records for mail.tzh.com
+resolve to this host
+Change domain name? [Yes] n
+done.
+Checking for port conflicts
+Main menu
+1) Common Configuration:                                                  
+2) zimbra-ldap:                             Enabled                       
+3) zimbra-logger:                           Enabled                       
+4) zimbra-mta:                              Enabled                       
+5) zimbra-dnscache:                         Enabled                       
+6) zimbra-snmp:                             Enabled                       
+7) zimbra-store:                            Enabled                       
+        +Create Admin User:                    yes                           
+        +Admin user to create:                 admin@mail.tzh.com            
+******* +Admin Password                        UNSET                         
+        +Anti-virus quarantine user:           virus-quarantine.iv8_lcko@mail.tzh.com
+        +Enable automated spam training:       yes                           
+        +Spam training user:                   spam.f8aglxrf@mail.tzh.com    
+        +Non-spam(Ham) training user:          ham.ugur2xpeby@mail.tzh.com   
+        +SMTP host:                            mail.tzh.com                  
+        +Web server HTTP port:                 8080                          
+        +Web server HTTPS port:                8443                          
+        +Web server mode:                      https                         
+        +IMAP server port:                     7143                          
+        +IMAP server SSL port:                 7993                          
+        +POP server port:                      7110                          
+        +POP server SSL port:                  7995                          
+        +Use spell check server:               yes                           
+        +Spell server URL:                     http://mail.tzh.com:7780/aspell.php
+        +Enable version update checks:         TRUE                          
+        +Enable version update notifications:  TRUE                          
+        +Version update notification email:    admin@mail.tzh.com            
+        +Version update source email:          admin@mail.tzh.com            
+        +Install mailstore (service webapp):   yes                           
+        +Install UI (zimbra,zimbraAdmin webapps): yes                           
+8) zimbra-spell:                            Enabled                       
+9) zimbra-proxy:                            Enabled                       
+10) Default Class of Service Configuration:                                
+s) Save config to file                                                    
+x) Expand menu                                                            
+q) Quit                                                                     
+Address unconfigured (**) items  (? - help) 7
+Store configuration
+1) Status:                                  Enabled                       
+2) Create Admin User:                       yes                           
+3) Admin user to create:                    admin@mail.tzh.com            
+** 4) Admin Password                           UNSET                         
+5) Anti-virus quarantine user:              virus-quarantine.iv8_lcko@mail.tzh.com
+6) Enable automated spam training:          yes                           
+7) Spam training user:                      spam.f8aglxrf@mail.tzh.com    
+8) Non-spam(Ham) training user:             ham.ugur2xpeby@mail.tzh.com   
+9) SMTP host:                               mail.tzh.com                  
+10) Web server HTTP port:                    8080                          
+11) Web server HTTPS port:                   8443                          
+12) Web server mode:                         https                         
+13) IMAP server port:                        7143                          
+14) IMAP server SSL port:                    7993                          
+15) POP server port:                         7110                          
+16) POP server SSL port:                     7995                          
+17) Use spell check server:                  yes                           
+18) Spell server URL:                        http://mail.tzh.com:7780/aspell.php
+19) Enable version update checks:            TRUE                          
+20) Enable version update notifications:     TRUE                          
+21) Version update notification email:       admin@mail.tzh.com            
+22) Version update source email:             admin@mail.tzh.com            
+23) Install mailstore (service webapp):      yes                           
+24) Install UI (zimbra,zimbraAdmin webapps): yes                           
+Select, or &apos;r&apos; for previous menu [r] 4
+Password for admin@mail.tzh.com (min 6 characters): [1mrCHrfp] 558842
+Store configuration
+1) Status:                                  Enabled                       
+2) Create Admin User:                       yes                           
+3) Admin user to create:                    admin@mail.tzh.com            
+4) Admin Password                           set                           
+5) Anti-virus quarantine user:              virus-quarantine.iv8_lcko@mail.tzh.com
+6) Enable automated spam training:          yes                           
+7) Spam training user:                      spam.f8aglxrf@mail.tzh.com    
+8) Non-spam(Ham) training user:             ham.ugur2xpeby@mail.tzh.com   
+9) SMTP host:                               mail.tzh.com                  
+10) Web server HTTP port:                    8080                          
+11) Web server HTTPS port:                   8443                          
+12) Web server mode:                         https                         
+13) IMAP server port:                        7143                          
+14) IMAP server SSL port:                    7993                          
+15) POP server port:                         7110                          
+16) POP server SSL port:                     7995                          
+17) Use spell check server:                  yes                           
+18) Spell server URL:                        http://mail.tzh.com:7780/aspell.php
+19) Enable version update checks:            TRUE                          
+20) Enable version update notifications:     TRUE                          
+21) Version update notification email:       admin@mail.tzh.com            
+22) Version update source email:             admin@mail.tzh.com            
+23) Install mailstore (service webapp):      yes                           
+24) Install UI (zimbra,zimbraAdmin webapps): yes                           
+Select, or &apos;r&apos; for previous menu [r] r
+Main menu
+1) Common Configuration:                                                  
+2) zimbra-ldap:                             Enabled                       
+3) zimbra-logger:                           Disabled                      
+4) zimbra-mta:                              Enabled                       
+5) zimbra-dnscache:                         Enabled                       
+6) zimbra-snmp:                             Enabled                       
+7) zimbra-store:                            Enabled                       
+8) zimbra-spell:                            Enabled                       
+9) zimbra-proxy:                            Enabled                       
+10) Default Class of Service Configuration:                                
+s) Save config to file                                                    
+x) Expand menu                                                            
+q) Quit                                    
+Select from menu, or press &apos;a&apos; to apply config (? - help) a
+Save configuration data to a file? [Yes] y
+Save config in file: [/opt/zimbra/config.39633] 
+Saving config in /opt/zimbra/config.39633...done.
+The system will be modified - continue? [No] y
+Operations logged to /tmp/zmsetup06292016-184521.log
+Setting local config values...done.
+Initializing core config...Setting up CA...done.
+Deploying CA to /opt/zimbra/conf/ca ...done.
+Creating SSL zimbra-store certificate...done.
+Creating new zimbra-ldap SSL certificate...done.
+Creating new zimbra-mta SSL certificate...done.
+Creating new zimbra-proxy SSL certificate...done.
+Installing mailboxd SSL certificates...done.
+Installing MTA SSL certificates...done.
+Installing LDAP SSL certificate...done.
+Installing Proxy SSL certificate...done.
+Initializing ldap...done.
+Setting replication password...done.
+Setting Postfix password...done.
+Setting amavis password...done.
+Setting nginx password...done.
+Setting BES searcher  password...done.
+Creating server entry for mail.tzh.com...done.
+Setting Zimbra IP Mode...done.
+Saving CA in ldap ...done.
+Saving SSL Certificate in ldap ...done.
+Setting spell check URL...done.
+Setting service ports on mail.tzh.com...done.
+Setting zimbraFeatureTasksEnabled=TRUE...done.
+Setting zimbraFeatureBriefcasesEnabled=TRUE...done.
+Setting Master DNS IP address(es)...done.
+Setting DNS cache tcp lookup preference...done.
+Setting DNS cache udp lookup preference...done.
+Setting DNS tcp upstream preference...done.
+Setting TimeZone Preference...done.
+Initializing mta config...done.
+Setting services on mail.tzh.com...done.
+Adding mail.tzh.com to zimbraMailHostPool in default COS...done.
+Creating domain mail.tzh.com...done.
+Setting default domain name...done.
+Creating domain mail.tzh.com...already exists.
+Creating admin account admin@mail.tzh.com...done.
+Creating root alias...done.
+Creating postmaster alias...done.
+Creating user spam.f8aglxrf@mail.tzh.com...done.
+Creating user ham.ugur2xpeby@mail.tzh.com...done.
+Creating user virus-quarantine.iv8_lcko@mail.tzh.com...done.
+Setting spam training and Anti-virus quarantine accounts...done.
+Initializing store sql database...done.
+Setting zimbraSmtpHostname for mail.tzh.com...done.
+Configuring SNMP...done.
+Setting up syslog.conf...done.
+Starting servers...
+Installing common zimlets...
+    com_zimbra_ymemoticons...done.
+    com_zimbra_clientuploader...done.
+    com_zimbra_webex...done.
+    com_zimbra_proxy_config...done.
+    com_zimbra_srchhighlighter...done.
+    com_zimbra_bulkprovision...done.
+    com_zimbra_viewmail...done.
+    com_zimbra_date...done.
+    com_zimbra_attachcontacts...done.
+    com_zimbra_mailarchive...done.
+    com_zimbra_cert_manager...done.
+    com_zimbra_url...done.
+    com_zimbra_adminversioncheck...done.
+    com_zimbra_attachmail...done.
+    com_zimbra_tooltip...done.
+    com_zimbra_email...done.
+    com_zimbra_phone...done.
+Finished installing common zimlets.
+Restarting mailboxd...done.
+Creating galsync account for default domain...done.
+You have the option of notifying Zimbra of your installation.
+This helps us to track the uptake of the Zimbra Collaboration Server.
+The only information that will be transmitted is:
+    The VERSION of zcs installed (8.6.0_GA_1153_RHEL6_64)
+    The ADMIN EMAIL ADDRESS created (admin@mail.tzh.com)
+Notify Zimbra of your installation? [Yes] yes
+Notifying Zimbra of installation via http://www.zimbra.com/cgi-bin/notify.cgi?VER=8.6.0_GA_1153_RHEL6_64&amp;MAIL=admin@mail.tzh.com
+Notification complete
+Setting up zimbra crontab...done.
+Moving /tmp/zmsetup06292016-184521.log to /opt/zimbra/log
+Configuration complete - press return to exit
+</code></pre><p>2.5、重启zimbra</p>
+<pre><code>[root@tzh zcs-8.6.0_GA_1153.RHEL6_64.20141215151155]# /etc/init.d/zimbra restart
+Host mail.tzh.com
+    Stopping vmware-ha...skipped.
+        /opt/zimbra/bin/zmhactl missing or not executable.
+    Stopping zmconfigd...Done.
+    Stopping zimlet webapp...Done.
+    Stopping zimbraAdmin webapp...Done.
+    Stopping zimbra webapp...Done.
+    Stopping service webapp...Done.
+    Stopping stats...Done.
+    Stopping mta...Done.
+    Stopping spell...Done.
+    Stopping snmp...Done.
+    Stopping cbpolicyd...Done.
+    Stopping archiving...Done.
+    Stopping opendkim...Done.
+    Stopping amavis...Done.
+    Stopping antivirus...Done.
+    Stopping antispam...Done.
+    Stopping proxy...Done.
+    Stopping memcached...Done.
+    Stopping mailbox...Done.
+    Stopping logger...Done.
+    Stopping dnscache...Done.
+    Stopping ldap...Done.
+Host mail.tzh.com
+    Starting ldap...Done.
+略~~~
+</code></pre><h4 id="三、服务发件测试"><a href="#三、服务发件测试" class="headerlink" title="三、服务发件测试"></a>三、服务发件测试</h4><p>3.1 登陆测试<br><img src="https://i.loli.net/2019/05/21/5ce39ccd649ef46070.png" alt="10.png"></p>
+<p>创建一个账户，进行邮件发送测试</p>
+<p>账户创建</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce39d832af7665540.png" alt="11.png"></p>
+<p>登陆网页客户端进行邮件发送测试</p>
+<p>注：上图时间为周三（6月29）下午17：29是因为我在本地搭建的虚拟机，时间没有同步<br>因为域名问题，以及DNS在内网的虚拟机上，收取邮件是无法收取的，需要做公网解析，所以暂不进行邮件收取测试</p>
 
       
     </div>
@@ -493,7 +843,7 @@ FATAL: all hosts have already failed –aborting
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://architectang.github.io/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/" title="(二)、Ansible在使用过程中出现的错误解决方法">https://architectang.github.io/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/</a>
+    <a href="https://architectang.github.io/2019/05/21/zimbra 安装/" title="Zimbra 邮箱系统安装">https://architectang.github.io/2019/05/21/zimbra 安装/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -508,7 +858,9 @@ FATAL: all hosts have already failed –aborting
       
         <div class="post-tags">
           
-            <a href="/tags/自动化/" rel="tag"><i class="fa fa-tag"></i> 自动化</a>
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+            <a href="/tags/zimbra/" rel="tag"><i class="fa fa-tag"></i> zimbra</a>
           
         </div>
       
@@ -521,8 +873,8 @@ FATAL: all hosts have already failed –aborting
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/01/Ansible/" rel="next" title="Ansible">
-                <i class="fa fa-chevron-left"></i> Ansible
+              <a href="/2019/05/17/Zabbix-缓存数据清理/" rel="next" title="Zabbix 缓存数据清理">
+                <i class="fa fa-chevron-left"></i> Zabbix 缓存数据清理
               </a>
             
           </div>
@@ -530,10 +882,6 @@ FATAL: all hosts have already failed –aborting
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/17/PTES渗透测试执行标准/" rel="prev" title="PTES渗透测试执行标准">
-                PTES渗透测试执行标准 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -713,7 +1061,7 @@ FATAL: all hosts have already failed –aborting
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装完成后允许命令出错"><span class="nav-number">1.</span> <span class="nav-text">1.安装完成后允许命令出错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法"><span class="nav-number">1.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-出现Error-ansible-requires-a-json-module-none-found"><span class="nav-number">2.</span> <span class="nav-text">2.出现Error: ansible requires a json module, none found!</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法-1"><span class="nav-number">2.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）"><span class="nav-number">3.</span> <span class="nav-text">3.安装完成后链接客户端报错（配图为我在使用ansible推送文件到客户端的时候遇到的，这个客户端是第一次推送）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法："><span class="nav-number">3.1.</span> <span class="nav-text">解决办法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-如果客户端不在know-hosts里将会报错"><span class="nav-number">4.</span> <span class="nav-text">4.如果客户端不在know_hosts里将会报错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法-2"><span class="nav-number">4.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#5-出现FAILED-gt-FAILED-not-a-valid-DSA-private-key-file"><span class="nav-number"></span> <span class="nav-text">5.出现FAILED =&gt; FAILED: not a valid DSA private key file</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法：-1"><span class="nav-number">0.1.</span> <span class="nav-text">解决办法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-openssh升级后无法登录报错"><span class="nav-number">1.</span> <span class="nav-text">6.openssh升级后无法登录报错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决方法："><span class="nav-number">1.1.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-第一次系统初始化运行生成本机ansible用户key时报错"><span class="nav-number">2.</span> <span class="nav-text">7.第一次系统初始化运行生成本机ansible用户key时报错</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#解决办法-3"><span class="nav-number">2.1.</span> <span class="nav-text">解决办法</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、Zimbra介绍"><span class="nav-number">1.</span> <span class="nav-text">1、Zimbra介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、安装配置DNS"><span class="nav-number">2.</span> <span class="nav-text">2、安装配置DNS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、安装zimbra"><span class="nav-number">3.</span> <span class="nav-text">2、安装zimbra</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、服务发件测试"><span class="nav-number">4.</span> <span class="nav-text">三、服务发件测试</span></a></li></ol></div>
             
 
           </div>
