@@ -85,6 +85,15 @@ $(document).ready(function () {
       }, 500);
   });
 
+  $(document).ready(function(){
+    $(document).on('click', '.fold_hider', function(){
+        $('>.fold', this.parentNode).slideToggle();
+        $('>:first', this).toggleClass('open');
+    });
+    //默认情况下折叠
+    $("div.fold").css("display","none");
+});
+
   // Expand sidebar on post detail page by default, when post has a toc.
   var $tocContent = $('.post-toc-content');
   var isSidebarCouldDisplay = CONFIG.sidebar.display === 'post' ||

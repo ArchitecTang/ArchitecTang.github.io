@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39bdc8542b69089.png">
 <meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39ccd649ef46070.png">
 <meta property="og:image" content="https://i.loli.net/2019/05/21/5ce39d832af7665540.png">
-<meta property="og:updated_time" content="2019-05-21T06:47:07.699Z">
+<meta property="og:updated_time" content="2019-05-21T09:19:05.753Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zimbra 邮箱系统安装">
 <meta name="twitter:description" content="1、Zimbra介绍Zimbra与众不同的特点是其“Zimlet”网络服务提供了更多的电子邮件功能。例如，人们可以简单地用鼠标点击电子邮件程序中的航班信息以检查航班的状况。用户还可以在电子邮件中跟踪FedEx公司的投递情况并且获得地图、股票和其它信息。Zimbra的核心产品是Zimbra协作套件（Zimbra Collaboration Suite，简称ZCS）。除了它的核心功能是电子邮件和日程安">
@@ -419,7 +419,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.4k
+                  2.3k
                 </span>
               
 
@@ -435,7 +435,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  13
+                  12
                 </span>
               
             </div>
@@ -483,343 +483,17 @@
 <p>2.3、设置hosts文件  #添加以下内容</p>
 <p><img src="https://i.loli.net/2019/05/21/5ce39bdc8542b69089.png" alt="9.png"></p>
 <p>2.4、 安装</p>
-<pre><code>[root@tzh zcs-8.6.0_GA_1153.RHEL6_64.20141215151155]# ./install.sh 
-Operations logged to /tmp/install.log.29747
-Checking for existing installation...
-    zimbra-ldap...NOT FOUND
-    zimbra-logger...NOT FOUND
-    zimbra-mta...NOT FOUND
-    zimbra-dnscache...NOT FOUND
-    zimbra-snmp...NOT FOUND
-    zimbra-store...NOT FOUND
-    zimbra-apache...NOT FOUND
-    zimbra-spell...NOT FOUND
-    zimbra-convertd...NOT FOUND
-    zimbra-memcached...NOT FOUND
-    zimbra-proxy...NOT FOUND
-    zimbra-archiving...NOT FOUND
-    zimbra-core...NOT FOUND
-PLEASE READ THIS AGREEMENT CAREFULLY BEFORE USING THE SOFTWARE.
-ZIMBRA, INC. (&quot;ZIMBRA&quot;) WILL ONLY LICENSE THIS SOFTWARE TO YOU IF YOU
-FIRST ACCEPT THE TERMS OF THIS AGREEMENT. BY DOWNLOADING OR INSTALLING
-THE SOFTWARE, OR USING THE PRODUCT, YOU ARE CONSENTING TO BE BOUND BY
-THIS AGREEMENT. IF YOU DO NOT AGREE TO ALL OF THE TERMS OF THIS
-AGREEMENT, THEN DO NOT DOWNLOAD, INSTALL OR USE THE PRODUCT.
-License Terms for the Zimbra Collaboration Suite:
-http://www.zimbra.com/license/zimbra-public-eula-2-5.html
-Do you agree with the terms of the software license agreement? [N] y
-Checking for prerequisites...
-    FOUND: NPTL
-    FOUND: nc-1.84-24
-    FOUND: sudo-1.8.6p3-19
-    FOUND: libidn-1.18-2
-    FOUND: gmp-4.3.1-7
-    FOUND: libaio-0.3.107-10
-    FOUND: libstdc++-4.4.7-16
-    FOUND: unzip-6.0-2
-Checking for suggested prerequisites...
-    FOUND: perl-5.10.1
-    FOUND: sysstat
-    FOUND: sqlite
-Prerequisite check complete.
-Checking for installable packages
-Found zimbra-core
-Found zimbra-ldap
-Found zimbra-logger
-Found zimbra-mta
-Found zimbra-dnscache
-Found zimbra-snmp
-Found zimbra-store
-Found zimbra-apache
-Found zimbra-spell
-Found zimbra-memcached
-Found zimbra-proxy
-Select the packages to install
-Install zimbra-ldap [Y] y
-Install zimbra-logger [Y] y
-Install zimbra-mta [Y] y
-Install zimbra-dnscache [Y] y
-Install zimbra-snmp [Y] y
-Install zimbra-store [Y] y
-Install zimbra-apache [Y]
-Install zimbra-spell [Y] y
-Install zimbra-memcached [Y] y
-Install zimbra-proxy [Y] y
-Checking required space for zimbra-core
-Checking space for zimbra-store
-Checking required packages for zimbra-store
-zimbra-store package check complete.
-Installing:
-    zimbra-core
-    zimbra-ldap
-    zimbra-logger
-    zimbra-mta
-    zimbra-dnscache
-    zimbra-snmp
-    zimbra-store
-    zimbra-apache
-    zimbra-spell
-    zimbra-memcached
-    zimbra-proxy
-The system will be modified.  Continue? [N] y
-Removing /opt/zimbra
-Removing zimbra crontab entry...done.
-Cleaning up zimbra init scripts...done.
-Cleaning up /etc/ld.so.conf...done.
-Cleaning up /etc/prelink.conf...done.
-Cleaning up /etc/security/limits.conf...done.
-Finished removing Zimbra Collaboration Server.
-Installing packages
-zimbra-core......zimbra-core-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...
-    zimbra-ldap......zimbra-ldap-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-logger......zimbra-logger-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-mta......zimbra-mta-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-dnscache......zimbra-dnscache-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-snmp......zimbra-snmp-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-store......zimbra-store-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-apache......zimbra-apache-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-spell......zimbra-spell-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-memcached......zimbra-memcached-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-    zimbra-proxy......zimbra-proxy-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm...done
-Operations logged to /tmp/zmsetup06292016-184521.log
-Installing LDAP configuration database...done.
-Setting defaults...    MX: mail.user-mail.net (54.227.254.216)
-    MX: mail.user-mail.net (54.225.221.198)
-    Interface: 10.90.10.190
-    Interface: 127.0.0.1
-    Interface: ::1
-        54.225.221.198
-        54.227.254.216
-        54.227.254.216
-        54.225.221.198
-        54.225.221.198
-        54.227.254.216
-DNS ERROR - none of the MX records for mail.tzh.com
-resolve to this host
-Change domain name? [Yes] n
-done.
-Checking for port conflicts
-Main menu
-1) Common Configuration:                                                  
-2) zimbra-ldap:                             Enabled                       
-3) zimbra-logger:                           Enabled                       
-4) zimbra-mta:                              Enabled                       
-5) zimbra-dnscache:                         Enabled                       
-6) zimbra-snmp:                             Enabled                       
-7) zimbra-store:                            Enabled                       
-        +Create Admin User:                    yes                           
-        +Admin user to create:                 admin@mail.tzh.com            
-******* +Admin Password                        UNSET                         
-        +Anti-virus quarantine user:           virus-quarantine.iv8_lcko@mail.tzh.com
-        +Enable automated spam training:       yes                           
-        +Spam training user:                   spam.f8aglxrf@mail.tzh.com    
-        +Non-spam(Ham) training user:          ham.ugur2xpeby@mail.tzh.com   
-        +SMTP host:                            mail.tzh.com                  
-        +Web server HTTP port:                 8080                          
-        +Web server HTTPS port:                8443                          
-        +Web server mode:                      https                         
-        +IMAP server port:                     7143                          
-        +IMAP server SSL port:                 7993                          
-        +POP server port:                      7110                          
-        +POP server SSL port:                  7995                          
-        +Use spell check server:               yes                           
-        +Spell server URL:                     http://mail.tzh.com:7780/aspell.php
-        +Enable version update checks:         TRUE                          
-        +Enable version update notifications:  TRUE                          
-        +Version update notification email:    admin@mail.tzh.com            
-        +Version update source email:          admin@mail.tzh.com            
-        +Install mailstore (service webapp):   yes                           
-        +Install UI (zimbra,zimbraAdmin webapps): yes                           
-8) zimbra-spell:                            Enabled                       
-9) zimbra-proxy:                            Enabled                       
-10) Default Class of Service Configuration:                                
-s) Save config to file                                                    
-x) Expand menu                                                            
-q) Quit                                                                     
-Address unconfigured (**) items  (? - help) 7
-Store configuration
-1) Status:                                  Enabled                       
-2) Create Admin User:                       yes                           
-3) Admin user to create:                    admin@mail.tzh.com            
-** 4) Admin Password                           UNSET                         
-5) Anti-virus quarantine user:              virus-quarantine.iv8_lcko@mail.tzh.com
-6) Enable automated spam training:          yes                           
-7) Spam training user:                      spam.f8aglxrf@mail.tzh.com    
-8) Non-spam(Ham) training user:             ham.ugur2xpeby@mail.tzh.com   
-9) SMTP host:                               mail.tzh.com                  
-10) Web server HTTP port:                    8080                          
-11) Web server HTTPS port:                   8443                          
-12) Web server mode:                         https                         
-13) IMAP server port:                        7143                          
-14) IMAP server SSL port:                    7993                          
-15) POP server port:                         7110                          
-16) POP server SSL port:                     7995                          
-17) Use spell check server:                  yes                           
-18) Spell server URL:                        http://mail.tzh.com:7780/aspell.php
-19) Enable version update checks:            TRUE                          
-20) Enable version update notifications:     TRUE                          
-21) Version update notification email:       admin@mail.tzh.com            
-22) Version update source email:             admin@mail.tzh.com            
-23) Install mailstore (service webapp):      yes                           
-24) Install UI (zimbra,zimbraAdmin webapps): yes                           
-Select, or &apos;r&apos; for previous menu [r] 4
-Password for admin@mail.tzh.com (min 6 characters): [1mrCHrfp] 558842
-Store configuration
-1) Status:                                  Enabled                       
-2) Create Admin User:                       yes                           
-3) Admin user to create:                    admin@mail.tzh.com            
-4) Admin Password                           set                           
-5) Anti-virus quarantine user:              virus-quarantine.iv8_lcko@mail.tzh.com
-6) Enable automated spam training:          yes                           
-7) Spam training user:                      spam.f8aglxrf@mail.tzh.com    
-8) Non-spam(Ham) training user:             ham.ugur2xpeby@mail.tzh.com   
-9) SMTP host:                               mail.tzh.com                  
-10) Web server HTTP port:                    8080                          
-11) Web server HTTPS port:                   8443                          
-12) Web server mode:                         https                         
-13) IMAP server port:                        7143                          
-14) IMAP server SSL port:                    7993                          
-15) POP server port:                         7110                          
-16) POP server SSL port:                     7995                          
-17) Use spell check server:                  yes                           
-18) Spell server URL:                        http://mail.tzh.com:7780/aspell.php
-19) Enable version update checks:            TRUE                          
-20) Enable version update notifications:     TRUE                          
-21) Version update notification email:       admin@mail.tzh.com            
-22) Version update source email:             admin@mail.tzh.com            
-23) Install mailstore (service webapp):      yes                           
-24) Install UI (zimbra,zimbraAdmin webapps): yes                           
-Select, or &apos;r&apos; for previous menu [r] r
-Main menu
-1) Common Configuration:                                                  
-2) zimbra-ldap:                             Enabled                       
-3) zimbra-logger:                           Disabled                      
-4) zimbra-mta:                              Enabled                       
-5) zimbra-dnscache:                         Enabled                       
-6) zimbra-snmp:                             Enabled                       
-7) zimbra-store:                            Enabled                       
-8) zimbra-spell:                            Enabled                       
-9) zimbra-proxy:                            Enabled                       
-10) Default Class of Service Configuration:                                
-s) Save config to file                                                    
-x) Expand menu                                                            
-q) Quit                                    
-Select from menu, or press &apos;a&apos; to apply config (? - help) a
-Save configuration data to a file? [Yes] y
-Save config in file: [/opt/zimbra/config.39633] 
-Saving config in /opt/zimbra/config.39633...done.
-The system will be modified - continue? [No] y
-Operations logged to /tmp/zmsetup06292016-184521.log
-Setting local config values...done.
-Initializing core config...Setting up CA...done.
-Deploying CA to /opt/zimbra/conf/ca ...done.
-Creating SSL zimbra-store certificate...done.
-Creating new zimbra-ldap SSL certificate...done.
-Creating new zimbra-mta SSL certificate...done.
-Creating new zimbra-proxy SSL certificate...done.
-Installing mailboxd SSL certificates...done.
-Installing MTA SSL certificates...done.
-Installing LDAP SSL certificate...done.
-Installing Proxy SSL certificate...done.
-Initializing ldap...done.
-Setting replication password...done.
-Setting Postfix password...done.
-Setting amavis password...done.
-Setting nginx password...done.
-Setting BES searcher  password...done.
-Creating server entry for mail.tzh.com...done.
-Setting Zimbra IP Mode...done.
-Saving CA in ldap ...done.
-Saving SSL Certificate in ldap ...done.
-Setting spell check URL...done.
-Setting service ports on mail.tzh.com...done.
-Setting zimbraFeatureTasksEnabled=TRUE...done.
-Setting zimbraFeatureBriefcasesEnabled=TRUE...done.
-Setting Master DNS IP address(es)...done.
-Setting DNS cache tcp lookup preference...done.
-Setting DNS cache udp lookup preference...done.
-Setting DNS tcp upstream preference...done.
-Setting TimeZone Preference...done.
-Initializing mta config...done.
-Setting services on mail.tzh.com...done.
-Adding mail.tzh.com to zimbraMailHostPool in default COS...done.
-Creating domain mail.tzh.com...done.
-Setting default domain name...done.
-Creating domain mail.tzh.com...already exists.
-Creating admin account admin@mail.tzh.com...done.
-Creating root alias...done.
-Creating postmaster alias...done.
-Creating user spam.f8aglxrf@mail.tzh.com...done.
-Creating user ham.ugur2xpeby@mail.tzh.com...done.
-Creating user virus-quarantine.iv8_lcko@mail.tzh.com...done.
-Setting spam training and Anti-virus quarantine accounts...done.
-Initializing store sql database...done.
-Setting zimbraSmtpHostname for mail.tzh.com...done.
-Configuring SNMP...done.
-Setting up syslog.conf...done.
-Starting servers...
-Installing common zimlets...
-    com_zimbra_ymemoticons...done.
-    com_zimbra_clientuploader...done.
-    com_zimbra_webex...done.
-    com_zimbra_proxy_config...done.
-    com_zimbra_srchhighlighter...done.
-    com_zimbra_bulkprovision...done.
-    com_zimbra_viewmail...done.
-    com_zimbra_date...done.
-    com_zimbra_attachcontacts...done.
-    com_zimbra_mailarchive...done.
-    com_zimbra_cert_manager...done.
-    com_zimbra_url...done.
-    com_zimbra_adminversioncheck...done.
-    com_zimbra_attachmail...done.
-    com_zimbra_tooltip...done.
-    com_zimbra_email...done.
-    com_zimbra_phone...done.
-Finished installing common zimlets.
-Restarting mailboxd...done.
-Creating galsync account for default domain...done.
-You have the option of notifying Zimbra of your installation.
-This helps us to track the uptake of the Zimbra Collaboration Server.
-The only information that will be transmitted is:
-    The VERSION of zcs installed (8.6.0_GA_1153_RHEL6_64)
-    The ADMIN EMAIL ADDRESS created (admin@mail.tzh.com)
-Notify Zimbra of your installation? [Yes] yes
-Notifying Zimbra of installation via http://www.zimbra.com/cgi-bin/notify.cgi?VER=8.6.0_GA_1153_RHEL6_64&amp;MAIL=admin@mail.tzh.com
-Notification complete
-Setting up zimbra crontab...done.
-Moving /tmp/zmsetup06292016-184521.log to /opt/zimbra/log
-Configuration complete - press return to exit
-</code></pre><p>2.5、重启zimbra</p>
-<pre><code>[root@tzh zcs-8.6.0_GA_1153.RHEL6_64.20141215151155]# /etc/init.d/zimbra restart
-Host mail.tzh.com
-    Stopping vmware-ha...skipped.
-        /opt/zimbra/bin/zmhactl missing or not executable.
-    Stopping zmconfigd...Done.
-    Stopping zimlet webapp...Done.
-    Stopping zimbraAdmin webapp...Done.
-    Stopping zimbra webapp...Done.
-    Stopping service webapp...Done.
-    Stopping stats...Done.
-    Stopping mta...Done.
-    Stopping spell...Done.
-    Stopping snmp...Done.
-    Stopping cbpolicyd...Done.
-    Stopping archiving...Done.
-    Stopping opendkim...Done.
-    Stopping amavis...Done.
-    Stopping antivirus...Done.
-    Stopping antispam...Done.
-    Stopping proxy...Done.
-    Stopping memcached...Done.
-    Stopping mailbox...Done.
-    Stopping logger...Done.
-    Stopping dnscache...Done.
-    Stopping ldap...Done.
-Host mail.tzh.com
-    Starting ldap...Done.
-略~~~
-</code></pre><h4 id="三、服务发件测试"><a href="#三、服务发件测试" class="headerlink" title="三、服务发件测试"></a>三、服务发件测试</h4><p>3.1 登陆测试<br><img src="https://i.loli.net/2019/05/21/5ce39ccd649ef46070.png" alt="10.png"></p>
+<div><div class="fold_hider"><div class="close hider_title">点击显/隐内容</div></div><div class="fold">
+<p>[root@tzh zcs-8.6.0_GA_1153.RHEL6_64.20141215151155]# ./install.sh<br>Operations logged to /tmp/install.log.29747<br>Checking for existing installation…<br>    zimbra-ldap…NOT FOUND<br>    zimbra-logger…NOT FOUND<br>    zimbra-mta…NOT FOUND<br>    zimbra-dnscache…NOT FOUND<br>    zimbra-snmp…NOT FOUND<br>    zimbra-store…NOT FOUND<br>    zimbra-apache…NOT FOUND<br>    zimbra-spell…NOT FOUND<br>    zimbra-convertd…NOT FOUND<br>    zimbra-memcached…NOT FOUND<br>    zimbra-proxy…NOT FOUND<br>    zimbra-archiving…NOT FOUND<br>    zimbra-core…NOT FOUND<br>PLEASE READ THIS AGREEMENT CAREFULLY BEFORE USING THE SOFTWARE.<br>ZIMBRA, INC. (“ZIMBRA”) WILL ONLY LICENSE THIS SOFTWARE TO YOU IF YOU<br>FIRST ACCEPT THE TERMS OF THIS AGREEMENT. BY DOWNLOADING OR INSTALLING<br>THE SOFTWARE, OR USING THE PRODUCT, YOU ARE CONSENTING TO BE BOUND BY<br>THIS AGREEMENT. IF YOU DO NOT AGREE TO ALL OF THE TERMS OF THIS<br>AGREEMENT, THEN DO NOT DOWNLOAD, INSTALL OR USE THE PRODUCT.<br>License Terms for the Zimbra Collaboration Suite:<br><a href="http://www.zimbra.com/license/zimbra-public-eula-2-5.html" target="_blank" rel="noopener">http://www.zimbra.com/license/zimbra-public-eula-2-5.html</a><br>Do you agree with the terms of the software license agreement? [N] y<br>Checking for prerequisites…<br>    FOUND: NPTL<br>    FOUND: nc-1.84-24<br>    FOUND: sudo-1.8.6p3-19<br>    FOUND: libidn-1.18-2<br>    FOUND: gmp-4.3.1-7<br>    FOUND: libaio-0.3.107-10<br>    FOUND: libstdc++-4.4.7-16<br>    FOUND: unzip-6.0-2<br>Checking for suggested prerequisites…<br>    FOUND: perl-5.10.1<br>    FOUND: sysstat<br>    FOUND: sqlite<br>Prerequisite check complete.<br>Checking for installable packages<br>Found zimbra-core<br>Found zimbra-ldap<br>Found zimbra-logger<br>Found zimbra-mta<br>Found zimbra-dnscache<br>Found zimbra-snmp<br>Found zimbra-store<br>Found zimbra-apache<br>Found zimbra-spell<br>Found zimbra-memcached<br>Found zimbra-proxy<br>Select the packages to install<br>Install zimbra-ldap [Y] y<br>Install zimbra-logger [Y] y<br>Install zimbra-mta [Y] y<br>Install zimbra-dnscache [Y] y<br>Install zimbra-snmp [Y] y<br>Install zimbra-store [Y] y<br>Install zimbra-apache [Y]<br>Install zimbra-spell [Y] y<br>Install zimbra-memcached [Y] y<br>Install zimbra-proxy [Y] y<br>Checking required space for zimbra-core<br>Checking space for zimbra-store<br>Checking required packages for zimbra-store<br>zimbra-store package check complete.<br>Installing:<br>    zimbra-core<br>    zimbra-ldap<br>    zimbra-logger<br>    zimbra-mta<br>    zimbra-dnscache<br>    zimbra-snmp<br>    zimbra-store<br>    zimbra-apache<br>    zimbra-spell<br>    zimbra-memcached<br>    zimbra-proxy<br>The system will be modified.  Continue? [N] y<br>Removing /opt/zimbra<br>Removing zimbra crontab entry…done.<br>Cleaning up zimbra init scripts…done.<br>Cleaning up /etc/ld.so.conf…done.<br>Cleaning up /etc/prelink.conf…done.<br>Cleaning up /etc/security/limits.conf…done.<br>Finished removing Zimbra Collaboration Server.<br>Installing packages<br>zimbra-core……zimbra-core-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…<br>    zimbra-ldap……zimbra-ldap-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-logger……zimbra-logger-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-mta……zimbra-mta-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-dnscache……zimbra-dnscache-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-snmp……zimbra-snmp-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-store……zimbra-store-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-apache……zimbra-apache-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-spell……zimbra-spell-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-memcached……zimbra-memcached-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>    zimbra-proxy……zimbra-proxy-8.6.0_GA_1153.RHEL6_64-20141215151155.x86_64.rpm…done<br>Operations logged to /tmp/zmsetup06292016-184521.log<br>Installing LDAP configuration database…done.<br>Setting defaults…    MX: mail.user-mail.net (54.227.254.216)<br>    MX: mail.user-mail.net (54.225.221.198)<br>    Interface: 10.90.10.190<br>    Interface: 127.0.0.1<br>    Interface: ::1<br>        54.225.221.198<br>        54.227.254.216<br>        54.227.254.216<br>        54.225.221.198<br>        54.225.221.198<br>        54.227.254.216<br>DNS ERROR - none of the MX records for mail.tzh.com<br>resolve to this host<br>Change domain name? [Yes] n<br>done.<br>Checking for port conflicts<br>Main menu<br>1) Common Configuration:<br>2) zimbra-ldap:                             Enabled<br>3) zimbra-logger:                           Enabled<br>4) zimbra-mta:                              Enabled<br>5) zimbra-dnscache:                         Enabled<br>6) zimbra-snmp:                             Enabled<br>7) zimbra-store:                            Enabled<br>        +Create Admin User:                    yes<br>        +Admin user to create:                 <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a><br><strong>***</strong> +Admin Password                        UNSET<br>        +Anti-virus quarantine user:           <a href="mailto:virus-quarantine.iv8_lcko@mail.tzh.com" target="_blank" rel="noopener">virus-quarantine.iv8_lcko@mail.tzh.com</a><br>        +Enable automated spam training:       yes<br>        +Spam training user:                   <a href="mailto:spam.f8aglxrf@mail.tzh.com" target="_blank" rel="noopener">spam.f8aglxrf@mail.tzh.com</a><br>        +Non-spam(Ham) training user:          <a href="mailto:ham.ugur2xpeby@mail.tzh.com" target="_blank" rel="noopener">ham.ugur2xpeby@mail.tzh.com</a><br>        +SMTP host:                            mail.tzh.com<br>        +Web server HTTP port:                 8080<br>        +Web server HTTPS port:                8443<br>        +Web server mode:                      https<br>        +IMAP server port:                     7143<br>        +IMAP server SSL port:                 7993<br>        +POP server port:                      7110<br>        +POP server SSL port:                  7995<br>        +Use spell check server:               yes<br>        +Spell server URL:                     <a href="http://mail.tzh.com:7780/aspell.php" target="_blank" rel="noopener">http://mail.tzh.com:7780/aspell.php</a><br>        +Enable version update checks:         TRUE<br>        +Enable version update notifications:  TRUE<br>        +Version update notification email:    <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a><br>        +Version update source email:          <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a><br>        +Install mailstore (service webapp):   yes<br>        +Install UI (zimbra,zimbraAdmin webapps): yes<br>8) zimbra-spell:                            Enabled<br>9) zimbra-proxy:                            Enabled<br>10) Default Class of Service Configuration:<br>s) Save config to file<br>x) Expand menu<br>q) Quit<br>Address unconfigured (<strong>) items  (? - help) 7<br>Store configuration<br>1) Status:                                  Enabled<br>2) Create Admin User:                       yes<br>3) Admin user to create:                    <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a>            
+</strong> 4) Admin Password                           UNSET<br>5) Anti-virus quarantine user:              <a href="mailto:virus-quarantine.iv8_lcko@mail.tzh.com" target="_blank" rel="noopener">virus-quarantine.iv8_lcko@mail.tzh.com</a><br>6) Enable automated spam training:          yes<br>7) Spam training user:                      <a href="mailto:spam.f8aglxrf@mail.tzh.com" target="_blank" rel="noopener">spam.f8aglxrf@mail.tzh.com</a><br>8) Non-spam(Ham) training user:             <a href="mailto:ham.ugur2xpeby@mail.tzh.com" target="_blank" rel="noopener">ham.ugur2xpeby@mail.tzh.com</a><br>9) SMTP host:                               mail.tzh.com<br>10) Web server HTTP port:                    8080<br>11) Web server HTTPS port:                   8443<br>12) Web server mode:                         https<br>13) IMAP server port:                        7143<br>14) IMAP server SSL port:                    7993<br>15) POP server port:                         7110<br>16) POP server SSL port:                     7995<br>17) Use spell check server:                  yes<br>18) Spell server URL:                        <a href="http://mail.tzh.com:7780/aspell.php" target="_blank" rel="noopener">http://mail.tzh.com:7780/aspell.php</a><br>19) Enable version update checks:            TRUE<br>20) Enable version update notifications:     TRUE<br>21) Version update notification email:       <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a><br>22) Version update source email:             <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a><br>23) Install mailstore (service webapp):      yes<br>24) Install UI (zimbra,zimbraAdmin webapps): yes<br>Select, or ‘r’ for previous menu [r] 4<br>Password for <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a> (min 6 characters): [1mrCHrfp] 558842<br>Store configuration<br>1) Status:                                  Enabled<br>2) Create Admin User:                       yes<br>3) Admin user to create:                    <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a><br>4) Admin Password                           set<br>5) Anti-virus quarantine user:              <a href="mailto:virus-quarantine.iv8_lcko@mail.tzh.com" target="_blank" rel="noopener">virus-quarantine.iv8_lcko@mail.tzh.com</a><br>6) Enable automated spam training:          yes<br>7) Spam training user:                      <a href="mailto:spam.f8aglxrf@mail.tzh.com" target="_blank" rel="noopener">spam.f8aglxrf@mail.tzh.com</a><br>8) Non-spam(Ham) training user:             <a href="mailto:ham.ugur2xpeby@mail.tzh.com" target="_blank" rel="noopener">ham.ugur2xpeby@mail.tzh.com</a><br>9) SMTP host:                               mail.tzh.com<br>10) Web server HTTP port:                    8080<br>11) Web server HTTPS port:                   8443<br>12) Web server mode:                         https<br>13) IMAP server port:                        7143<br>14) IMAP server SSL port:                    7993<br>15) POP server port:                         7110<br>16) POP server SSL port:                     7995<br>17) Use spell check server:                  yes<br>18) Spell server URL:                        <a href="http://mail.tzh.com:7780/aspell.php" target="_blank" rel="noopener">http://mail.tzh.com:7780/aspell.php</a><br>19) Enable version update checks:            TRUE<br>20) Enable version update notifications:     TRUE<br>21) Version update notification email:       <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a><br>22) Version update source email:             <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a><br>23) Install mailstore (service webapp):      yes<br>24) Install UI (zimbra,zimbraAdmin webapps): yes<br>Select, or ‘r’ for previous menu [r] r<br>Main menu<br>1) Common Configuration:<br>2) zimbra-ldap:                             Enabled<br>3) zimbra-logger:                           Disabled<br>4) zimbra-mta:                              Enabled<br>5) zimbra-dnscache:                         Enabled<br>6) zimbra-snmp:                             Enabled<br>7) zimbra-store:                            Enabled<br>8) zimbra-spell:                            Enabled<br>9) zimbra-proxy:                            Enabled<br>10) Default Class of Service Configuration:<br>s) Save config to file<br>x) Expand menu<br>q) Quit<br>Select from menu, or press ‘a’ to apply config (? - help) a<br>Save configuration data to a file? [Yes] y<br>Save config in file: [/opt/zimbra/config.39633]<br>Saving config in /opt/zimbra/config.39633…done.<br>The system will be modified - continue? [No] y<br>Operations logged to /tmp/zmsetup06292016-184521.log<br>Setting local config values…done.<br>Initializing core config…Setting up CA…done.<br>Deploying CA to /opt/zimbra/conf/ca …done.<br>Creating SSL zimbra-store certificate…done.<br>Creating new zimbra-ldap SSL certificate…done.<br>Creating new zimbra-mta SSL certificate…done.<br>Creating new zimbra-proxy SSL certificate…done.<br>Installing mailboxd SSL certificates…done.<br>Installing MTA SSL certificates…done.<br>Installing LDAP SSL certificate…done.<br>Installing Proxy SSL certificate…done.<br>Initializing ldap…done.<br>Setting replication password…done.<br>Setting Postfix password…done.<br>Setting amavis password…done.<br>Setting nginx password…done.<br>Setting BES searcher  password…done.<br>Creating server entry for mail.tzh.com…done.<br>Setting Zimbra IP Mode…done.<br>Saving CA in ldap …done.<br>Saving SSL Certificate in ldap …done.<br>Setting spell check URL…done.<br>Setting service ports on mail.tzh.com…done.<br>Setting zimbraFeatureTasksEnabled=TRUE…done.<br>Setting zimbraFeatureBriefcasesEnabled=TRUE…done.<br>Setting Master DNS IP address(es)…done.<br>Setting DNS cache tcp lookup preference…done.<br>Setting DNS cache udp lookup preference…done.<br>Setting DNS tcp upstream preference…done.<br>Setting TimeZone Preference…done.<br>Initializing mta config…done.<br>Setting services on mail.tzh.com…done.<br>Adding mail.tzh.com to zimbraMailHostPool in default COS…done.<br>Creating domain mail.tzh.com…done.<br>Setting default domain name…done.<br>Creating domain mail.tzh.com…already exists.<br>Creating admin account <a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a>…done.<br>Creating root alias…done.<br>Creating postmaster alias…done.<br>Creating user <a href="mailto:spam.f8aglxrf@mail.tzh.com" target="_blank" rel="noopener">spam.f8aglxrf@mail.tzh.com</a>…done.<br>Creating user <a href="mailto:ham.ugur2xpeby@mail.tzh.com" target="_blank" rel="noopener">ham.ugur2xpeby@mail.tzh.com</a>…done.<br>Creating user <a href="mailto:virus-quarantine.iv8_lcko@mail.tzh.com" target="_blank" rel="noopener">virus-quarantine.iv8_lcko@mail.tzh.com</a>…done.<br>Setting spam training and Anti-virus quarantine accounts…done.<br>Initializing store sql database…done.<br>Setting zimbraSmtpHostname for mail.tzh.com…done.<br>Configuring SNMP…done.<br>Setting up syslog.conf…done.<br>Starting servers…<br>Installing common zimlets…<br>    com_zimbra_ymemoticons…done.<br>    com_zimbra_clientuploader…done.<br>    com_zimbra_webex…done.<br>    com_zimbra_proxy_config…done.<br>    com_zimbra_srchhighlighter…done.<br>    com_zimbra_bulkprovision…done.<br>    com_zimbra_viewmail…done.<br>    com_zimbra_date…done.<br>    com_zimbra_attachcontacts…done.<br>    com_zimbra_mailarchive…done.<br>    com_zimbra_cert_manager…done.<br>    com_zimbra_url…done.<br>    com_zimbra_adminversioncheck…done.<br>    com_zimbra_attachmail…done.<br>    com_zimbra_tooltip…done.<br>    com_zimbra_email…done.<br>    com_zimbra_phone…done.<br>Finished installing common zimlets.<br>Restarting mailboxd…done.<br>Creating galsync account for default domain…done.<br>You have the option of notifying Zimbra of your installation.<br>This helps us to track the uptake of the Zimbra Collaboration Server.<br>The only information that will be transmitted is:<br>    The VERSION of zcs installed (8.6.0_GA_1153_RHEL6_64)<br>    The ADMIN EMAIL ADDRESS created (<a href="mailto:admin@mail.tzh.com" target="_blank" rel="noopener">admin@mail.tzh.com</a>)<br>Notify Zimbra of your installation? [Yes] yes<br>Notifying Zimbra of installation via <a href="http://www.zimbra.com/cgi-bin/notify.cgi?VER=8.6.0_GA_1153_RHEL6_64&amp;MAIL=admin@mail.tzh.com" target="_blank" rel="noopener">http://www.zimbra.com/cgi-bin/notify.cgi?VER=8.6.0_GA_1153_RHEL6_64&amp;MAIL=admin@mail.tzh.com</a><br>Notification complete<br>Setting up zimbra crontab…done.<br>Moving /tmp/zmsetup06292016-184521.log to /opt/zimbra/log<br>Configuration complete - press return to exit</p>
+
+</div></div>
+<p>2.5、重启zimbra</p>
+<div><div class="fold_hider"><div class="close hider_title">点击显/隐内容</div></div><div class="fold">
+<p>[root@tzh zcs-8.6.0_GA_1153.RHEL6_64.20141215151155]# /etc/init.d/zimbra restart<br>Host mail.tzh.com<br>    Stopping vmware-ha…skipped.<br>        /opt/zimbra/bin/zmhactl missing or not executable.<br>    Stopping zmconfigd…Done.<br>    Stopping zimlet webapp…Done.<br>    Stopping zimbraAdmin webapp…Done.<br>    Stopping zimbra webapp…Done.<br>    Stopping service webapp…Done.<br>    Stopping stats…Done.<br>    Stopping mta…Done.<br>    Stopping spell…Done.<br>    Stopping snmp…Done.<br>    Stopping cbpolicyd…Done.<br>    Stopping archiving…Done.<br>    Stopping opendkim…Done.<br>    Stopping amavis…Done.<br>    Stopping antivirus…Done.<br>    Stopping antispam…Done.<br>    Stopping proxy…Done.<br>    Stopping memcached…Done.<br>    Stopping mailbox…Done.<br>    Stopping logger…Done.<br>    Stopping dnscache…Done.<br>    Stopping ldap…Done.<br>Host mail.tzh.com<br>    Starting ldap…Done.<br>略~~~</p>
+
+</div></div>
+<h4 id="三、服务发件测试"><a href="#三、服务发件测试" class="headerlink" title="三、服务发件测试"></a>三、服务发件测试</h4><p>3.1 登陆测试<br><img src="https://i.loli.net/2019/05/21/5ce39ccd649ef46070.png" alt="10.png"></p>
 <p>创建一个账户，进行邮件发送测试</p>
 <p>账户创建</p>
 <p><img src="https://i.loli.net/2019/05/21/5ce39d832af7665540.png" alt="11.png"></p>
@@ -1164,7 +838,7 @@ Host mail.tzh.com
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.4k字</span>
+  <span class="post-count">博客全站共6.3k字</span>
 </div>
         
 
