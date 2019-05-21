@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[jira的部署]]></title>
-    <url>%2F2019%2F05%2F21%2Fjira%E7%9A%84%E9%83%A8%E7%BD%B2%2F</url>
+    <url>%2F2019%2F05%2F21%2Fjira%E5%AE%89%E8%A3%85%2F</url>
     <content type="text"><![CDATA[一、jira环境需求system： Linux memory： 2GB Mysql数据库 Jdk jdk-8u92-linux-x64.rpm Jira atlassian-jira-6.4.12-x64 Jira + 数据库连接插件mysql-connector-java-5.1.36-bin 部署前机器的内存至少为2GB.否则会出现如下错误： 二、安装部署部署前配置 关闭iptables和selinux service iptables stop &amp;&amp; setenforce 0 2.1 jdk安装 查看版本号 jdk安装完毕 2.2 安装mysql数据库（如果有的可以跳过安装这一步）采用的是yum安装 yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm yum install Percona-Server-server-56 初始化mysql数据库，创建账户并赋予链接权限 创建jira库和jira用户 create database jiradb character set utf8; grant select,insert,update,delete,create,drop,alter,index on jiradb.* to &apos;jira&apos;@&apos;localhost&apos; identified by &apos;jira&apos;; flush privileges; 退出，使用jira账户进行登陆测试 mysql –ujira –p 下载mysql-connector-java-5.1.39.tar.gz 连接 2.3 安装jira 上传jira文件 Chmod +x ./ Jira web访问端口为8080 由于jira默认是不支持使用mysql数据库的，如果用mysql的话就得把链接插件放到以下目录，并重启jira 上传mysql – jira 连接插件 cd /opt/atlassian/jira/atlassian-jira/WEB-INF/lib/ 上传文件 cd /opt/atlassian/jira/atlassian-jira/WEB-INF/lib/ 上传中文语言包 删除 cd /var/atlassian/application-data/jira/ 打开浏览器，开始设置向导 连接数据库 选择模式 装的过程中需要在官网获取试用序列号，然后进行破解！！]]></content>
       <categories>
         <category>Linux</category>
