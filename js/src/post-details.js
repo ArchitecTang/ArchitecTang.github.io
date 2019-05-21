@@ -85,6 +85,7 @@ $(document).ready(function () {
       }, 500);
   });
 
+// 添加代码块折叠功能
   $(document).ready(function(){
     $(document).on('click', '.fold_hider', function(){
         $('>.fold', this.parentNode).slideToggle();
