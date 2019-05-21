@@ -84,7 +84,7 @@
 
 
 
-  <meta name="keywords" content="自动化,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -97,21 +97,36 @@
 
 
 
-<meta name="description" content="1、ansible介绍： Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。 Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。Asible是基于模块工作的，其本身没有批量部署的能力，Ansible~一款运维自动">
-<meta name="keywords" content="自动化">
+<meta name="description" content="一、jira环境需求system： Linux memory： 2GB Mysql数据库 Jdk   jdk-8u92-linux-x64.rpm Jira  atlassian-jira-6.4.12-x64 Jira + 数据库连接插件mysql-connector-java-5.1.36-bin 部署前机器的内存至少为2GB.否则会出现如下错误：  二、安装部署部署前配置 关闭iptable">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ansible">
-<meta property="og:url" content="https://architectang.github.io/2018/09/01/Ansible/index.html">
+<meta property="og:title" content="jira的部署">
+<meta property="og:url" content="https://architectang.github.io/2019/05/21/jira的部署/index.html">
 <meta property="og:site_name" content="ArchitecTang Blog">
-<meta property="og:description" content="1、ansible介绍： Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。 Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。Asible是基于模块工作的，其本身没有批量部署的能力，Ansible~一款运维自动">
+<meta property="og:description" content="一、jira环境需求system： Linux memory： 2GB Mysql数据库 Jdk   jdk-8u92-linux-x64.rpm Jira  atlassian-jira-6.4.12-x64 Jira + 数据库连接插件mysql-connector-java-5.1.36-bin 部署前机器的内存至少为2GB.否则会出现如下错误：  二、安装部署部署前配置 关闭iptable">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://architectang.github.io/upload/201809/工作特性.jpg">
-<meta property="og:image" content="https://architectang.github.io/upload/201809/工作机制.png">
-<meta property="og:updated_time" content="2019-05-17T06:29:45.055Z">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a50c9a7c063889.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a5b347fb286893.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a5bd32b9498242.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a5f64c72b78997.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a62b49dd383541.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a6e6b7f9313899.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a6e6e8b3e54323.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a738b461110973.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a772f2b4830067.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a7e034ce891378.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a830932c224886.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a85a0ec1b20574.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a87716ff631694.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a8aba031e19353.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a8d45564756840.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a8f8d98a798813.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a923ded2684231.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/21/5ce3a923e9c8d34126.png">
+<meta property="og:updated_time" content="2019-05-21T07:31:23.513Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ansible">
-<meta name="twitter:description" content="1、ansible介绍： Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。 Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。Asible是基于模块工作的，其本身没有批量部署的能力，Ansible~一款运维自动">
-<meta name="twitter:image" content="https://architectang.github.io/upload/201809/工作特性.jpg">
+<meta name="twitter:title" content="jira的部署">
+<meta name="twitter:description" content="一、jira环境需求system： Linux memory： 2GB Mysql数据库 Jdk   jdk-8u92-linux-x64.rpm Jira  atlassian-jira-6.4.12-x64 Jira + 数据库连接插件mysql-connector-java-5.1.36-bin 部署前机器的内存至少为2GB.否则会出现如下错误：  二、安装部署部署前配置 关闭iptable">
+<meta name="twitter:image" content="https://i.loli.net/2019/05/21/5ce3a50c9a7c063889.png">
 
 
 
@@ -141,13 +156,13 @@
 
 
 
-  <link rel="canonical" href="https://architectang.github.io/2018/09/01/Ansible/">
+  <link rel="canonical" href="https://architectang.github.io/2019/05/21/jira的部署/">
 
 
 
 
 
-  <title>Ansible | ArchitecTang Blog</title>
+  <title>jira的部署 | ArchitecTang Blog</title>
   
 
 
@@ -306,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://architectang.github.io/2018/09/01/Ansible/">
+    <link itemprop="mainEntityOfPage" href="https://architectang.github.io/2019/05/21/jira的部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhaohu.Tang">
@@ -323,7 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ansible</h1>
+          <h1 class="post-title" itemprop="name headline">jira的部署</h1>
         
 
         <div class="post-meta">
@@ -335,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T17:26:09+08:00">
-                2018-09-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T15:09:04+08:00">
+                2019-05-21
               </time>
             
 
@@ -345,28 +360,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -389,7 +382,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  408
+                  381
                 </span>
               
 
@@ -427,30 +420,61 @@
       
 
       
-        <p>1、ansible介绍：</p>
-<p>Ansible是一款基于Python开发的自动化运维工具，主要是实现批量系统配置、批量程序部署、批量运行命令、批量执行任务等等诸多功能。</p>
-<p>Ansible是一款灵活的开源工具，能够很大程度简化运维中的配置管理与流程控制方式，它利用推送方式对客户系统加以配置，这样所有工作都可在主服务器端完成。<br>Asible是基于模块工作的，其本身没有批量部署的能力，Ansible<del>~</del>一款运维自动化的软件！<br><a id="more"></a><br>1.1特性</p>
-<p>(1)、no agents：不需要在被管控主机上安装任何客户端；</p>
-<p>(2)、no server：无服务器端，使用时直接运行命令即可；</p>
-<p>(3)、modules in any languages：基于模块工作，可使用任意语言开发模块；</p>
-<p>(4)、yaml，not code：使用yaml语言定制剧本playbook；</p>
-<p>(5)、ssh by default：基于SSH工作；</p>
-<p>(6)、strong multi-tier solution：可实现多级指挥。</p>
-<p><img src="/upload/201809/工作特性.jpg" alt="工作特性"></p>
-<p>1.1 优点</p>
-<p>(1)、轻量级，无需在客户端安装agent，更新时，只需在操作机上进行一次更新即可；</p>
-<p>(2)、批量任务执行可以写成脚本，而且不用分发到远程就可以执行；</p>
-<p>(3)、使用python编写，维护更简单，ruby语法过于复杂；</p>
-<p>(4)、支持sudo。</p>
-<p><img src="/upload/201809/工作机制.png" alt="工作机制"></p>
-<p>2、ansible安装</p>
-<p>安装epel 源：<br>rpm -ivh  <a href="https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm" target="_blank" rel="noopener">https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm</a></p>
-<p>安装ansible ：<br>yum install ansible -y</p>
-<p>ssh-keygen  生成秘钥文件,如果不想输入密码可以一直回车</p>
-<p>ssh-keygen -t rsa  </p>
-<p>cd /root/.ssh/ &amp;&amp; ll ./*</p>
-<p>配置ansible  的hosts 文件：</p>
-<p>vim /etc/ansible/hosts</p>
+        <h4 id="一、jira环境需求"><a href="#一、jira环境需求" class="headerlink" title="一、jira环境需求"></a>一、jira环境需求</h4><p>system： Linux</p>
+<p>memory： 2GB</p>
+<p>Mysql数据库</p>
+<p>Jdk   jdk-8u92-linux-x64.rpm</p>
+<p>Jira  atlassian-jira-6.4.12-x64</p>
+<p>Jira + 数据库连接插件mysql-connector-java-5.1.36-bin</p>
+<p>部署前机器的内存至少为2GB.否则会出现如下错误：</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a50c9a7c063889.png" alt="1.png"></p>
+<h4 id="二、安装部署"><a href="#二、安装部署" class="headerlink" title="二、安装部署"></a>二、安装部署</h4><p>部署前配置 关闭iptables和selinux</p>
+<p>service iptables stop &amp;&amp; setenforce 0</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a5b347fb286893.png" alt="2.png"></p>
+<p>2.1  jdk安装</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a5bd32b9498242.png" alt="3.png"></p>
+<p>查看版本号 jdk安装完毕</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a5f64c72b78997.png" alt="4.png"></p>
+<p>2.2 安装mysql数据库（如果有的可以跳过安装这一步）采用的是yum安装</p>
+<p>yum install <a href="http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm" target="_blank" rel="noopener">http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm</a></p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a62b49dd383541.png" alt="5.png"></p>
+<p>yum install Percona-Server-server-56</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a6e6b7f9313899.png" alt="6.png"></p>
+<p>初始化mysql数据库，创建账户并赋予链接权限<br><img src="https://i.loli.net/2019/05/21/5ce3a6e6e8b3e54323.png" alt="7.png"></p>
+<p>创建jira库和jira用户</p>
+<pre><code>create database jiradb character set utf8;
+grant select,insert,update,delete,create,drop,alter,index on jiradb.* to &apos;jira&apos;@&apos;localhost&apos; identified by &apos;jira&apos;;
+flush privileges;
+</code></pre><p><img src="https://i.loli.net/2019/05/21/5ce3a738b461110973.png" alt="8.png"></p>
+<p>退出，使用jira账户进行登陆测试</p>
+<pre><code>mysql –ujira –p
+</code></pre><p><img src="https://i.loli.net/2019/05/21/5ce3a772f2b4830067.png" alt="9.png"></p>
+<p>下载mysql-connector-java-5.1.39.tar.gz 连接</p>
+<p>2.3  安装jira</p>
+<p>上传jira文件</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a7e034ce891378.png" alt="10.png"></p>
+<p>Chmod +x </p>
+<p>./</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a830932c224886.png" alt="11.png"></p>
+<p>Jira web访问端口为8080</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a85a0ec1b20574.png" alt="12.png"></p>
+<p>由于jira默认是不支持使用mysql数据库的，如果用mysql的话就得把链接插件放到以下目录，并重启jira </p>
+<p>上传mysql – jira 连接插件</p>
+<p>cd /opt/atlassian/jira/atlassian-jira/WEB-INF/lib/</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a87716ff631694.png" alt="13.png"></p>
+<p>上传文件</p>
+<p>cd /opt/atlassian/jira/atlassian-jira/WEB-INF/lib/</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a8aba031e19353.png" alt="14.png"></p>
+<p>上传中文语言包</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a8d45564756840.png" alt="15.png"></p>
+<p>删除 cd /var/atlassian/application-data/jira/</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a8f8d98a798813.png" alt="16.png"></p>
+<p>打开浏览器，开始设置向导</p>
+<p>连接数据库</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a923ded2684231.png" alt="18.png"></p>
+<p>选择模式</p>
+<p><img src="https://i.loli.net/2019/05/21/5ce3a923e9c8d34126.png" alt="17.png"></p>
+<p>装的过程中需要在官网获取试用序列号，然后进行破解！！</p>
 
       
     </div>
@@ -479,7 +503,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://architectang.github.io/2018/09/01/Ansible/" title="Ansible">https://architectang.github.io/2018/09/01/Ansible/</a>
+    <a href="https://architectang.github.io/2019/05/21/jira的部署/" title="jira的部署">https://architectang.github.io/2019/05/21/jira的部署/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -492,12 +516,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/自动化/" rel="tag"><i class="fa fa-tag"></i> 自动化</a>
-          
-        </div>
-      
 
       
       
@@ -507,15 +525,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/21/zimbra 安装/" rel="next" title="Zimbra 邮箱系统安装">
+                <i class="fa fa-chevron-left"></i> Zimbra 邮箱系统安装
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/02/二-、Ansible在使用过程中出现的错误解决方法/" rel="prev" title="(二)、Ansible在使用过程中出现的错误解决方法">
-                (二)、Ansible在使用过程中出现的错误解决方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -572,8 +590,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -676,6 +703,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、jira环境需求"><span class="nav-number">1.</span> <span class="nav-text">一、jira环境需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、安装部署"><span class="nav-number">2.</span> <span class="nav-text">二、安装部署</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
