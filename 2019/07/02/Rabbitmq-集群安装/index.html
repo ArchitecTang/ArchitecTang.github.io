@@ -97,13 +97,13 @@
 
 
 
-<meta name="description" content="一、软件下载：下载Erlang  百度云提取码: 864m  下载Rabbitmq 源码包 百度云提取码: qwih 二、安装环境:node1 172.31.8.8   system Centos 7 —- node3 172.31.8.107 system Centos 7 node2 172.31.8.13  system Centos 7 —- node4 172.31.8.75  syst">
+<meta name="description" content="一、软件下载：下载Erlang  百度云提取码: 864m  下载Rabbitmq 源码包 百度云提取码: qwih 点击此处跳转到官方网站下载最新版本 二、安装环境:node1 172.31.8.8   system Centos 7 —- node3 172.31.8.107 system Centos 7 node2 172.31.8.13  system Centos 7 —- node4">
 <meta name="keywords" content="Linux,Rabbitmq">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rabbitmq 集群安装">
 <meta property="og:url" content="https://architectang.github.io/2019/07/02/Rabbitmq-集群安装/index.html">
 <meta property="og:site_name" content="ArchitecTang Blog">
-<meta property="og:description" content="一、软件下载：下载Erlang  百度云提取码: 864m  下载Rabbitmq 源码包 百度云提取码: qwih 二、安装环境:node1 172.31.8.8   system Centos 7 —- node3 172.31.8.107 system Centos 7 node2 172.31.8.13  system Centos 7 —- node4 172.31.8.75  syst">
+<meta property="og:description" content="一、软件下载：下载Erlang  百度云提取码: 864m  下载Rabbitmq 源码包 百度云提取码: qwih 点击此处跳转到官方网站下载最新版本 二、安装环境:node1 172.31.8.8   system Centos 7 —- node3 172.31.8.107 system Centos 7 node2 172.31.8.13  system Centos 7 —- node4">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2019/07/02/5d1b6526a7b9185754.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/03/5d1ca62e894fb35867.png">
@@ -114,10 +114,10 @@
 <meta property="og:image" content="https://i.loli.net/2019/07/04/5d1d75112e7ab28091.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/04/5d1d7671ed99316232.png">
 <meta property="og:image" content="https://i.loli.net/2019/07/04/5d1d79643889841417.png">
-<meta property="og:updated_time" content="2019-07-04T03:59:04.181Z">
+<meta property="og:updated_time" content="2019-07-04T04:09:15.999Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rabbitmq 集群安装">
-<meta name="twitter:description" content="一、软件下载：下载Erlang  百度云提取码: 864m  下载Rabbitmq 源码包 百度云提取码: qwih 二、安装环境:node1 172.31.8.8   system Centos 7 —- node3 172.31.8.107 system Centos 7 node2 172.31.8.13  system Centos 7 —- node4 172.31.8.75  syst">
+<meta name="twitter:description" content="一、软件下载：下载Erlang  百度云提取码: 864m  下载Rabbitmq 源码包 百度云提取码: qwih 点击此处跳转到官方网站下载最新版本 二、安装环境:node1 172.31.8.8   system Centos 7 —- node3 172.31.8.107 system Centos 7 node2 172.31.8.13  system Centos 7 —- node4">
 <meta name="twitter:image" content="https://i.loli.net/2019/07/02/5d1b6526a7b9185754.png">
 
 
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  949
+                  995
                 </span>
               
 
@@ -458,6 +458,7 @@
       
         <h5 id="一、软件下载："><a href="#一、软件下载：" class="headerlink" title="一、软件下载："></a>一、软件下载：</h5><p>下载<a href="https://pan.baidu.com/s/1QLR4OelHXfMGLYywD13ydw" target="_blank" rel="noopener">Erlang</a>  百度云提取码: 864m </p>
 <p>下载<a href="https://pan.baidu.com/s/15xSC2qo6-0Jh6FYnXkA4Yw" target="_blank" rel="noopener">Rabbitmq 源码包</a> 百度云提取码: qwih</p>
+<p><a href="https://www.rabbitmq.com/" target="_blank" rel="noopener">点击此处跳转到官方网站下载最新版本</a></p>
 <h5 id="二、安装环境"><a href="#二、安装环境" class="headerlink" title="二、安装环境:"></a>二、安装环境:</h5><p>node1 172.31.8.8   system Centos 7 —- node3 172.31.8.107 system Centos 7</p>
 <p>node2 172.31.8.13  system Centos 7 —- node4 172.31.8.75  system Centos 7</p>
 <p>软件版本：</p>
@@ -532,6 +533,9 @@ rabbitmqctl start_app
 [root@node2 ~]# rabbitmqctl start_app    --启动服务
 [root@node2 ~]# rabbitmqctl cluster_status --查看集群状态
 </code></pre><p>执行结果可以看到node2节点已经修改为RAM节点，disc节点为node1、3、4<br><img src="https://i.loli.net/2019/07/04/5d1d75112e7ab28091.png" alt="node2RAM.png"><br>再修改node4节点：<br><img src="https://i.loli.net/2019/07/04/5d1d7671ed99316232.png" alt="node4RAM.png"><br>node2、node4节点已经成功修改为内存节点，现在集群就是双内存、双硬盘节点，从控制台查看更为直观:<br><img src="https://i.loli.net/2019/07/04/5d1d79643889841417.png" alt="web控制台.png"></p>
+<p>更多管理命令可参考文档:</p>
+<p><a href="https://blog.csdn.net/wulex/article/details/64127224" target="_blank" rel="noopener">https://blog.csdn.net/wulex/article/details/64127224</a></p>
+<p><a href="https://www.rabbitmq.com/clustering.html" target="_blank" rel="noopener">点击此处查看官方文档</a></p>
 <hr>
 
       
@@ -897,7 +901,7 @@ rabbitmqctl start_app
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共11.3k字</span>
+  <span class="post-count">博客全站共11.4k字</span>
 </div>
         
 
