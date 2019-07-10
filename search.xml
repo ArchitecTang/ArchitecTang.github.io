@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[使用Python统计nginx日志前十个IP的访问量，并以柱状图显示]]></title>
+    <url>%2F2019%2F07%2F10%2F%E4%BD%BF%E7%94%A8Python%E7%BB%9F%E8%AE%A1nginx%E6%97%A5%E5%BF%97%E5%89%8D%E5%8D%81%E4%B8%AAIP%E7%9A%84%E8%AE%BF%E9%97%AE%E9%87%8F%EF%BC%8C%E5%B9%B6%E4%BB%A5%E6%9F%B1%E7%8A%B6%E5%9B%BE%E6%98%BE%E7%A4%BA%2F</url>
+    <content type="text"><![CDATA[1、脚本代码可参考本人博客园文章import matplotlib.pyplot as plt nginx_file = &apos;&apos; --填写nginx日志文件名，需在同一目录 ip = {} #筛选nginx日志文件中的IP with open(nginx_file) as f: for i in f.readlines(): s = i.strip().split()[0] lengh = len(ip.keys()) #统计每个IP的访问以字典存储 if s in ip.keys(): ip[s] = ip[s] + 1 else: ip[s] = 1 #以IP出现的次数排序返回对象为list ip = sorted(ip.items(), key=lambda e:e[1], reverse=True) #取列表前十 newip = ip[0:20:1] tu = dict(newip) x = [] y = [] for k in tu: x.append(k) y.append(tu[k]) plt.title(&apos;ip access&apos;) plt.xlabel(&apos;ip address&apos;) plt.ylabel(&apos;pv&apos;) #X 轴项的翻转角度 plt.xticks(rotation=70) #显示每个柱状图的值 for a,b in zip(x,y): plt.text(a, b, &apos;%.0f&apos; % b, ha=&apos;center&apos;, va= &apos;bottom&apos;,fontsize=7) plt.bar(x,y) plt.legend() plt.show() 2、效果图:]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo博客使用Next主题建立标签云]]></title>
     <url>%2F2019%2F07%2F10%2FHexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8Next%E4%B8%BB%E9%A2%98%E5%BB%BA%E7%AB%8B%E6%A0%87%E7%AD%BE%E4%BA%91%2F</url>
     <content type="text"><![CDATA[使用hexo-tag-cloud插件:github地址1、安装插件:进入到hexo的根目录，在在 package.json 中添加依赖: “hexo-tag-cloud”: “2.0.*” 操作如下：npm install hexo-tag-cloud@^2.0.* --save Git clone 下载使用命令行安装插件包的过程中可能会出现问题，安装失败，安装不完全。可以直接克隆插件到博客的插件文件夹blog/node_modules里。或者克隆到桌面然后复制到博客的插件目录blog\node_modules文件夹里git clone https://github.com/MikeCoder/hexo-tag-cloud 2、配置插件插件的配置需要对应的环境，可以在主题文件夹里找一下，有没有对应的渲染文件，然后根据渲染文件的类型，选择对应的插件配置方法。我这里使用的next主题，所以使用的是swig 配置方式（不仅next，还有其他主题的配置文件也是.swig格式）在主题文件夹找到文件 theme/next/layout/_macro/sidebar.swig, 然后写入如下代码跳转官网复制代码添加到合适的位置即可博客根目录找到 _config.yml配置文件,在最后添加以下的配置项# hexo-tag-cloud tag_cloud: textFont: Trebuchet MS, Helvetica textColor: &apos;#333&apos; textHeight: 25 outlineColor: &apos;#E2E1D1&apos; maxSpeed: 0.1 定义标签云的字体和颜色textColor: ‘#333’ 字体颜色 textHeight: 25 字体高度，根据部署的效果调整 maxSpeed: 0.1 文字滚动速度，根据自己喜好调整 重启博客，部署到线上hexo clean 清除缓存 hexo g 生成博客 hexo s 本地预览 hexo d 部署到线上 一定要注意清除缓存，不然的话容易出现功能效果不展示的问题，清除缓存即执行:hexo clean 实现效果]]></content>
