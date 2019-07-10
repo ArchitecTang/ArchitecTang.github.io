@@ -1,0 +1,259 @@
+<!-- build time:Wed Jul 10 2019 21:22:15 GMT+0800 (中国标准时间) --><!DOCTYPE html><html class="theme-next mist" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>!function(e,t,o,c,i,a,n){e.DaoVoiceObject=i,e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date,a=t.createElement(o),n=t.getElementsByTagName(o)[0],a.async=1,a.src=c,a.charset="utf-8",n.parentNode.insertBefore(a,n)}(window,document,"script",("https:"==document.location.protocol?"https:":"http:")+"//widget.daovoice.io/widget/0f81ff2f.js","daovoice"),daovoice("init",{app_id:"[object Object]"}),daovoice("update")</script><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="Linux,shell,"><link rel="alternate" href="/atom.xml" title="ArchitecTang Blog" type="application/atom+xml"><meta name="description" content="脚本内容:#!/bin/bash echo &amp;quot;         (__)&amp;quot; echo &amp;quot;         (oo)&amp;quot; echo &amp;quot;   /------\/ &amp;quot; echo &amp;quot;  / |    ||  &amp;quot; echo &amp;quot; *  /\---/\  &amp;quot; echo &amp;quot;   ~~   ~~   &amp;quo"><meta name="keywords" content="Linux,shell"><meta property="og:type" content="article"><meta property="og:title" content="Linux 系统安全检查（shell）"><meta property="og:url" content="https://architectang.github.io/2018/04/22/Linux 系统安全检查（shell）/index.html"><meta property="og:site_name" content="ArchitecTang Blog"><meta property="og:description" content="脚本内容:#!/bin/bash echo &amp;quot;         (__)&amp;quot; echo &amp;quot;         (oo)&amp;quot; echo &amp;quot;   /------\/ &amp;quot; echo &amp;quot;  / |    ||  &amp;quot; echo &amp;quot; *  /\---/\  &amp;quot; echo &amp;quot;   ~~   ~~   &amp;quo"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2019-07-10T13:20:31.546Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Linux 系统安全检查（shell）"><meta name="twitter:description" content="脚本内容:#!/bin/bash echo &amp;quot;         (__)&amp;quot; echo &amp;quot;         (oo)&amp;quot; echo &amp;quot;   /------\/ &amp;quot; echo &amp;quot;  / |    ||  &amp;quot; echo &amp;quot; *  /\---/\  &amp;quot; echo &amp;quot;   ~~   ~~   &amp;quo"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",version:"5.1.4",sidebar:{position:"left",display:"always",offset:12,b2t:!1,scrollpercent:!0,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!1,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="https://architectang.github.io/2018/04/22/Linux 系统安全检查（shell）/"><title>Linux 系统安全检查（shell） | ArchitecTang Blog</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">ArchitecTang Blog</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle"></p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>时间线</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://architectang.github.io/2018/04/22/Linux 系统安全检查（shell）/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Zhaohu.Tang"><meta itemprop="description" content><meta itemprop="image" content="/uploads/avatar/avatar.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="ArchitecTang Blog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Linux 系统安全检查（shell）</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T09:14:09+08:00">2018-04-22 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span> </a></span>， <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计&#58;</span> <span title="字数统计">3.1k </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">15</span></div></div></header><div class="post-body" itemprop="articleBody"><p>脚本内容:</p><pre><code>#!/bin/bash
+echo &quot;         (__)&quot;
+echo &quot;         (oo)&quot;
+echo &quot;   /------\/ &quot;
+echo &quot;  / |    ||  &quot;
+echo &quot; *  /\---/\  &quot;
+echo &quot;   ~~   ~~   &quot;
+echo &quot;Are You Ready?&quot;
+read key
+echo &quot;警告：本脚本只作为日常巡检使用，不会对服务器做任何修改，管理员可以根据此报告进行相应的设置。&quot;
+echo ------------------------------------------------------------------------
+echo &quot;查看系统时间&quot;
+DATE=`date`
+echo &quot;Date is $DATE&quot;
+echo ------------------------------------------------------------------------
+echo &quot;进行系统时间同步&quot;
+ntpdate time.nist.gov
+echo ------------------------开始进行检查----------------------
+echo &quot;检查时间为&quot;
+DATE=`date`
+echo &quot;Date is $DATE&quot;
+echo ------------------------主机基本信息检查-----------------------
+echo &quot;系统版本（Centos或Rehead）&quot;
+cat /etc/redhat-release
+echo --------------------------------------------------------------------------
+echo &quot;系统位数（32位或64位）&quot;
+getconf LONG_BIT
+echo -------------------------检查IP信息-----------------------------------------
+echo &quot;本机的ip地址是：&quot;
+ifconfig | grep --color &quot;\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}&quot;
+echo -------------------------检查系统用户信息---------------------------------------
+awk -F&quot;:&quot; &apos;{if($2!~/^!|^*/){print &quot;(&quot;$1&quot;)&quot; &quot; 是一个未被锁定的账户，请管理员检查是否需要锁定它或者删除它。&quot;}}&apos; /etc/shadow
+echo --------------------------------------------------------------------------
+more /etc/login.defs | grep -E &quot;PASS_MAX_DAYS&quot; | grep -v &quot;#&quot; |awk -F&apos; &apos;  &apos;{if($2!=90){print &quot;/etc/login.defs里面的&quot;$1 &quot;设置的是&quot;$2&quot;天，请管理员改成90天。&quot;}}&apos;
+echo --------------------------------------------------------------------------
+more /etc/login.defs | grep -E &quot;PASS_MIN_LEN&quot; | grep -v &quot;#&quot; |awk -F&apos; &apos;  &apos;{if($2!=6){print &quot;/etc/login.defs里面的&quot;$1 &quot;设置的是&quot;$2&quot;个字符，请管理员改成6个字符。&quot;}}&apos;
+echo --------------------------------------------------------------------------
+more /etc/login.defs | grep -E &quot;PASS_WARN_AGE&quot; | grep -v &quot;#&quot; |awk -F&apos; &apos;  &apos;{if($2!=10){print &quot;/etc/login.defs里面的&quot;$1 &quot;设置的是&quot;$2&quot;天，请管理员将口令到期警告天数改成10天。&quot;}}&apos;
+echo --------------------------------------------------------------------------
+grep TMOUT /etc/profile /etc/bashrc &gt; /dev/null|| echo &quot;未设置登录超时限制，请设置之，设置方法：在/etc/profile或者/etc/bashrc里面添加TMOUT=600参数&quot;
+echo ------------------------检查服务运行情况-----------------------------------
+if ps -elf |grep xinet |grep -v &quot;grep xinet&quot;;then
+echo &quot;xinetd 服务正在运行，请检查是否可以把xinnetd服务关闭&quot;
+else
+echo &quot;xinetd 服务未开启&quot;
+fi
+echo --------------------------------------------------------------------------
+echo &quot;查看系统密码文件修改时间&quot;
+ls -ltr /etc/passwd
+echo --------------------------------------------------------------------------
+echo  &quot;查看是否开启了ssh服务&quot;
+if service sshd status | grep -E &quot;listening on|active \(running\)&quot;; then
+echo &quot;SSH服务已开启&quot;
+else
+echo &quot;SSH服务未开启&quot;
+fi
+echo --------------------------------------------------------------------------
+echo &quot;查看是否开启了TELNET服务&quot;
+if more /etc/xinetd.d/telnetd 2&gt;&amp;1|grep -E &quot;disable=no&quot;; then
+echo  &quot;TELNET服务已开启 &quot;
+else
+echo  &quot;TELNET服务未开启 &quot;
+fi
+echo --------------------------------------------------------------------------
+echo  &quot;查看系统SSH远程访问设置策略(host.deny拒绝列表)&quot;
+if more /etc/hosts.deny | grep -E &quot;sshd: &quot;;more /etc/hosts.deny | grep -E &quot;sshd&quot;; then
+echo  &quot;远程访问策略已设置 &quot;
+else
+echo  &quot;远程访问策略未设置 &quot;
+fi
+echo --------------------------------------------------------------------------
+echo  &quot;查看系统SSH远程访问设置策略(hosts.allow允许列表)&quot;
+if more /etc/hosts.allow | grep -E &quot;sshd: &quot;;more /etc/hosts.allow | grep -E &quot;sshd&quot;; then
+echo  &quot;远程访问策略已设置 &quot;
+else
+echo  &quot;远程访问策略未设置 &quot;
+fi
+echo &quot;当hosts.allow和 host.deny相冲突时，以hosts.allow设置为准。&quot;
+echo -------------------------------------------------------------------------
+echo &quot;查看shell是否设置超时锁定策略&quot;
+if more /etc/profile | grep -E &quot;TIMEOUT= &quot;; then
+echo  &quot;系统设置了超时锁定策略 &quot;
+else
+echo  &quot;未设置超时锁定策略 &quot;
+fi
+echo -------------------------------------------------------------------------
+echo &quot;查看syslog日志审计服务是否开启&quot;
+if service syslog status | egrep &quot; active \(running&quot;;then
+echo &quot;syslog服务已开启&quot;
+else
+echo &quot;syslog服务未开启，建议通过service syslog start开启日志审计功能&quot;
+fi
+echo -------------------------------------------------------------------------
+echo &quot;查看syslog日志是否开启外发&quot;
+if more /etc/rsyslog.conf | egrep &quot;@...\.|@..\.|@.\.|\*.\* @...\.|\*\.\* @..\.|\*\.\* @.\.&quot;;then
+echo &quot;客户端syslog日志已开启外发&quot;
+else
+echo &quot;客户端syslog日志未开启外发&quot;
+fi
+echo -------------------------------------------------------------------------
+echo &quot;查看passwd文件中有哪些特权用户&quot;
+awk -F: &apos;$3==0 {print $1}&apos; /etc/passwd
+echo ------------------------------------------------------------------------
+echo &quot;查看系统中是否存在空口令账户&quot;
+awk -F: &apos;($2==&quot;!!&quot;) {print $1}&apos; /etc/shadow
+echo &quot;该结果不适用于Ubuntu系统&quot;
+echo ------------------------------------------------------------------------
+echo &quot;查看系统中root用户外连情况&quot;
+lsof -u root |egrep &quot;ESTABLISHED|SYN_SENT|LISTENING&quot;
+echo ----------------------------状态解释------------------------------
+echo &quot;ESTABLISHED的意思是建立连接。表示两台机器正在通信。&quot;
+echo &quot;LISTENING的&quot;
+echo &quot;SYN_SENT状态表示请求连接&quot;
+echo ------------------------------------------------------------------------
+echo &quot;查看系统中root用户TCP连接情况&quot;
+lsof -u root |egrep &quot;TCP&quot;
+echo ------------------------------------------------------------------------
+echo &quot;查看系统中存在哪些非系统默认用户&quot;
+echo &quot;root:x:“该值大于500为新创建用户，小于或等于500为系统初始用户”&quot;
+more /etc/passwd |awk -F &quot;:&quot; &apos;{if($3&gt;500){print &quot;/etc/passwd里面的&quot;$1 &quot;的值为&quot;$3&quot;，请管理员确认该账户是否正常。&quot;}}&apos;
+echo ------------------------------------------------------------------------
+echo &quot;检查系统守护进程&quot;
+more /etc/xinetd.d/rsync | grep -v &quot;^#&quot;
+echo ------------------------------------------------------------------------
+echo &quot;检查系统是否存在入侵行为&quot;
+more /var/log/secure |grep refused
+echo ------------------------------------------------------------------------
+echo &quot;-----------------------检查系统是否存在PHP脚本后门---------------------&quot;
+if find / -type f -name *.php | xargs egrep -l &quot;mysql_query\($query, $dbconn\)|专用网马|udf.dll|class PHPzip\{|ZIP压缩程序 荒野无灯修改版|$writabledb|AnonymousUserName|eval\(|Root_CSS\(\)|黑狼PHP木马|eval\(gzuncompress\(base64_decode|if\(empty\($_SESSION|$shellname|$work_dir |PHP木马|Array\(&quot;$filename&quot;| eval\($_POST\[|class packdir|disk_total_space|wscript.shell|cmd.exe|shell.application|documents and settings|system32|serv-u|提权|phpspy|后门&quot; |sort -n|uniq -c |sort -rn 1&gt;/dev/null 2&gt;&amp;1;then
+echo &quot;检测到PHP脚本后门&quot;
+find / -type f -name *.php | xargs egrep -l &quot;mysql_query\($query, $dbconn\)|专用网马|udf.dll|class PHPzip\{|ZIP压缩程序 荒野无灯修改版|$writabledb|AnonymousUserName|eval\(|Root_CSS\(\)|黑狼PHP木马|eval\(gzuncompress\(base64_decode|if\(empty\($_SESSION|$shellname|$work_dir |PHP木马|Array\(&quot;$filename&quot;| eval\($_POST\[|class packdir|disk_total_space|wscript.shell|cmd.exe|shell.application|documents and settings|system32|serv-u|提权|phpspy|后门&quot; |sort -n|uniq -c |sort -rn
+find / -type f -name *.php | xargs egrep -l &quot;mysql_query\($query, $dbconn\)|专用网马|udf.dll|class PHPzip\{|ZIP压缩程序 荒野无灯修改版|$writabledb|AnonymousUserName|eval\(|Root_CSS\(\)|黑狼PHP木马|eval\(gzuncompress\(base64_decode|if\(empty\($_SESSION|$shellname|$work_dir |PHP木马|Array\(&quot;$filename&quot;| eval\($_POST\[|class packdir|disk_total_space|wscript.shell|cmd.exe|shell.application|documents and settings|system32|serv-u|提权|phpspy|后门&quot; |sort -n|uniq -c |sort -rn |awk &apos;{print $2}&apos; | xargs -I{} cp {} /tmp/
+echo &quot;后门样本已拷贝到/tmp/目录&quot;
+else
+echo &quot;未检测到PHP脚本后门&quot;
+fi
+echo ------------------------------------------------------------------------
+echo &quot;-----------------------检查系统是否存在JSP脚本后门---------------------&quot;
+find / -type f -name *.jsp | xargs egrep -l &quot;InputStreamReader\(this.is\)|W_SESSION_ATTRIBUTE|strFileManag|getHostAddress|wscript.shell|gethostbyname|cmd.exe|documents and settings|system32|serv-u|提权|jspspy|后门&quot; |sort -n|uniq -c |sort -rn 2&gt;&amp;1
+find / -type f -name *.jsp | xargs egrep -l &quot;InputStreamReader\(this.is\)|W_SESSION_ATTRIBUTE|strFileManag|getHostAddress|wscript.shell|gethostbyname|cmd.exe|documents and settings|system32|serv-u|提权|jspspy|后门&quot; |sort -n|uniq -c |sort -rn| awk &apos;{print $2}&apos; | xargs -I{} cp {} /tmp/  2&gt;&amp;1 
+echo ------------------------------------------------------------------------
+echo &quot;----------------------检查系统是否存在HTML恶意代码---------------------&quot;
+if find / -type f -name *.html | xargs egrep -l &quot;WriteData|svchost.exe|DropPath|wsh.Run|WindowBomb|a1.createInstance|CurrentVersion|myEncString|DropFileName|a = prototype;|204.351.440.495.232.315.444.550.64.330&quot; 1&gt;/dev/null 2&gt;&amp;1;then
+echo &quot;发现HTML恶意代码&quot;
+find / -type f -name *.html | xargs egrep -l &quot;WriteData|svchost.exe|DropPath|wsh.Run|WindowBomb|a1.createInstance|CurrentVersion|myEncString|DropFileName|a = prototype;|204.351.440.495.232.315.444.550.64.330&quot; |sort -n|uniq -c |sort -rn
+find / -type f -name *.html | xargs egrep -l &quot;WriteData|svchost.exe|DropPath|wsh.Run|WindowBomb|a1.createInstance|CurrentVersion|myEncString|DropFileName|a = prototype;|204.351.440.495.232.315.444.550.64.330&quot; |sort -n|uniq -c |sort -rn| awk &apos;{print $2}&apos; | xargs -I{} cp {} /tmp/
+echo &quot;后门样本已拷贝到/tmp/目录&quot;
+else
+echo &quot;未检测到HTML恶意代码&quot;
+fi
+echo &quot;----------------------检查系统是否存在perl恶意程序----------------------&quot;
+if find / -type f -name *.pl | xargs egrep -l &quot;SHELLPASSWORD|shcmd|backdoor|setsockopt|IO::Socket::INET;&quot; 1&gt;/dev/null 2&gt;&amp;1;then
+echo &quot;发现perl恶意程序&quot;
+find / -type f -name *.pl | xargs egrep -l &quot;SHELLPASSWORD|shcmd|backdoor|setsockopt|IO::Socket::INET;&quot;|sort -n|uniq -c |sort -rn
+find / -type f -name *.pl | xargs egrep -l &quot;SHELLPASSWORD|shcmd|backdoor|setsockopt|IO::Socket::INET;&quot;|sort -n|uniq -c |sort -rn| awk &apos;{print $2}&apos; | xargs -I{} cp {} /tmp/
+echo &quot;可疑样本已拷贝到/tmp/目录&quot;
+else
+echo &quot;未检测到perl恶意程序&quot;
+fi
+echo &quot;----------------------检查系统是否存在Python恶意程序----------------------&quot;
+find / -type f -name *.py | xargs egrep -l &quot;execCmd|cat /etc/issue|getAppProc|exploitdb&quot; |sort -n|uniq -c |sort -rn
+find / -type f -name *.py | xargs egrep -l &quot;execCmd|cat /etc/issue|getAppProc|exploitdb&quot; |sort -n|uniq -c |sort -rn| awk &apos;{print $2}&apos; | xargs -I{} cp {} /tmp/
+echo ------------------------------------------------------------------------
+echo &quot;-----------------------检查系统是否存在恶意程序---------------------&quot;
+find / -type f -perm -111  |xargs egrep &quot;UpdateProcessER12CUpdateGatesE6C|CmdMsg\.cpp|MiniHttpHelper.cpp|y4&apos;r3 1uCky k1d\!|execve@@GLIBC_2.0|initfini.c|ptmalloc_unlock_all2|_IO_wide_data_2|system@@GLIBC_2.0|socket@@GLIBC_2.0|gettimeofday@@GLIBC_2.0|execl@@GLIBC_2.2.5|WwW.SoQoR.NeT|2.6.17-2.6.24.1.c|Local Root Exploit|close@@GLIBC_2.0|syscall\(\__NR\_vmsplice,|Linux vmsplice Local Root Exploit|It looks like the exploit failed|getting root shell&quot; 2&gt;/dev/null
+echo ------------------------------------------------------------------------
+echo &quot;检查网络连接和监听端口&quot;
+netstat -an 
+echo &quot;--------------------------路由表、网络连接、接口信息--------------&quot;
+netstat -rn 
+echo &quot;------------------------查看网卡详细信息--------------------------&quot;
+ifconfig -a 
+echo ------------------------------------------------------------------------
+echo &quot;查看正常情况下登录到本机的所有用户的历史记录&quot;
+last
+echo ------------------------------------------------------------------------
+echo &quot;检查系统中core文件是否开启&quot;
+ulimit -c
+echo &quot;core是unix系统的内核。当你的程序出现内存越界的时候,操作系统会中止你的进程,并将当前内存状态倒出到core文件中,以便进一步分析，如果返回结果为0，则是关闭了此功能，系统不会生成core文件&quot;
+echo ------------------------------------------------------------------------
+echo &quot;检查系统中关键文件修改时间&quot;
+ls -ltr /bin/ls /bin/login /etc/passwd /bin/ps /usr/bin/top /etc/shadow|awk &apos;{print &quot;文件名：&quot;$8&quot;  &quot;&quot;最后修改时间：&quot;$6&quot; &quot;$7}&apos;
+echo &quot;ls文件：是存储ls命令的功能函数，被删除以后，就无法执行ls命令，黑客可利用篡改ls文件来执行后门或其他程序。
+login文件：login是控制用户登录的文件，一旦被篡改或删除，系统将无法切换用户或登陆用户
+user/bin/passwd是一个命令，可以为用户添加、更改密码，但是，用户的密码并不保存在/etc/passwd当中，而是保存在了/etc/shadow当中
+etc/passwd是一个文件，主要是保存用户信息。
+sbin/portmap是文件转换服务，缺少该文件后，无法使用磁盘挂载、转换类型等功能。
+bin/ps 进程查看命令功能支持文件，文件损坏或被更改后，无法正常使用ps命令。
+usr/bin/top  top命令支持文件，是Linux下常用的性能分析工具,能够实时显示系统中各个进程的资源占用状况。
+etc/shadow shadow 是 /etc/passwd 的影子文件，密码存放在该文件当中，并且只有root用户可读。&quot;
+echo --------------------------------------------------------------------------
+echo &quot;-------------------查看系统日志文件是否存在--------------------&quot;
+log=/var/log/syslog
+log2=/var/log/messages
+if [ -e &quot;$log&quot; ]; then
+echo  &quot;syslog日志文件存在！ &quot;
+else
+echo  &quot;/var/log/syslog日志文件不存在！ &quot;
+fi
+if [ -e &quot;$log2&quot; ]; then
+echo  &quot;/var/log/messages日志文件存在！ &quot;
+else
+echo  &quot;/var/log/messages日志文件不存在！ &quot;
+fi
+echo --------------------------------------------------------------------------
+echo &quot;检查系统文件完整性2(MD5检查)&quot;
+echo &quot;该项会获取部分关键文件的MD5值并入库，默认保存在/etc/md5db中&quot;
+echo &quot;如果第一次执行，则会提示md5sum: /sbin/portmap: 没有那个文件或目录&quot;
+echo &quot;第二次重复检查时，则会对MD5DB中的MD5值进行匹配，来判断文件是否被更改过&quot;
+file=&quot;/etc/md5db&quot;
+if [ -e &quot;$file&quot; ]; then md5sum -c /etc/md5db 2&gt;&amp;1; 
+else 
+md5sum /etc/passwd &gt;&gt;/etc/md5db
+md5sum /etc/shadow &gt;&gt;/etc/md5db
+md5sum /etc/group &gt;&gt;/etc/md5db
+md5sum /usr/bin/passwd &gt;&gt;/etc/md5db
+md5sum /sbin/portmap&gt;&gt;/etc/md5db
+md5sum /bin/login &gt;&gt;/etc/md5db
+md5sum /bin/ls &gt;&gt;/etc/md5db
+md5sum /bin/ps &gt;&gt;/etc/md5db
+md5sum /usr/bin/top &gt;&gt;/etc/md5db;
+fi
+echo ----------------------------------------------------------------------
+echo &quot;------------------------主机性能检查--------------------------------&quot;
+echo &quot;CPU检查&quot;
+dmesg | grep -i cpu
+echo -----------------------------------------------------------------------
+more /proc/cpuinfo
+echo -----------------------------------------------------------------------
+echo &quot;内存状态检查&quot;
+vmstat 2 5
+echo -----------------------------------------------------------------------
+more /proc/meminfo
+echo -----------------------------------------------------------------------
+free -m
+echo -----------------------------------------------------------------------
+echo &quot;文件系统使用情况&quot;
+df -h
+echo -----------------------------------------------------------------------
+echo &quot;网卡使用情况&quot;
+lspci -tv
+echo ----------------------------------------------------------------------
+echo &quot;查看僵尸进程&quot;
+ps -ef | grep zombie
+echo ----------------------------------------------------------------------
+echo &quot;耗CPU最多的进程&quot;
+ps auxf |sort -nr -k 3 |head -5
+echo ----------------------------------------------------------------------
+echo &quot;耗内存最多的进程&quot;
+ps auxf |sort -nr -k 4 |head -5
+echo ----------------------------------------------------------------------
+echo ---------------------------------------------------------------------
+echo &quot;COPY RIGHT &quot;
+echo &quot;QQ：&quot;
+echo ----------------------结束时间为-------------------------------------
+DATE=`date`
+echo &quot;Date is $DATE&quot;
+echo ----------------------------------------------------------------------
+</code></pre></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>请我吃辣条</div><button id="rewardButton" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>打赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/uploads/wechatpay/wechatpay.jpg" alt="Zhaohu.Tang 微信支付"><p>微信支付</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/uploads/alipay/alipay.jpg" alt="Zhaohu.Tang 支付宝"><p>支付宝</p></div></div></div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> Zhaohu.Tang</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="https://architectang.github.io/2018/04/22/Linux 系统安全检查（shell）/" title="Linux 系统安全检查（shell）">https://architectang.github.io/2018/04/22/Linux 系统安全检查（shell）/</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://architectang.github.io/" rel="external nofollow" target="_blank"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a></a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a> <a href="/tags/shell/" rel="tag"><i class="fa fa-tag"></i> shell</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2017/11/17/批量ping存活主机/" rel="next" title="批量ping存活主机"><i class="fa fa-chevron-left"></i> 批量ping存活主机</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/09/01/Ansible/" rel="prev" title="Ansible">Ansible <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQyOC8xNTk1NQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script><script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script><div class="widget-wrap"><h3 class="widget-title">Tag Cloud</h3><div id="myCanvasContainer" class="widget tagcloud"><canvas width="250" height="250" id="resCanvas"><ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HEXO博客建站/">HEXO博客建站</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rabbitmq/">Rabbitmq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jira/">jira</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solr/">solr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zabbix/">zabbix</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zimbra/">zimbra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/信息安全/">信息安全</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渗透测试/">渗透测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动化/">自动化</a><span class="tag-list-count">2</span></li></ul></canvas></div></div><section class="site-overview-wrap sidebar-panel sidebar-panel-active"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar/avatar.png" alt="Zhaohu.Tang"><p class="site-author-name" itemprop="name">Zhaohu.Tang</p><p class="site-description motion-element" itemprop="description">专注与技术研究的IT男一枚！！</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">13</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">13</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">13</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/ArchitecTang" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="https://weibo.com/architectang" target="_blank" title="微博"><i class="fa fa-fw fa-globe"></i>微博</a> </span><span class="links-of-author-item"><a href="https://www.jianshu.com/u/2e5f80235809" target="_blank" title="简书"><i class="fa fa-fw fa-globe"></i>简书</a> </span><span class="links-of-author-item"><a href="https://blog.csdn.net/qq_28345657" target="_blank" title="CSDN"><i class="fa fa-fw fa-globe"></i>CSDN</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-block"><div class="links-of-blogroll-title"><i class="fa fa-history fa-" aria-hidden="true"></i> 近期文章</div><ul class="links-of-blogroll-list"><li><a href="/2019/07/10/Hexo博客使用Next主题建立标签云/" title="Hexo博客使用Next主题建立标签云" target="_blank">Hexo博客使用Next主题建立标签云</a></li><li><a href="/2019/07/09/tomcat-入门(安装配置篇)/" title="tomcat 入门(安装配置篇)" target="_blank">tomcat 入门(安装配置篇)</a></li><li><a href="/2019/07/02/Rabbitmq-入门(集群安装篇)/" title="Rabbitmq 入门(集群安装篇)" target="_blank">Rabbitmq 入门(集群安装篇)</a></li><li><a href="/2019/05/22/solr6+tomcat8+zookeeper 环境部署/" title="solr6+tomcat8+zookeeper 环境部署" target="_blank">solr6+tomcat8+zookeeper 环境部署</a></li><li><a href="/2019/05/21/jira(安装篇)/" title="jira(安装篇)" target="_blank">jira(安装篇)</a></li></ul></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; 2017-06 &mdash; <span itemprop="copyrightYear">2019</span> <span class="with-love"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">Zhaohu.Tang</span></div><span id="sitetime"></span><script language="javascript">function siteTime(){window.setTimeout("siteTime()",1e3);var e=1e3,t=60*e,o=60*t,i=24*o,a=365*i,n=new Date,r=n.getFullYear(),l=n.getMonth()+1,s=n.getDate(),M=n.getHours(),g=n.getMinutes(),m=n.getSeconds(),T=Date.UTC(2018,2,13,15,0,0),f=Date.UTC(r,l,s,M,g,m),h=f-T,u=Math.floor(h/a),d=Math.floor(h/i-365*u),D=Math.floor((h-(365*u+d)*i)/o),c=Math.floor((h-(365*u+d)*i-D*o)/t),w=Math.floor((h-(365*u+d)*i-D*o-c*t)/e);document.getElementById("sitetime").innerHTML=" 网站已运行"+d+" 天 "+D+" 小时 "+c+" 分钟 "+w+" 秒"}siteTime()</script><div class="powered-by"><i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><div class="powered-by"></div><span class="post-count">博客全站共14.6k字</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&(n=e.createElement(t),n.src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".search-popup-overlay").click(onPopupClose),$(".popup").toggle();var t=$("#local-search-input");t.attr("autocapitalize","none"),t.attr("autocorrect","off"),t.focus()}var isfetched=!1,isXml=!0,search_path="search.xml";0===search_path.length?search_path="search.xml":/json$/i.test(search_path)&&(isXml=!1);var path="/"+search_path,onPopupClose=function(t){$(".popup").hide(),$("#local-search-input").val(""),$(".search-result-list").remove(),$("#no-result").remove(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")},searchFunc=function(t,e,o){"use strict";$("body").append('<div class="search-popup-overlay local-search-pop-overlay"><div id="search-loading-icon"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>').css("overflow","hidden"),$("#search-loading-icon").css("margin","20% auto 0 auto").css("text-align","center"),$.ajax({url:t,dataType:isXml?"xml":"json",async:!0,success:function(t){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var n=isXml?$("entry",t).map(function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}}).get():t,r=document.getElementById(e),s=document.getElementById(o),a=function(){var t=r.value.trim().toLowerCase(),e=t.split(/[\s\-]+/);e.length>1&&e.push(t);var o=[];if(t.length>0&&n.forEach(function(n){function r(e,o,n,r){for(var s=r[r.length-1],a=s.position,i=s.word,l=[],h=0;a+i.length<=n&&0!=r.length;){i===t&&h++,l.push({position:a,length:i.length});var p=a+i.length;for(r.pop();0!=r.length&&(s=r[r.length-1],a=s.position,i=s.word,p>a);)r.pop()}return c+=h,{hits:l,start:o,end:n,searchTextCount:h}}function s(t,e){var o="",n=e.start;return e.hits.forEach(function(e){o+=t.substring(n,e.position);var r=e.position+e.length;o+='<b class="search-keyword">'+t.substring(e.position,r)+"</b>",n=r}),o+=t.substring(n,e.end)}var a=!1,i=0,c=0,l=n.title.trim(),h=l.toLowerCase(),p=n.content.trim().replace(/<[^>]+>/g,""),u=p.toLowerCase(),f=decodeURIComponent(n.url),d=[],g=[];if(""!=l&&(e.forEach(function(t){function e(t,e,o){var n=t.length;if(0===n)return[];var r=0,s=[],a=[];for(o||(e=e.toLowerCase(),t=t.toLowerCase());(s=e.indexOf(t,r))>-1;)a.push({position:s,word:t}),r=s+n;return a}d=d.concat(e(t,h,!1)),g=g.concat(e(t,u,!1))}),(d.length>0||g.length>0)&&(a=!0,i=d.length+g.length)),a){[d,g].forEach(function(t){t.sort(function(t,e){return e.position!==t.position?e.position-t.position:t.word.length-e.word.length})});var v=[];0!=d.length&&v.push(r(l,0,l.length,d));for(var $=[];0!=g.length;){var C=g[g.length-1],m=C.position,x=C.word,w=m-20,y=m+80;0>w&&(w=0),y<m+x.length&&(y=m+x.length),y>p.length&&(y=p.length),$.push(r(p,w,y,g))}$.sort(function(t,e){return t.searchTextCount!==e.searchTextCount?e.searchTextCount-t.searchTextCount:t.hits.length!==e.hits.length?e.hits.length-t.hits.length:t.start-e.start});var T=parseInt("1");T>=0&&($=$.slice(0,T));var b="";b+=0!=v.length?"<li><a href='"+f+"' class='search-result-title'>"+s(l,v[0])+"</a>":"<li><a href='"+f+"' class='search-result-title'>"+l+"</a>",$.forEach(function(t){b+="<a href='"+f+'\'><p class="search-result">'+s(p,t)+"...</p></a>"}),b+="</li>",o.push({item:b,searchTextCount:c,hitCount:i,id:o.length})}}),1===e.length&&""===e[0])s.innerHTML='<div id="no-result"><i class="fa fa-search fa-5x" /></div>';else if(0===o.length)s.innerHTML='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';else{o.sort(function(t,e){return t.searchTextCount!==e.searchTextCount?e.searchTextCount-t.searchTextCount:t.hitCount!==e.hitCount?e.hitCount-t.hitCount:e.id-t.id});var a='<ul class="search-result-list">';o.forEach(function(t){a+=t.item}),a+="</ul>",s.innerHTML=a}};r.addEventListener("input",a),$(".local-search-pop-overlay").remove(),$("body").css("overflow",""),proceedsearch()}})};$(".popup-trigger").click(function(t){t.stopPropagation(),isfetched===!1?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()}),$(".popup-btn-close").click(onPopupClose),$(".popup").click(function(t){t.stopPropagation()}),$(document).on("keyup",function(t){var e=27===t.which&&$(".search-popup").is(":visible");e&&onPopupClose()})</script><script type="text/javascript" src="/js/src/crash_cheat.js"></script></body></html><!-- rebuild by neat -->
