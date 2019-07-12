@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Linux 挂载新磁盘]]></title>
+    <url>%2F2019%2F07%2F12%2FLinux-%E6%8C%82%E8%BD%BD%E6%96%B0%E7%A3%81%E7%9B%98%2F</url>
+    <content type="text"><![CDATA[需求：新增加一块硬盘sdb，只分一个区，格式化挂载到/date1、查看现在已有的分区状态df -h图中显示没有看到sdb硬盘2、查看服务器安装的硬盘状态（包括格式化和未格式化的）fdisk -l图中显示，有sdb硬盘，但是没有分区3、添加新分区fdisk /dev/sdb按照以下红框输入：N 回车 P 回车 1 回车 两次回车 W 回车用以下命令查看分区fdisk -l图中红框显示已经多出了一个分区，但是没有格式化4、格式化分区mkfs -t ext4 -c /dev/sdb1-t 指定要把磁盘格式化成什么类型-c 在建立文件系统之前检查坏道，可能会很费时间，新硬盘一般不需要5、挂载新硬盘在根目录下建一个文件夹，待会将分区挂载在这个文件夹上，以后要往新硬盘存东西，就放在这个新建的文件夹里就可以mkdir /data挂载硬盘mount /dev/sdb1 /data6、让系统开机自动挂载这块硬盘echo “/dev/sdb1 /data ext4 defaults 0 0”&gt; /etc/fstab]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo博客使用Next主题建立标签云]]></title>
     <url>%2F2019%2F07%2F10%2FHexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8Next%E4%B8%BB%E9%A2%98%E5%BB%BA%E7%AB%8B%E6%A0%87%E7%AD%BE%E4%BA%91%2F</url>
     <content type="text"><![CDATA[使用hexo-tag-cloud插件:github地址1、安装插件:进入到hexo的根目录，在在 package.json 中添加依赖: “hexo-tag-cloud”: “2.0.*” 操作如下：npm install hexo-tag-cloud@^2.0.* --save Git clone 下载使用命令行安装插件包的过程中可能会出现问题，安装失败，安装不完全。可以直接克隆插件到博客的插件文件夹blog/node_modules里。或者克隆到桌面然后复制到博客的插件目录blog\node_modules文件夹里git clone https://github.com/MikeCoder/hexo-tag-cloud 2、配置插件插件的配置需要对应的环境，可以在主题文件夹里找一下，有没有对应的渲染文件，然后根据渲染文件的类型，选择对应的插件配置方法。我这里使用的next主题，所以使用的是swig 配置方式（不仅next，还有其他主题的配置文件也是.swig格式）在主题文件夹找到文件 theme/next/layout/_macro/sidebar.swig, 然后写入如下代码跳转官网复制代码添加到合适的位置即可博客根目录找到 _config.yml配置文件,在最后添加以下的配置项# hexo-tag-cloud tag_cloud: textFont: Trebuchet MS, Helvetica textColor: &apos;#333&apos; textHeight: 25 outlineColor: &apos;#E2E1D1&apos; maxSpeed: 0.1 定义标签云的字体和颜色textColor: ‘#333’ 字体颜色 textHeight: 25 字体高度，根据部署的效果调整 maxSpeed: 0.1 文字滚动速度，根据自己喜好调整 重启博客，部署到线上hexo clean 清除缓存 hexo g 生成博客 hexo s 本地预览 hexo d 部署到线上 一定要注意清除缓存，不然的话容易出现功能效果不展示的问题，清除缓存即执行:hexo clean 实现效果]]></content>
