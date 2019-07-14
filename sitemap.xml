@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://architectang.github.io/2019/07/15/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD%E8%A7%A3%E9%87%8A/</loc>
+    <loc>https://architectang.github.io/2019/07/10/Linux%E5%B8%B8%E7%94%A8%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7-fping%E4%B8%BB%E6%9C%BA%E6%89%AB%E6%8F%8F/</loc>
     
-    <lastmod>2019-07-14T16:23:41.399Z</lastmod>
+    <lastmod>2019-07-14T18:34:54.527Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://architectang.github.io/2019/07/15/%E9%98%B2%E7%97%85%E6%AF%92%E4%BD%93%E7%B3%BB%E8%A7%84%E5%88%92/</loc>
+    <loc>https://architectang.github.io/2017/07/03/%E9%98%B2%E7%97%85%E6%AF%92%E4%BD%93%E7%B3%BB%E8%A7%84%E5%88%92/</loc>
     
-    <lastmod>2019-07-14T16:09:21.265Z</lastmod>
+    <lastmod>2019-07-14T18:32:32.229Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://architectang.github.io/2017/06/29/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD%E8%A7%A3%E9%87%8A/</loc>
+    
+    <lastmod>2019-07-14T18:32:19.003Z</lastmod>
     
   </url>
   
@@ -54,13 +61,6 @@
     <loc>https://architectang.github.io/2017/08/11/Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%B6%E5%AE%9Amysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E7%9A%84%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1/</loc>
     
     <lastmod>2019-07-14T12:17:27.251Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://architectang.github.io/2019/07/13/Linux%E5%B8%B8%E7%94%A8%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7-fping%E4%B8%BB%E6%9C%BA%E6%89%AB%E6%8F%8F/</loc>
-    
-    <lastmod>2019-07-13T09:20:45.591Z</lastmod>
     
   </url>
   
