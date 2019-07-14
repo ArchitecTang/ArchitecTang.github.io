@@ -222,6 +222,78 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[mysql性能的检查和调优方法]]></title>
+    <url>%2F2017%2F08%2F20%2Fmysql%E6%80%A7%E8%83%BD%E7%9A%84%E6%A3%80%E6%9F%A5%E5%92%8C%E8%B0%83%E4%BC%98%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[我一直是使用mysql这个数据库软件，它工作比较稳定，效率也很高。在遇到严重性能问题时，一般都有这么几种可能：1、索引没有建好；2、sql写法过于复杂；3、配置错误；4、机器实在负荷不了；1、索引没有建好如果看到mysql消耗的cpu很大，可以用mysql的client工具来检查。在linux下执行/usr/local/mysql/bin/mysql -hlocalhost -uroot -p 输入密码，如果没有密码，则不用-p参数就可以进到客户端界面中。看看当前的运行情况show full processlist 可以多运行几次这个命令可以看到当前正在执行的sql语句，它会告知执行的sql、数据库名、执行的状态、来自的客户端ip、所使用的帐号、运行时间等信息在我的cache后端，这里面大部分时间是看不到显示任何sql语句的，我认为这样才算比较正常。如果看到有很多sql语句，那么这台mysql就一定会有性能问题如果出现了性能问题，则可以进行分析：1、是不是有sql语句卡住了？这是出现比较多的情况，如果数据库是采用myisam，那么有可能有一个写入的线程会把数据表给锁定了，如果这条语句不结束，则其它语句也无法运行。查看processlist里的time这一项，看看有没有执行时间很长的语句，要留意这些语句。2、大量相同的sql语句正在执行如果出现这种情况，则有可能是该sql语句执行的效率低下，同样要留意这些语句。然后把你所怀疑的语句统统集合一下，用desc（explain）来检查这些语句。首先看看一个正常的desc输出：mysql&gt; desc select * from imgs where imgid=1651768337; +—-+————-+——-+——-+—————+———+———+——-+——+——-+ | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra | +—-+————-+——-+——-+—————+———+———+——-+——+——-+ | 1 | SIMPLE | imgs | const | PRIMARY | PRIMARY | 8 | const | 1 | | +—-+————-+——-+——-+—————+———+———+——-+——+——-+ 1 row in set (0.00 sec) 注意key、rows和Extra这三项，这条语句返回的结果说明了该sql会使用PRIMARY主键索引来查询，结果集数量为1条，Extra没有显 示，证明没有用到排序或其他操作。由此结果可以推断，mysql会从索引中查询imgid=1651768337这条记录，然后再到真实表中取出所有字 段，是很简单的操作。key是指明当前sql会使用的索引，mysql执行一条简单语句时只能使用到一条索引，注意这个限制；rows是返回的结果集大小，结果集就是使用该索引进行一次搜索的所有匹配结果；Extra一般会显示查询和排序的方式，。如果没有使用到key，或者rows很大而用到了filesort排序，一般都会影响到效率，例如：mysql&gt; desc select * from imgs where userid=”7mini” order by clicks desc limit 10; +—-+————-+——-+——+—————+——+———+——+——-+—————————–+ | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra | +—-+————-+——-+——+—————+——+———+——+——-+—————————–+ | 1 | SIMPLE | imgs | ALL | NULL | NULL | NULL | NULL | 12506 | Using where; Using filesort | +—-+————-+——-+——+—————+——+———+——+——-+—————————–+ 1 row in set (0.00 sec) 这条sql结果集会有12506条，用到了filesort，所以执行起来会非常消耗效率的。这时mysql执行时会把整个表扫描一遍，一条一条去找到匹 配userid=”7mini”的记录，然后还要对这些记录的clicks进行一次排序，效率可想而知。真实执行时如果发现还比较快的话，那是因为服务器 内存还足够将12506条比较短小的记录全部读入内存，所以还比较快，但是并发多起来或者表大起来的话，效率问题就严重了。这时我把userid加入索引：create index userid on imgs (userid); 然后再检查：mysql&gt; desc select * from imgs where userid=”7mini” order by clicks desc limit 10; +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra | +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ | 1 | SIMPLE | imgs | ref | userid | userid | 51 | const | 8 | Using where; Using filesort | +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ 1 row in set (0.00 sec) 嗯，这时可以看到mysql使用了userid这个索引搜索了，用userid索引一次搜索后，结果集有8条。然后虽然使用了filesort一条一条排序，但是因为结果集只有区区8条，效率问题得以缓解。但是，如果我用别的userid查询，结果又会有所不同：mysql&gt; desc select * from imgs where userid=”admin” order by clicks desc limit 10; +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra | +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ | 1 | SIMPLE | imgs | ref | userid | userid | 51 | const | 2944 | Using where; Using filesort | +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ 1 row in set (0.00 sec) 这个结果和userid=”7mini”的结果基本相同，但是mysql用userid索引一次搜索后结果集的大小达到2944条，这2944条记录都会 加入内存进行filesort，效率比起7mini那次来说就差很多了。这时可以有两种办法可以解决，第一种办法是再加一个索引和判断条件，因为我只需要 根据点击量取最大的10条数据，所以有很多数据我根本不需要加进来排序，比如点击量小于10的，这些数据可能占了很大部分。我对clicks加一个索引，然后加入一个where条件再查询：create index clicks on imgs(clicks); mysql&gt; desc select * from imgs where userid=”admin” order by clicks desc limit 10; +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra | +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ | 1 | SIMPLE | imgs | ref | userid,clicks | userid | 51 | const | 2944 | Using where; Using filesort | +—-+————-+——-+——+—————+——–+———+——-+——+—————————–+ 1 row in set (0.00 sec) 这时可以看到possible_keys变成了userid,clicks，possible_keys是可以匹配的所有索引，mysql会从 possible_keys中自己判断并取用其中一个索引来执行语句，值得注意的是，mysql取用的这个索引未必是最优化的。这次查询mysql还是使 用userid这个索引来查询的，并没有按照我的意愿，所以结果还是没有什么变化。改一下sql加上use index强制mysql使用clicks索引：mysql&gt; desc select * from imgs use index (clicks) where userid=’admin’ and clicks&gt;10 order by clicks desc limit 10 +—-+————-+——-+——-+—————+——–+———+——+——+————-+ | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra | +—-+————-+——-+——-+—————+——–+———+——+——+————-+ | 1 | SIMPLE | imgs | range | clicks | clicks | 4 | NULL | 5455 | Using where | +—-+————-+——-+——-+—————+——–+———+——+——+————-+ 1 row in set (0.00 sec) 这时mysql用到了clicks索引进行查询，但是结果集比userid还要大！看来还要再进行限制：mysql&gt; desc select * from imgs use index (clicks) where userid=’admin’ and clicks&gt;1000 order by clicks desc limit 10 +—-+————-+——-+——-+—————+——–+———+——+——+————-+ | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra | +—-+————-+——-+——-+—————+——–+———+——+——+————-+ | 1 | SIMPLE | imgs | range | clicks | clicks | 4 | NULL | 312 | Using where | +—-+————-+——-+——-+—————+——–+———+——+——+————-+ 1 row in set (0.00 sec) 加到1000的时候结果集变成了312条，排序效率应该是可以接受。不过，采用换索引这种优化方式需要取一个采样点，比如这个例子中的1000这个数字，这样，对userid的每个数值，都要去找一个采样点，这样对程序来 说是很难办的。如果按1000取样的话，那么userid=’7mini’这个例子中，取到的结果将不会是8条，而是2条，给用户造成了困惑。当然还有另一种办法，加入双索引：create index userid_clicks on imgs (userid, clicks) mysql&gt; desc select * from imgs where userid=”admin” order by clicks desc limit 10; +—-+————-+——-+——+———————-+—————+———+——-+——+————-+ | id | select_type | table | type | possible_keys | key | key_len | ref | rows | Extra | +—-+————-+——-+——+———————-+—————+———+——-+——+————-+ | 1 | SIMPLE | imgs | ref | userid,userid_clicks | userid_clicks | 51 | const | 2944 | Using where | +—-+————-+——-+——+———————-+—————+———+——-+——+————-+ 1 row in set (0.00 sec) 这时可以看到，结果集还是2944条，但是Extra中的filesort不见了。这时mysql使用userid_clicks这个索引去查询，这不但 能快速查询到userid=”admin”的所有记录，并且结果是根据clicks排好序的！所以不用再把这个结果集读入内存一条一条排序了，效率上会高 很多。但是用多字段索引这种方式有个问题，如果查询的sql种类很多的话，就得好好规划一下了，否则索引会建得非常多，不但会影响到数据insert和update的效率，而且数据表也容易损坏。以上是对索引优化的办法，因为原因可能会比较复杂，所以写得比较的长，一般好好优化了索引之后，mysql的效率会提升n个档次，从而也不需要考虑增加机器来解决问题了。但是，mysql甚至所有数据库，可能都不好解决limit的问题。在mysql中，limit 0,10只要索引合适，是没有问题的，但是limit 100000,10就会很慢了，因为mysql会扫描排好序的结果，然后找到100000这个点，取出10条返回。要找到100000这个点，就要扫描 100000条记录，这个循环是比较耗时的。不知道会不会有什么好的算法可以优化这个扫描引擎，我冥思苦想也想不出有什么好办法。对于limit，目前直 至比较久远的将来，我想只能通过业务、程序和数据表的规划来优化，我想到的这些优化办法也都还没有一个是万全之策，往后再讨论。2、sql写法过于复杂sql写法假如用到一些特殊的功能，比如groupby、或者多表联合查询的话，mysql用到什么方式来查询也可以用desc来分析，我这边用复杂sql的情况还不算多，所以不常分析，暂时就没有好的建议。3、配置错误配置里主要参数是key_buffer、sort_buffer_size/myisam_sort_buffer_size，这两个参数意思是：key_buffer=128M：全部表的索引都会尽可能放在这块内存区域内，索引比较大的话就开稍大点都可以，我一般设为128M，有个好的建议是把很少用到并且比较大的表想办法移到别的地方去，这样可以显著减少mysql的内存占用。sort_buffer_size=1M：单个线程使用的用于排序的内存，查询结果集都会放进这内存里，如果比较小，mysql会多放几次，所以稍微开大一点就可以了，重要是优化好索引和查询语句，让他们不要生成太大的结果集。另外一些配置：thread_concurrency=8：这个配置标配=cpu数量x2interactive_timeout=30wait_timeout=30：这两个配置使用10-30秒就可以了，这样会尽快地释放内存资源，注意：一直在使用的连接是不会断掉的，这个配置只是断掉了长时间不动的连接。query_cache：这个功能不要使用，现在很多人看到cache这几个字母就像看到了宝贝，这是不唯物主义的。mysql的query_cache 在每次表数据有变化的时候都会重新清理连至该表的所有缓存，如果更新比较频繁，query_cache不但帮不上忙，而且还会对效率影响很大。这个参数只 适合只读型的数据库，如果非要用，也只能用query_cache_type=2自行用SQL_CACHE指定一些sql进行缓存。max_connections：默认为100，一般情况下是足够用的，但是一般要开大一点，开到400-600就可以了，能超过600的话一般就有效率问题，得另找对策，光靠增加这个数字不是办法。其它配置可以按默认就可以了，个人觉得问题还不是那么的大，提醒一下：1、配置虽然很重要，但是在绝大部分情况下都不是效率问题的罪魁祸首。2、mysql是一个数据库，对于数据库最重要考究的不应是效率，而是稳定性和数据准确性。4、机器实在负荷不了如果做了以上调整，服务器还是不能承受，那就只能通过架构级调整来优化了。1、mysql同步。通过mysql同步功能将数据同步到数台从数据库，由主数据库写入，从数据库提供读取。我个人不是那么乐意使用mysql同步，因为这个办法会增加程序的复杂性，并常常会引起数据方面的错误。在高负荷的服务中，死机了还可以快速重启，但数据错误的话要恢复就比较麻烦。2、加入缓存加入缓存之后，就可以解决并发的问题，效果很明显。如果是实时系统，可以考虑用刷新缓存方式使缓存保持最新。在前端加入squid的架构比较提倡使用，在命中率比较高的应用中，基本上可以解决问题。如果是在程序逻辑层里面进行缓存，会增加很多复杂性，问题会比较多而且难解决，不建议在这一层面进行调整。3、程序架构调整，支持同时连接多个数据库如果web加入缓存后问题还是比较严重，只能通过程序架构调整，把应用拆散，用多台的机器同时提供服务。如果拆散的话，对业务是有少许影响，如果业务当中有部分功能必须使用所有的数据，可以用一个完整库+n个分散库这样的架构，每次修改都在完整库和分散库各操作一次，或定期整理完整库。当然，还有一种最笨的，把数据库整个完完整整的做拷贝，然后程序每次都把完整的sql在这些库执行一遍，访问时轮询访问，我认为这样要比mysql同步的方式安全。4、使用 mysql proxy 代理mysql proxy 可以通过代理把数据库中的各个表分散到数台服务器，但是它的问题是没有能解决热门表的问题，如果热门内容散在多个表中，用这个办法是比较轻松就能解决问题。我没有用过这个软件也没有认真查过，不过我对它的功能有一点点怀疑，就是它怎么实现多个表之间的联合查询？如果能实现，那么效率如何呢？5、使用memcachedb数据库换用支持mysql的memcachedb，是可以一试的想法，从memcachedb的实现方式和层面来看对数据没有什么影响，不会对用户有什么困扰。为我现在因为数据库方面问题不多，没有试验过这个玩意。不过，只要它支持mysql的大部分主要的语法，而且本身稳定，可用性是无需置疑的。]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[快速清除MySQL数据库的密码]]></title>
+    <url>%2F2017%2F08%2F19%2F%E5%BF%AB%E9%80%9F%E6%B8%85%E9%99%A4MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AF%86%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[关闭mysql数据库：service mysqld stop &amp; mysqladmin shutdown 跳过mysql服务器授权mysqld_safe --skip-grant-tables --skip-networking &amp; 登录数据库：mysql 打开mysql库：use mysql 更新数据库密码：update user set password=password (&quot;新密码&quot;) where user=&quot;root&quot;; 更新用户权限使其立即生效：flush privileges; 退出数据库：exit; 重新启动mysql数据库：service mysqld start]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL索引管理]]></title>
+    <url>%2F2017%2F08%2F13%2FMySQL%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%2F</url>
+    <content type="text"><![CDATA[1、重建索引命令mysql&amp;gt; REPAIR TABLE tbl_name QUICK; 2、查询数据表索引mysql&amp;gt; SHOW INDEX FROM tbl_name; 3、创建索引（PRIMARY KEY，INDEX，UNIQUE）支持创建主键索引，联合索引和普通索引命令mysql&amp;gt;ALTER TABLE tbl_name ADD INDEX index_name (column list);mysql&amp;gt;ALTER TABLE tbl_name ADD UNIQUE index_name (column list);mysql&amp;gt;ALTER TABLE tbl_name ADD PRIMARY KEY index_name (column list); 4、删除索引（PRIMARY KEY，INDEX，UNIQUE）支持删除主键索引，联合索引和普通索引命令mysql&amp;gt;ALTER TABLE tbl_name DROP INDEX index_name (column list);mysql&amp;gt;ALTER TABLE tbl_name DROP UNIQUE index_name (column list);mysql&amp;gt;ALTER TABLE tbl_name DROP PRIMARY KEY index_name (column list); 其中 tbl_name 表示数据表名，index_name 表示索引名，column list 表示字段列表]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux服务器制定mysql数据库备份的计划任务]]></title>
+    <url>%2F2017%2F08%2F11%2FLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%B6%E5%AE%9Amysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E7%9A%84%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%2F</url>
+    <content type="text"><![CDATA[首先，创建一个shell脚本：#!/bin/bash mysql_pwd=&quot;1234567890&quot; mysql_dump=&quot;/usr/local/mysql/bin/mysqldump&quot; cur_year=$(date +&quot;%Y&quot;) cur_month=$(date +&quot;%m&quot;) cur_day=$(date +&quot;%d&quot;) #dump_path=&quot;/data0/mysql_backup/$cur_year-$cur_month/$cur_day&quot; arr_databases=( &quot;db1&quot; &quot;db2&quot; &quot;db3&quot; &quot;db4&quot; ) for cur_database in ${arr_databases[*]}; do #mkdir backup path dump_path=&quot;/data0/mysql_backup/$cur_database&quot; if [ ! -d &quot;$dump_path&quot; ]; then mkdir -p &quot;$dump_path&quot; fi #backup database $mysql_dump -uroot -p$mysql_pwd $cur_database | gzip &gt; $dump_path/$cur_database-$cur_year-$cur_month-$cur_day.sql.gz #Delete backup files 10 days ago cd $dump_path rm -rf `find . -name &apos;*.sql.gz&apos; -mtime 20` done 可以保存到路径：/data0/scripts/backup_database.sh设置可执行权限 cd /data0/scripts/ chmod +x * 添加计划任务vi /etc/crontab 添加命令： 01 1 * * * root /data0/scripts/backup_database.sh #每天的01点01分执行 20 2 * * 0 root /data0/scripts/backup_database.sh #每周星期天的02点20分执行 重启服务 /sbin/service crond restart]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[查看MySQL运行状况]]></title>
+    <url>%2F2017%2F08%2F06%2F%E6%9F%A5%E7%9C%8BMySQL%E8%BF%90%E8%A1%8C%E7%8A%B6%E5%86%B5%2F</url>
+    <content type="text"><![CDATA[直接在命令行下登陆MySQL运行SHOW STATUS;查询语句，详细如下图SHOW STATUS SHOW VARIABLES SHOW VARIABLES --- 是查看MySQL的配置参数，还可以使用类似SHOW VARIABLES LIKE ‘Key%’ SHOW PROCESSLIST SHOW PROCESSLIST --- 是查看当前正在进行的进程，对于有锁表等情况的排查很有用处。一般情况下，打开MySQL的慢查询记录同样有利于排查。 SHOW OPEN TABLES SHOW OPEN TABLES --- 是显示当前已经被打开的表列表。 mysqladmin status 使用MySQL自带的mysqladmin 工具查看status，使用以下命令mysqladmin -uroot –password=’password’ status 显示的结果如下：Uptime: 87117 Threads: 1 Questions: 5481626 Slow queries: 16 Opens: 2211 Flush tables: 1 Open tables: 512 Queries per second avg: 62.923 另外可以添加 -i 5 参数，让其每五秒自动刷新之。mysqladmin -uroot –password=’password’ status -i 5 mysqladmin extended-status 同样的可以使用以下命令来查看更多的MySQL运行信息，这种方式和第一种查看的信息基本一样。mysqladmin -uroot –password=’password’ extended-status]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySQL数据库备份命令]]></title>
+    <url>%2F2017%2F08%2F06%2F%E5%A4%87%E4%BB%BDMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[备份MySQL数据库的命令mysqldump -hhostname -uusername -ppassword databasename &gt; backupfile.sql 备份MySQL数据库为带删除表的格式，能够让该备份覆盖已有数据库而不需要手动删除原有数据库。mysqldump -–dd-drop-table -uusername -ppassword databasename &gt; backupfile.sql 直接将MySQL数据库压缩备份mysqldump -hhostname -uusername -ppassword databasename | gzip &gt; backupfile.sql.gz 备份MySQL数据库某个（些）表mysqldump -hhostname -uusername -ppassword databasename specific_table specific_table2 &gt; backupfile.sql 同时备份多个MySQL数据库mysqldump -hhostname -uusername -ppassword -databases databasename databasename2 databasename3 &gt; multibackupfile.sql 仅仅备份数据库结构mysqldump –no-data – databases databasename databasename2 databasename3 &gt; structurebackupfile.sql 备份服务器上所有数据库mysqldump –all-databases &gt; allbackupfile.sql 还原MySQL数据库的命令mysql -hhostname -uusername -ppassword databasename &lt; backupfile.sql 还原压缩的MySQL数据库gunzip &lt; backupfile.sql.gz | mysql -uusername -ppassword databasename 将数据库转移到新服务器mysqldump -uusername -ppassword databasename | mysql –host=*.*.*.* -C databasename]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux 挂载新磁盘]]></title>
     <url>%2F2017%2F07%2F23%2FLinux-%E6%8C%82%E8%BD%BD%E6%96%B0%E7%A3%81%E7%9B%98%2F</url>
     <content type="text"><![CDATA[需求：新增加一块硬盘sdb，只分一个区，格式化挂载到/date1、查看现在已有的分区状态df -h图中显示没有看到sdb硬盘2、查看服务器安装的硬盘状态（包括格式化和未格式化的）fdisk -l图中显示，有sdb硬盘，但是没有分区3、添加新分区fdisk /dev/sdb按照以下红框输入：N 回车 P 回车 1 回车 两次回车 W 回车用以下命令查看分区fdisk -l图中红框显示已经多出了一个分区，但是没有格式化4、格式化分区mkfs -t ext4 -c /dev/sdb1-t 指定要把磁盘格式化成什么类型-c 在建立文件系统之前检查坏道，可能会很费时间，新硬盘一般不需要5、挂载新硬盘在根目录下建一个文件夹，待会将分区挂载在这个文件夹上，以后要往新硬盘存东西，就放在这个新建的文件夹里就可以mkdir /data挂载硬盘mount /dev/sdb1 /data6、让系统开机自动挂载这块硬盘echo “/dev/sdb1 /data ext4 defaults 0 0”&gt; /etc/fstab]]></content>
