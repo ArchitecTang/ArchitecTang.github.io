@@ -222,6 +222,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Linux服务器制定mysql数据库备份的计划任务]]></title>
+    <url>%2F2017%2F08%2F11%2FLinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%B6%E5%AE%9Amysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E7%9A%84%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%2F</url>
+    <content type="text"><![CDATA[首先，创建一个shell脚本：#!/bin/bash mysql_pwd=&quot;1234567890&quot; mysql_dump=&quot;/usr/local/mysql/bin/mysqldump&quot; cur_year=$(date +&quot;%Y&quot;) cur_month=$(date +&quot;%m&quot;) cur_day=$(date +&quot;%d&quot;) #dump_path=&quot;/data0/mysql_backup/$cur_year-$cur_month/$cur_day&quot; arr_databases=( &quot;db1&quot; &quot;db2&quot; &quot;db3&quot; &quot;db4&quot; ) for cur_database in ${arr_databases[*]}; do #mkdir backup path dump_path=&quot;/data0/mysql_backup/$cur_database&quot; if [ ! -d &quot;$dump_path&quot; ]; then mkdir -p &quot;$dump_path&quot; fi #backup database $mysql_dump -uroot -p$mysql_pwd $cur_database | gzip &gt; $dump_path/$cur_database-$cur_year-$cur_month-$cur_day.sql.gz #Delete backup files 10 days ago cd $dump_path rm -rf `find . -name &apos;*.sql.gz&apos; -mtime 20` done 可以保存到路径：/data0/scripts/backup_database.sh设置可执行权限 cd /data0/scripts/ chmod +x * 添加计划任务vi /etc/crontab 添加命令： 01 1 * * * root /data0/scripts/backup_database.sh #每天的01点01分执行 20 2 * * 0 root /data0/scripts/backup_database.sh #每周星期天的02点20分执行 重启服务 /sbin/service crond restart]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[查看MySQL运行状况]]></title>
     <url>%2F2017%2F08%2F06%2F%E6%9F%A5%E7%9C%8BMySQL%E8%BF%90%E8%A1%8C%E7%8A%B6%E5%86%B5%2F</url>
     <content type="text"><![CDATA[直接在命令行下登陆MySQL运行SHOW STATUS;查询语句，详细如下图SHOW STATUS SHOW VARIABLES SHOW VARIABLES --- 是查看MySQL的配置参数，还可以使用类似SHOW VARIABLES LIKE ‘Key%’ SHOW PROCESSLIST SHOW PROCESSLIST --- 是查看当前正在进行的进程，对于有锁表等情况的排查很有用处。一般情况下，打开MySQL的慢查询记录同样有利于排查。 SHOW OPEN TABLES SHOW OPEN TABLES --- 是显示当前已经被打开的表列表。 mysqladmin status 使用MySQL自带的mysqladmin 工具查看status，使用以下命令mysqladmin -uroot –password=’password’ status 显示的结果如下：Uptime: 87117 Threads: 1 Questions: 5481626 Slow queries: 16 Opens: 2211 Flush tables: 1 Open tables: 512 Queries per second avg: 62.923 另外可以添加 -i 5 参数，让其每五秒自动刷新之。mysqladmin -uroot –password=’password’ status -i 5 mysqladmin extended-status 同样的可以使用以下命令来查看更多的MySQL运行信息，这种方式和第一种查看的信息基本一样。mysqladmin -uroot –password=’password’ extended-status]]></content>
