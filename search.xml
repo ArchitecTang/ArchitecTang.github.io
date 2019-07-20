@@ -6,11 +6,6 @@
     <content type="text"><![CDATA[]]></content>
   </entry>
   <entry>
-    <title><![CDATA[Linux 杀毒软件]]></title>
-    <url>%2F2019%2F07%2F20%2FLinux-%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[什么是wifi探针??]]></title>
     <url>%2F2019%2F07%2F17%2F%E4%BB%80%E4%B9%88%E6%98%AFwifi%E6%8E%A2%E9%92%88%2F</url>
     <content type="text"><![CDATA[1、什么是WIFI探针？？WIFI 探针是一种能够主动识别 Android 和 IOS 设备，感知用户行为轨迹的精准数据收集前端，基于 WIFI探测技术、移动互联网和云计算等先进技术自动识别探针附近的智能移动终端。、当一个设备给另外一个设备通过无线传输技术发送信息时，周围的其他同类设备都是能够收到无线信息，WiFi探针技术基于此原理。具体说，当WiFi设备在WiFi探针的侦听范围内，WiFi设备（无论是终端、路由器或者其他WiFi设备）发送任何一帧（Frame）时，不管是发给谁，探针都能截获，并分析出此帧MAC层与物理层的一些信息，比如发送与接收设备的MAC地址、帧类型、信号强度等。WiFi探针不需要与周围的设备有任何交互，其本身不发出任何WiFi信号，即实现了无感知获取MAC信息。2、WIFI 探针原理wifi探针实际上指的是probe帧。我们一般接入无线网络的时候，首先要选择对应的无线网路，即根据无线网络的名字进行选择（SSID）。那么知道这个名字有两种方式，主动扫描和被动扫描，其中probe帧即是用在主动扫描这种技术中。具体原理：节点会主动的发送probe request请求帧给AP（路由），AP然后反馈响应probe response，该probe response帧和Beacon的内容几乎是一致的，之后利用该帧中的一些信息，节点才会继续发起接入过程。所以狭义上而言，探针技术是一个帧，也是一种节点收集AP信息的方法。AP实际上也可以用来收集节点的信息，该信息并不是指节点（即用户的终端，比如手机）内部的一些信息，而是一些移动的痕迹。3、WIFI探针特点●用户无需连接，无需安装APP；●手机已经连接WiFi也可以探测；●自动实时探测区域内的WiFi终端标识MAC地址；●自动记录每个WiFi终端进入区域时间log_TIme、场强SNR；●兼容iOS苹果和Android系统，开启WiFi的智能手机、笔记本电脑、Pad等移动设备都能探测。4、WIFI 探针技术所使用的网络协议WIFI探针所采用的网络协议是IEEE802.11协议集，此协议集包含许多子协议。其中按照时间顺序发展，主要有：（1）802.11a（2）802.11b（3）802.11g（4）802.11n在网络通信中，数据被封装成了帧（通信中的一个数据块）。帧在数据链路层传输的时候是有固定格式的，不是随便的封装和打包就可以传输。大小有限制，最小46字节，最大1500字节。]]></content>
@@ -188,6 +183,20 @@
       <tags>
         <tag>Linux</tag>
         <tag>solr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[clamav Linux杀毒软件]]></title>
+    <url>%2F2018%2F06%2F10%2Fclamav%20Linux-%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[一、clamav简介ClamAV是一个C语言开发的开源病毒扫描工具用于检测木马/病毒/恶意软件等。可以在线更新病毒库，Linux系统的病毒较少，但是并不意味着病毒免疫，尤其是对于诸如邮件或者归档文件中夹杂的病毒往往更加难以防范，而ClamAV则能起到不少作用。官网上关于clamav的解释很简单，就是一款用于木马、病毒、恶意软件以及其他恶意威胁的杀毒软件(点击此处跳转到官网)官网下载地址更能特性：1、主要用途 邮件网关的病毒扫描，内建支持多种邮件格式2、高性能 提供多线程的扫描进程3、命令行 提供密令行扫描方式4、扫描对象 可以对要发送的邮件或者文件进行扫描5、文件格式 支持多种文件格式6、病毒库更新频度 一天多次病毒库的更新7、归档文件 支持扫描多种归档文件,比如Zip, RAR, Dmg, Tar, Gzip, Bzip2, OLE2, Cabinet, CHM, BinHex, SIS等8、文档 支持流行的文档文件，比如： MS Office文件，MacOffice文件, HTML, Flash, RTF，PDF安装方式CENTOS/RHELyum -y install clamav Ubuntu/Debianapt-get install clamav 二、安装杀毒软件yum -y install clamav 更新数据库freshclam 病毒库文件/var/lib/clamav/daily.cvd /var/lib/clamav/main.cvd 添加定时任务，设置自动更新:每两个小时自动更新crontab -e 0 */2 * * * root /usr/share/clamav/freshclam-sleep 三、使用clamscan是病毒扫描命令，以下是一些常用参数： clamscan ---不加参数的使用：扫描当前目录下的文件 clamscan -V ---查看clamAV的版本 clamscan -r ---递归扫描子文件夹 clamscan -i ---仅仅显示被感染的文件 clamscan -o ---跳过显示状态ok的文件 clamscan --remove ---检测到有病毒时，直接删除 clamscan --no-summary ---不显示统计信息 clamscan -l scan.log ---将扫描日志写入scan.log文件 ---以上命令都可以在末尾添加文件夹，来扫描指定目录，如 clamscan -r -i /home --remove -l scan.log ---递归扫描/home/目录下的所有文件，只显示病毒文件，并同时删除 示例：clamscan -l scan.log 执行完以后会有详细的扫描信息]]></content>
+      <categories>
+        <category>安全</category>
+        <category>系统病毒扫描</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+        <tag>Linux</tag>
+        <tag>系统杀毒</tag>
       </tags>
   </entry>
   <entry>
