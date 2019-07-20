@@ -186,6 +186,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[系统蜜罐opencanary部署]]></title>
+    <url>%2F2018%2F06%2F20%2F%E7%B3%BB%E7%BB%9F%E8%9C%9C%E7%BD%90opencanary%E9%83%A8%E7%BD%B2%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[clamav Linux杀毒软件]]></title>
     <url>%2F2018%2F06%2F10%2Fclamav%20Linux-%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%2F</url>
     <content type="text"><![CDATA[一、clamav简介ClamAV是一个C语言开发的开源病毒扫描工具用于检测木马/病毒/恶意软件等。可以在线更新病毒库，Linux系统的病毒较少，但是并不意味着病毒免疫，尤其是对于诸如邮件或者归档文件中夹杂的病毒往往更加难以防范，而ClamAV则能起到不少作用。官网上关于clamav的解释很简单，就是一款用于木马、病毒、恶意软件以及其他恶意威胁的杀毒软件(点击此处跳转到官网)官网下载地址更能特性：1、主要用途 邮件网关的病毒扫描，内建支持多种邮件格式2、高性能 提供多线程的扫描进程3、命令行 提供密令行扫描方式4、扫描对象 可以对要发送的邮件或者文件进行扫描5、文件格式 支持多种文件格式6、病毒库更新频度 一天多次病毒库的更新7、归档文件 支持扫描多种归档文件,比如Zip, RAR, Dmg, Tar, Gzip, Bzip2, OLE2, Cabinet, CHM, BinHex, SIS等8、文档 支持流行的文档文件，比如： MS Office文件，MacOffice文件, HTML, Flash, RTF，PDF安装方式CENTOS/RHELyum -y install clamav Ubuntu/Debianapt-get install clamav 二、安装杀毒软件yum -y install clamav 更新数据库freshclam 病毒库文件/var/lib/clamav/daily.cvd /var/lib/clamav/main.cvd 添加定时任务，设置自动更新:每两个小时自动更新crontab -e 0 */2 * * * root /usr/share/clamav/freshclam-sleep 三、使用clamscan是病毒扫描命令，以下是一些常用参数： clamscan ---不加参数的使用：扫描当前目录下的文件 clamscan -V ---查看clamAV的版本 clamscan -r ---递归扫描子文件夹 clamscan -i ---仅仅显示被感染的文件 clamscan -o ---跳过显示状态ok的文件 clamscan --remove ---检测到有病毒时，直接删除 clamscan --no-summary ---不显示统计信息 clamscan -l scan.log ---将扫描日志写入scan.log文件 ---以上命令都可以在末尾添加文件夹，来扫描指定目录，如 clamscan -r -i /home --remove -l scan.log ---递归扫描/home/目录下的所有文件，只显示病毒文件，并同时删除 示例：clamscan -l scan.log 执行完以后会有详细的扫描信息]]></content>
