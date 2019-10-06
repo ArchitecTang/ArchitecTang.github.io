@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[tomcat 安全加固]]></title>
+    <url>%2F2019%2F08%2F05%2Ftomcat-%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>Apache</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Apache</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[什么是wifi探针??]]></title>
     <url>%2F2019%2F07%2F17%2F%E4%BB%80%E4%B9%88%E6%98%AFwifi%E6%8E%A2%E9%92%88%2F</url>
     <content type="text"><![CDATA[1、什么是WIFI探针？？WIFI 探针是一种能够主动识别 Android 和 IOS 设备，感知用户行为轨迹的精准数据收集前端，基于 WIFI探测技术、移动互联网和云计算等先进技术自动识别探针附近的智能移动终端。、当一个设备给另外一个设备通过无线传输技术发送信息时，周围的其他同类设备都是能够收到无线信息，WiFi探针技术基于此原理。具体说，当WiFi设备在WiFi探针的侦听范围内，WiFi设备（无论是终端、路由器或者其他WiFi设备）发送任何一帧（Frame）时，不管是发给谁，探针都能截获，并分析出此帧MAC层与物理层的一些信息，比如发送与接收设备的MAC地址、帧类型、信号强度等。WiFi探针不需要与周围的设备有任何交互，其本身不发出任何WiFi信号，即实现了无感知获取MAC信息。2、WIFI 探针原理wifi探针实际上指的是probe帧。我们一般接入无线网络的时候，首先要选择对应的无线网路，即根据无线网络的名字进行选择（SSID）。那么知道这个名字有两种方式，主动扫描和被动扫描，其中probe帧即是用在主动扫描这种技术中。具体原理：节点会主动的发送probe request请求帧给AP（路由），AP然后反馈响应probe response，该probe response帧和Beacon的内容几乎是一致的，之后利用该帧中的一些信息，节点才会继续发起接入过程。所以狭义上而言，探针技术是一个帧，也是一种节点收集AP信息的方法。AP实际上也可以用来收集节点的信息，该信息并不是指节点（即用户的终端，比如手机）内部的一些信息，而是一些移动的痕迹。3、WIFI探针特点●用户无需连接，无需安装APP；●手机已经连接WiFi也可以探测；●自动实时探测区域内的WiFi终端标识MAC地址；●自动记录每个WiFi终端进入区域时间log_TIme、场强SNR；●兼容iOS苹果和Android系统，开启WiFi的智能手机、笔记本电脑、Pad等移动设备都能探测。4、WIFI 探针技术所使用的网络协议WIFI探针所采用的网络协议是IEEE802.11协议集，此协议集包含许多子协议。其中按照时间顺序发展，主要有：（1）802.11a（2）802.11b（3）802.11g（4）802.11n在网络通信中，数据被封装成了帧（通信中的一个数据块）。帧在数据链路层传输的时候是有固定格式的，不是随便的封装和打包就可以传输。大小有限制，最小46字节，最大1500字节。]]></content>
@@ -200,6 +213,17 @@
       <tags>
         <tag>Linux</tag>
         <tag>solr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[单臂路由的简单配置]]></title>
+    <url>%2F2018%2F08%2F06%2F%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%E7%9A%84%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[操作步骤：路由器配置：Router&gt;en Router#config t Enter configuration commands, one per line. End with CNTL/Z. Router(config)#no ip domain-lookup Router(config)#line console 0 Router(config-line)#exec-timeout 0 0 Router(config-line)#logging synchronous Router(config-line)#exit Router(config)#int f0/0.1 Router(config-subif)#encapsulation dot1Q 20 Router(config-subif)#ip address 192.168.10.1 255.255.255.0 Router(config-subif)#no shutdown Router(config-subif)#exit Router(config)#int f0/0.2 Router(config-subif)#encapsulation dot1Q 10 Router(config-subif)#ip address 172.18.74.1 255.255.255.0 Router(config-subif)#no shutdown Router(config-subif)#int f0/0 Router(config-if)#no shut Router(config-if)# %LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up %LINK-5-CHANGED: Interface FastEthernet0/0.1, changed state to up %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0.1, changed state to up %LINK-5-CHANGED: Interface FastEthernet0/0.2, changed state to up %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0.2, changed state to up Router(config-if)# SwitchA 配置：SwitchA&gt;en SwitchA#config t Enter configuration commands, one per line. End with CNTL/Z. SwitchA(config)#no ip domain-lookup SwitchA(config)#line console 0 SwitchA(config-line)#exec-timeout 0 0 SwitchA(config-line)#logging synchronous SwitchA(config-line)#exit SwitchA(config)#int f0/1 SwitchA(config-if)#switchport mode trunk SwitchA(config-if)# %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up SwitchA(config-if)#exit SwitchA(config)#int f0/2 SwitchA(config-if)#switchport mode trunk SwitchA(config-if)# %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/2, changed state to down %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/2, changed state to up SwitchA(config-if)#exit SwitchA(config)#vlan 10 SwitchA(config-vlan)#exit SwitchA(config)#vlan 20 SwitchA(config-vlan)#exit SwitchA(config)#int f0/3 SwitchA(config-if)#switchport access vlan 10 SwitchA(config-if)#exit SwitchA(config)#int f0/4 SwitchA(config-if)#switchport access vlan 20 SwitchA(config-if)# SwitchB 配置:SwitchB&gt;en SwitchB#config t Enter configuration commands, one per line. End with CNTL/Z. SwitchB(config)#line console 0 SwitchB(config-line)#exec-timeout 0 0 SwitchB(config-line)#logging synchronous SwitchB(config-line)#exit SwitchB(config)#no ip domain-lookup SwitchB(config)#int f0/1 SwitchB(config-if)#switchport mode trunk SwitchB(config-if)#exit SwitchB(config)#vlan 10 SwitchB(config-vlan)#exit SwitchB(config)#vlan 20 SwitchB(config-vlan)#exit SwitchB(config)#int f0/2 SwitchB(config-if)#switchport access vlan 10 SwitchB(config-if)#exit SwitchB(config)#int f0/3 SwitchB(config-if)#switchport access vlan 20 SwitchB(config-if)# 测试:在PC3 ping PC0、1、2在PC0 ping pc1、2、3参数说明：config t 进入全局配置模式 no ip domain-lookup 禁用DNS查找功能 line console 0 进入console #配置模式 exec-timeout 0 0 配置控制台会话永不超时 logging synchronous 配置控制台输出日志同步 int f0/0.1 进入子接口 encapsulation dot1Q 20 设置该接口的封装模式为802.1q，并配置vlan20服务 ip address 192.168.10.1 255.255.255.0 配置IP地址和子网掩码 no shutdown 开启子接口 switchport mode trunk 把端口设置为trunk模式 vlan 10 创建vlan10 switchport access vlan 10 把端口加入到vlan当中]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
