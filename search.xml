@@ -486,4 +486,9 @@
         <tag>安全</tag>
       </tags>
   </entry>
+  <entry>
+    <title><![CDATA[Centos6和Centos7的区别]]></title>
+    <url>%2F2017%2F03%2F03%2FCentos6%E5%92%8CCentos-7%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[(1) 桌面系统Centos 6 : Gnome 2Centos 7 : Gnome 3(2) 文件系统Centos 6 ： ext4Centos 7 ： xfs(3) 内核版本Centos 6 : 2.6Centos 7 : 3.10(4) 防火墙Centos 6 : iptablesCentos 7 : firewalld(5) 文件结构Centos 6 : /bin, /sbin, /lib, and /lib64 在/目录下Centos 7 : /bin,/sbin,/lib and /lib64 在/usr下(6) 默认数据库Centos 6 : mysqlCentos 7 : mariadb(7) 启动加载器Centos 6 : GRUB legacyCentos 7 : GRUB2(8) 主机名Centos 6 : /etc/sysconfig/networkCentos 7 : /etc/hostname(9) 服务相关CentOS 6 : service service_name start、service service_name stop 、 service service_name restart/status/reloadCentOS 7 : systemctl start/stop/status/reload service_name]]></content>
+  </entry>
 </search>
