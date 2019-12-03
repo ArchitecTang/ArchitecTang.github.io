@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://architectang.github.io/2019/12/01/ActiveMQ-%E5%AE%89%E8%A3%85/</loc>
+    
+    <lastmod>2019-12-03T13:17:00.047Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://architectang.github.io/2019/12/01/zookeeper-%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2019-12-01T07:37:09.259Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://architectang.github.io/2018/08/06/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%E7%9A%84%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2019-10-06T08:25:04.936Z</lastmod>
