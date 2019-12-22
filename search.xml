@@ -130,6 +130,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[zabbix 钉钉告警脚本]]></title>
+    <url>%2F2019%2F03%2F22%2Fzabbix-%E9%92%89%E9%92%89%E5%91%8A%E8%AD%A6%E8%84%9A%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[#!/usr/bin/env python #coding:utf-8 #zabbix钉钉报警 import requests,json,sys,os,datetime webhook=&quot;https://oapi.dingtalk.com/robot/send?access_token=**************************************************&quot; user=sys.argv[1] text=sys.argv[3] data={ &quot;msgtype&quot;: &quot;text&quot;, &quot;text&quot;: { &quot;content&quot;: text }, &quot;at&quot;: { &quot;atMobiles&quot;: [ user ], &quot;isAtAll&quot;: False } } headers = {&apos;Content-Type&apos;: &apos;application/json&apos;} x=requests.post(url=webhook,data=json.dumps(data),headers=headers) if os.path.exists(&quot;/usr/local/zabbix/logs/dingding.log&quot;): f=open(&quot;/usr/local/zabbix/logs/dingding.log&quot;,&quot;a+&quot;) else: f=open(&quot;/usr/local/zabbix/logs/dingding.log&quot;,&quot;w+&quot;) f.write(&quot;\n&quot;+&quot;--&quot;*30) if x.json()[&quot;errcode&quot;] == 0: f.write(&quot;\n&quot;+str(datetime.datetime.now())+&quot; &quot;+str(user)+&quot; &quot;+&quot;发送成功&quot;+&quot;\n&quot;+str(text)) f.close() else: f.write(&quot;\n&quot;+str(datetime.datetime.now()) + &quot; &quot; + str(user) + &quot; &quot; + &quot;发送失败&quot; + &quot;\n&quot; + str(text)) f.close()]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[使用Python统计nginx日志前十个IP的访问量，并以柱状图显示]]></title>
     <url>%2F2018%2F12%2F28%2F%E4%BD%BF%E7%94%A8Python%E7%BB%9F%E8%AE%A1nginx%E6%97%A5%E5%BF%97%E5%89%8D%E5%8D%81%E4%B8%AAIP%E7%9A%84%E8%AE%BF%E9%97%AE%E9%87%8F%EF%BC%8C%E5%B9%B6%E4%BB%A5%E6%9F%B1%E7%8A%B6%E5%9B%BE%E6%98%BE%E7%A4%BA%2F</url>
     <content type="text"><![CDATA[1、脚本代码可参考本人博客园文章import matplotlib.pyplot as plt nginx_file = &apos;&apos; --填写nginx日志文件名，需在同一目录 ip = {} #筛选nginx日志文件中的IP with open(nginx_file) as f: for i in f.readlines(): s = i.strip().split()[0] lengh = len(ip.keys()) #统计每个IP的访问以字典存储 if s in ip.keys(): ip[s] = ip[s] + 1 else: ip[s] = 1 #以IP出现的次数排序返回对象为list ip = sorted(ip.items(), key=lambda e:e[1], reverse=True) #取列表前十 newip = ip[0:20:1] tu = dict(newip) x = [] y = [] for k in tu: x.append(k) y.append(tu[k]) plt.title(&apos;ip access&apos;) plt.xlabel(&apos;ip address&apos;) plt.ylabel(&apos;pv&apos;) #X 轴项的翻转角度 plt.xticks(rotation=70) #显示每个柱状图的值 for a,b in zip(x,y): plt.text(a, b, &apos;%.0f&apos; % b, ha=&apos;center&apos;, va= &apos;bottom&apos;,fontsize=7) plt.bar(x,y) plt.legend() plt.show() 2、效果图:]]></content>
@@ -255,8 +260,8 @@
         <category>系统病毒扫描</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>安全</tag>
+        <tag>Linux</tag>
         <tag>系统杀毒</tag>
       </tags>
   </entry>
